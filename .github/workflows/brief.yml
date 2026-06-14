@@ -1,0 +1,44 @@
+name: SIGNAL daily briefs
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5"
+    - cron: "20 20 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: Pick session
+        id: sess
+        run: echo "name=$([ $(date -u +%H) -lt 16 ] && echo pre-open || echo post-close)" >> "$GITHUB_OUTPUT"
+
+      - name: Build dashboard + state
+        run: python app/build.py --mode live --session ${{ steps.sess.outputs.name }}
+
+      - name: Email the brief
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO:  ${{ secrets.EMAIL_TO }}
+        run: python app/email_brief.py
+
+      - name: Publish dashboard
+        run: |
+          git config user.name  "signal-bot"
+          git config user.email "signal-bot@users.noreply.github.com"
+          git add docs/index.html docs/state.json
+          git commit -m "brief ${{ steps.sess.outputs.name }}" || echo "no changes"
+          git push || echo "push skipped"
