@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SIGNAL - Daily Market Brief</title>
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#0d1117; --panel2:#111722; --border:#1f2630;
+    --text:#c9d1d9; --muted:#8b949e; --dim:#6e7681;
+    --up:#3fb950; --down:#f85149; --amber:#d29922; --blue:#58a6ff; --violet:#bc8cff;
+    --mono:"SF Mono",ui-monospace,"Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);
+       font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  .wrap{max-width:1280px;margin:0 auto;padding:18px 16px 60px}
+  header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:12px}
+  header h1{font-size:20px;margin:0;letter-spacing:3px;font-weight:700}
+  header h1 .dot{color:var(--up)}
+  .sub{color:var(--muted);font-size:12px}
+  .badge{font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid var(--border);text-transform:uppercase;letter-spacing:1px}
+  .badge.sample{color:var(--amber);border-color:var(--amber)}
+  .badge.live{color:var(--up);border-color:var(--up)}
+  .right{margin-left:auto;text-align:right;color:var(--dim);font-size:11px}
+  .note{background:rgba(210,153,34,.08);border:1px solid rgba(210,153,34,.35);color:var(--amber);
+        padding:8px 12px;border-radius:8px;margin:14px 0;font-size:12px}
+  .striptitle{color:var(--dim);text-transform:uppercase;letter-spacing:2px;font-size:10px;margin:20px 0 8px}
+  .strip{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 10px;min-width:120px}
+  .chip .k{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+  .chip .v{font-size:15px;font-weight:600}
+  .chip .c{font-size:11px}
+  .chip .n{color:var(--dim);font-size:10px}
+  .fed{display:flex;gap:8px;flex-wrap:wrap}
+  .fedrow{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--dim);
+          border-radius:7px;padding:6px 10px;font-size:11px}
+  .fedrow.high{border-left-color:var(--amber)}
+  .fedrow .e{color:var(--text)} .fedrow .m{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px;margin-top:10px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:13px 14px;cursor:pointer;transition:border-color .15s}
+  .card:hover{border-color:#30404f}
+  .card .top{display:flex;align-items:baseline;gap:8px}
+  .sym{font-size:17px;font-weight:700}
+  .name{color:var(--dim);font-size:11px}
+  .px{margin-left:auto;font-size:16px;font-weight:600}
+  .chg{font-size:12px;margin-left:6px}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .tag{font-size:10px;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:1px;border:1px solid var(--border)}
+  .tag.uptrend{color:var(--up);border-color:rgba(63,185,80,.4)}
+  .tag.downtrend{color:var(--down);border-color:rgba(248,81,73,.4)}
+  .tag.range{color:var(--muted)}
+  .tag.unverified{color:var(--amber);border-color:var(--amber)}
+  .read{margin:9px 0;color:#aeb9c4;font-size:12px}
+  .levs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .levs .h{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+  .lev{display:flex;gap:6px;align-items:center;font-size:11px;padding:1px 0}
+  .lev .p{font-weight:600;min-width:62px}
+  .lev .ev{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .score{font-size:9px;background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:0 4px;color:var(--violet)}
+  .trig{display:flex;gap:8px;margin-top:9px;font-size:11px}
+  .trig .b{flex:1;background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:5px 7px}
+  .trig .b .l{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--dim)}
+  .chgd{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+  .chgd span{font-size:10px;color:var(--blue);background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.25);border-radius:5px;padding:1px 6px}
+  .withheld{color:var(--amber);font-size:12px;margin-top:8px}
+  footer{margin-top:30px;border-top:1px solid var(--border);padding-top:12px;color:var(--dim);font-size:11px}
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(2,5,10,.8);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .modal.open{display:flex}
+  .sheet{background:var(--panel);border:1px solid var(--border);border-radius:12px;width:min(960px,100%);max-height:92vh;overflow:auto;padding:16px}
+  .sheet h2{margin:0 0 2px;font-size:18px}
+  .x{float:right;cursor:pointer;color:var(--muted);font-size:18px}
+  #chart{height:360px;margin:10px 0;border:1px solid var(--border);border-radius:8px}
+  .kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin-top:8px}
+  .kv div{background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:6px 8px}
+  .kv .k{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>SIG<span class="dot">N</span>AL</h1>
+    <span class="sub">objective daily market brief - structure, levels, evidence</span>
+    <span id="mode" class="badge">--</span>
+    <div class="right" id="meta"></div>
+  </header>
+  <div id="banner"></div>
+
+  <div class="striptitle">Intermarket backdrop</div>
+  <div class="strip" id="backdrop"></div>
+
+  <div class="striptitle">Fed &amp; economic data</div>
+  <div class="fed" id="fed"></div>
+
+  <div class="striptitle">Instruments</div>
+  <div class="grid" id="grid"></div>
+
+  <footer id="footer"></footer>
+</div>
+
+<div class="modal" id="modal"><div class="sheet">
+  <span class="x" onclick="closeModal()">&times;</span>
+  <h2 id="m-title"></h2>
+  <div class="sub" id="m-sub"></div>
+  <div id="chart"></div>
+  <div class="kv" id="m-kv"></div>
+</div></div>
+
+<script>
+const EMBEDDED_STATE = __STATE_JSON__;
+let STATE = EMBEDDED_STATE;
+
+function fnum(x){return (x===null||x===undefined)?"-":Number(x).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+function cls(x){return x>0?"up":(x<0?"down":"flat");}
+function sign(x){return (x>0?"+":"")+x;}
+
+function render(){
+  const m=STATE.meta;
+  const mode=document.getElementById("mode");
+  mode.textContent=m.data_mode; mode.className="badge "+(m.data_mode==="LIVE"?"live":"sample");
+  document.getElementById("meta").innerHTML=
+    `${m.session} &middot; as of ${m.as_of_date||"-"}<br>generated ${new Date(m.generated_at).toLocaleString()}`;
+  document.getElementById("banner").innerHTML = m.data_mode==="SAMPLE"
+    ? `<div class="note">SAMPLE DATA - simulated numbers for layout only, NOT live market data. Wire a free API key (see README) and the same engine fills these with cross-checked live values.</div>` : "";
+
+  document.getElementById("backdrop").innerHTML = (STATE.backdrop||[]).map(b=>`
+    <div class="chip"><div class="k">${b.name}</div>
+      <div class="v">${b.value}</div>
+      <div class="c ${cls(b.change)}">${sign(b.change)}</div>
+      <div class="n">${b.note||""}</div></div>`).join("");
+
+  document.getElementById("fed").innerHTML = (STATE.fed_econ||[]).map(e=>{
+    const a = e.actual ? `actual ${e.actual}` : `cons ${e.consensus}`;
+    return `<div class="fedrow ${e.impact}"><span class="e">${e.date} ${e.time} &middot; ${e.event}</span>
+      <span class="m"> &mdash; prior ${e.prior}, ${a}</span></div>`;}).join("");
+
+  document.getElementById("grid").innerHTML = (STATE.instruments||[]).map((i,ix)=>card(i,ix)).join("");
+  document.getElementById("footer").innerHTML = m.disclaimer +
+    `<br>SIGNAL Phase 1 &middot; Mag 7 + MU + SPY/QQQ &middot; screens are not recommendations.`;
+}
+
+function levRow(z){
+  const sc = z.score>=2?`<span class="score">x${z.score}</span>`:"";
+  return `<div class="lev"><span class="p">${fnum(z.price)}</span>${sc}<span class="ev">${(z.evidence||[]).join(", ")}</span></div>`;
+}
+
+function card(i,ix){
+  if(!i.verified){
+    return `<div class="card"><div class="top"><span class="sym">${i.symbol}</span>
+      <span class="name">${i.name||""}</span><span class="tag unverified" style="margin-left:auto">unverified</span></div>
+      <div class="withheld">${i.read||"withheld (fail-closed)"}</div></div>`;
+  }
+  const above=(i.levels_above||[]).slice(0,3).map(levRow).join("")||'<div class="lev"><span class="ev">-</span></div>';
+  const below=(i.levels_below||[]).slice(0,3).map(levRow).join("")||'<div class="lev"><span class="ev">-</span></div>';
+  const chgd=(i.changed||[]).map(c=>`<span>${c}</span>`).join("");
+  return `<div class="card" onclick="openModal(${ix})">
+    <div class="top">
+      <span class="sym">${i.symbol}</span><span class="name">${i.name||""}</span>
+      <span class="px">${fnum(i.ohlc.close)}</span>
+      <span class="chg ${cls(i.change_pct)}">${sign(i.change_pct)}%</span>
+    </div>
+    <div style="margin-top:4px"><span class="tag ${i.structure}">${i.structure}</span></div>
+    <div class="read">${i.read}</div>
+    <div class="levs">
+      <div><div class="h">Resistance / above</div>${above}</div>
+      <div><div class="h">Support / below</div>${below}</div>
+    </div>
+    <div class="trig">
+      <div class="b"><div class="l">Bull trigger</div>${i.bull_trigger}</div>
+      <div class="b"><div class="l">Bear trigger</div>${i.bear_trigger}</div>
+    </div>
+    ${chgd?`<div class="chgd">${chgd}</div>`:""}
+  </div>`;
+}
+
+let chart=null;
+function openModal(ix){
+  const i=STATE.instruments[ix]; if(!i||!i.verified) return;
+  document.getElementById("m-title").textContent=`${i.symbol} - ${i.name}`;
+  document.getElementById("m-sub").textContent=
+    `${i.structure} | close ${fnum(i.ohlc.close)} (${sign(i.change_pct)}%) | ATR(14) ${fnum(i.atr14)} | as of ${i.as_of}`;
+  const ma=i.ma||{};
+  document.getElementById("m-kv").innerHTML=[
+    ["8-EMA",ma.ema8],["21-EMA",ma.ema21],["50-SMA",ma.sma50],["200-SMA",ma.sma200],
+    ["Pivot",i.pivots.pp],["R1",i.pivots.r1],["S1",i.pivots.s1],
+    ["Swing high",i.fib.swing_high],["Swing low",i.fib.swing_low],
+    ["Golden pocket",`${fnum(i.fib.golden_pocket[0])}-${fnum(i.fib.golden_pocket[1])}`],
+    ["Line in sand",i.line_in_sand]
+  ].map(([k,v])=>`<div><div class="k">${k}</div>${typeof v==="number"?fnum(v):(v||"-")}</div>`).join("");
+  document.getElementById("modal").classList.add("open");
+  drawChart(i);
+}
+function closeModal(){document.getElementById("modal").classList.remove("open");}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal();});
+
+function drawChart(i){
+  const el=document.getElementById("chart"); el.innerHTML="";
+  if(typeof LightweightCharts==="undefined"){el.innerHTML='<div style="padding:20px;color:var(--muted)">Chart library offline - levels shown above. (Loads when deployed.)</div>';return;}
+  chart=LightweightCharts.createChart(el,{
+    layout:{background:{color:"#0d1117"},textColor:"#8b949e"},
+    grid:{vertLines:{color:"#161b22"},horzLines:{color:"#161b22"}},
+    rightPriceScale:{borderColor:"#1f2630"},timeScale:{borderColor:"#1f2630"},
+    height:360
+  });
+  const s=chart.addCandlestickSeries({upColor:"#3fb950",downColor:"#f85149",
+    borderUpColor:"#3fb950",borderDownColor:"#f85149",wickUpColor:"#3fb950",wickDownColor:"#f85149"});
+  s.setData((i.history||[]).map(h=>({time:h[0],open:h[1],high:h[2],low:h[3],close:h[4]})));
+  const lines=[];
+  (i.levels_above||[]).slice(0,2).forEach(z=>lines.push([z.price,"#f85149",z.evidence[0]]));
+  (i.levels_below||[]).slice(0,2).forEach(z=>lines.push([z.price,"#3fb950",z.evidence[0]]));
+  if(i.ma&&i.ma.ema21)lines.push([i.ma.ema21,"#58a6ff","21-EMA"]);
+  lines.forEach(([p,c,t])=>{if(p)s.createPriceLine({price:p,color:c,lineWidth:1,lineStyle:2,axisLabelVisible:true,title:t});});
+  chart.timeScale().fitContent();
+}
+
+// try live state.json (when deployed), else keep embedded sample
+fetch("./state.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){STATE=j;render();}}).catch(()=>{});
+render();
+</script>
+</body>
+</html>

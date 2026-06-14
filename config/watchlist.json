@@ -1,0 +1,14 @@
+{
+  "_comment": "Edit this file to change what SIGNAL tracks. Add/remove tickers in 'stocks'. The next run (or local build) picks them up everywhere: dashboard + emails.",
+  "indexes": ["SPY", "QQQ"],
+  "stocks": ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU"],
+  "crypto": [],
+  "email_to": "dakodabender49@gmail.com",
+  "settings": {
+    "fib_swing_lookback": 60,
+    "pivot_width": 3,
+    "atr_period": 14,
+    "rvol_threshold": 2.0,
+    "reconcile_tolerance_pct": 0.001
+  }
+}
