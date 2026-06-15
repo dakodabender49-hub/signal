@@ -1,22 +1,19 @@
 """
 datafeed.py - free EOD data with cross-source verification (LIVE mode).
-
-Two independent free sources:
-  * Stooq   - CSV, no API key
-  * yfinance - Yahoo, no API key
-The latest close is reconciled across both (integrity.reconcile_close). If they
-disagree beyond tolerance, the whole series is rejected -> the instrument is
-withheld from the brief (fail-closed). Runs inside your GitHub Action; it is NOT
-used in sample mode, so the demo never touches the network.
-
-Note on adjustment: both sources are pulled UNADJUSTED so the cross-check
-compares like-with-like. For level math across a stock split you would switch
-both to split-adjusted; documented here so the comparison stays apples-to-apples.
+Resilient: yfinance (Yahoo) primary + Stooq cross-check. Shows data if at least
+one source is up; withholds only when two sources actively disagree.
 """
 from __future__ import annotations
 import csv
 import io
 from integrity import reconcile_close, validate_series
+
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+
+
+def _is_nan(v):
+    return v is None or (isinstance(v, float) and v != v)
 
 
 def _stooq_symbol(sym: str) -> str:
@@ -26,61 +23,78 @@ def _stooq_symbol(sym: str) -> str:
 def fetch_stooq(symbol: str):
     import requests
     url = f"https://stooq.com/q/d/l/?s={_stooq_symbol(symbol)}&i=d"
-    r = requests.get(url, timeout=20)
+    r = requests.get(url, timeout=25, headers=UA)
     r.raise_for_status()
-    rows = list(csv.DictReader(io.StringIO(r.text)))
+    text = (r.text or "").strip()
+    low = text.lower()
+    if not text or text[0] == "<" or "no data" in low or "exceeded" in low:
+        raise ValueError("stooq: no data / rate-limited")
     bars = []
-    for row in rows:
-        if not row.get("Close"):
+    for row in csv.DictReader(io.StringIO(text)):
+        c = row.get("Close")
+        if not c or c in ("N/D", "null"):
             continue
         try:
-            bars.append({
-                "date": row["Date"],
-                "open": float(row["Open"]), "high": float(row["High"]),
-                "low": float(row["Low"]), "close": float(row["Close"]),
-                "volume": float(row.get("Volume") or 0),
-            })
+            bars.append({"date": row["Date"],
+                         "open": float(row["Open"]), "high": float(row["High"]),
+                         "low": float(row["Low"]), "close": float(row["Close"]),
+                         "volume": float(row.get("Volume") or 0)})
         except (ValueError, KeyError):
             continue
+    if not bars:
+        raise ValueError("stooq: empty after parse")
     return bars
 
 
 def fetch_yf(symbol: str):
     import yfinance as yf
-    df = yf.download(symbol, period="2y", interval="1d",
-                     auto_adjust=False, progress=False)
+    df = yf.download(symbol, period="2y", interval="1d", auto_adjust=False,
+                     progress=False, threads=False)
+    if df is None or len(df) == 0:
+        raise ValueError("yfinance: empty")
+    try:
+        if df.columns.nlevels > 1:
+            df.columns = df.columns.get_level_values(0)
+    except Exception:
+        pass
     bars = []
     for idx, row in df.iterrows():
-        bars.append({
-            "date": idx.strftime("%Y-%m-%d"),
-            "open": float(row["Open"]), "high": float(row["High"]),
-            "low": float(row["Low"]), "close": float(row["Close"]),
-            "volume": float(row["Volume"]),
-        })
+        try:
+            o, h, l, c = row["Open"], row["High"], row["Low"], row["Close"]
+            if any(_is_nan(x) for x in (o, h, l, c)):
+                continue
+            v = row["Volume"]
+            bars.append({"date": idx.strftime("%Y-%m-%d"),
+                         "open": float(o), "high": float(h),
+                         "low": float(l), "close": float(c),
+                         "volume": 0.0 if _is_nan(v) else float(v)})
+        except (ValueError, KeyError, TypeError):
+            continue
+    if not bars:
+        raise ValueError("yfinance: empty after parse")
     return bars
 
 
 def get_verified_history(symbol: str, settings: dict):
-    """Return a validated, cross-checked EOD series or raise (fail-closed)."""
-    tol = settings.get("reconcile_tolerance_pct", 0.001)
-    primary = fetch_stooq(symbol)
-    if not primary:
-        raise ValueError("no primary (stooq) data")
-    try:
-        secondary = fetch_yf(symbol)
-    except Exception as e:  # secondary is best-effort
-        secondary = None
-    if secondary:
-        sec = {b["date"]: b for b in secondary}
-        last = primary[-1]
-        other = sec.get(last["date"])
-        mid, status = reconcile_close(last["close"],
-                                      other["close"] if other else None, tol)
-        if mid is None:
-            raise ValueError(f"latest close not verified: {status}")
-    else:
-        raise ValueError("only one source available - latest close unverified")
-    ok, why = validate_series(primary)
-    if not ok:
-        raise ValueError(why)
-    return primary
+    tol = max(settings.get("reconcile_tolerance_pct", 0.005), 0.005)
+    series = {}
+    for name, fn in (("yfinance", fetch_yf), ("stooq", fetch_stooq)):
+        try:
+            bars = fn(symbol)
+            ok, _ = validate_series(bars)
+            if ok:
+                series[name] = bars
+        except Exception:
+            continue
+    if not series:
+        raise ValueError("no free source returned valid data")
+    if "yfinance" in series and "stooq" in series:
+        y = {b["date"]: b["close"] for b in series["yfinance"]}
+        s = {b["date"]: b["close"] for b in series["stooq"]}
+        common = sorted(set(y) & set(s))
+        if common:
+            d = common[-1]
+            mid, status = reconcile_close(y[d], s[d], tol)
+            if mid is None:
+                raise ValueError(f"sources disagree on {d}: {status}")
+    return series.get("yfinance") or series.get("stooq")
