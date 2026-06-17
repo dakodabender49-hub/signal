@@ -32,6 +32,27 @@ def load_watchlist():
         return json.load(f)
 
 
+BACKDROP_SYMS = [("VIX", "^VIX", 1), ("10Y", "^TNX", 2), ("30Y", "^TYX", 2),
+                 ("DXY", "DX-Y.NYB", 2), ("Oil", "CL=F", 2), ("Gold", "GC=F", 2)]
+
+
+def backdrop_live(settings):
+    """Real intermarket backdrop via the verified datafeed. Fail-closed to '-'."""
+    import datafeed
+    out = []
+    for name, sym, dec in BACKDROP_SYMS:
+        try:
+            bars = datafeed.get_verified_history(sym, settings)
+            last, prev = bars[-1]["close"], bars[-2]["close"]
+            if name in ("10Y", "30Y") and last > 20:   # ^TNX/^TYX can quote yield x10
+                last /= 10; prev /= 10
+            out.append({"name": name, "value": round(last, dec),
+                        "change": round(last - prev, dec), "note": ""})
+        except Exception:
+            out.append({"name": name, "value": "-", "change": 0, "note": "n/a"})
+    return out
+
+
 def backdrop_sample():
     return [
         {"name": "VIX", "value": 14.2, "change": -0.6, "note": "calm regime"},
@@ -162,7 +183,7 @@ def main():
                            "NOT live market data."),
             "problems": problems,
         },
-        "backdrop": backdrop_sample(),
+        "backdrop": backdrop_live(settings) if args.mode == "live" else backdrop_sample(),
         "fed_econ": fed_econ_sample(),
         "instruments": instruments,
         "screener": {"note": "Movers + objective setup screens arrive in Phase 3.",
