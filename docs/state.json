@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-06-16T21:49:34+00:00",
-    "session": "post-close",
+    "generated_at": "2026-06-17T00:28:59+00:00",
+    "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-16",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
@@ -10,45 +10,39 @@
   "backdrop": [
     {
       "name": "VIX",
-      "value": 14.2,
-      "change": -0.6,
-      "note": "calm regime"
+      "value": 16.4,
+      "change": 0.2,
+      "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.31,
-      "change": 0.02,
-      "note": "yields firm"
+      "value": 4.43,
+      "change": -0.06,
+      "note": ""
     },
     {
-      "name": "2Y",
-      "value": 4.05,
-      "change": 0.01,
-      "note": "2s10s +26bp"
+      "name": "30Y",
+      "value": 4.93,
+      "change": -0.05,
+      "note": ""
     },
     {
       "name": "DXY",
-      "value": 104.1,
-      "change": -0.2,
-      "note": "dollar soft"
+      "value": 99.51,
+      "change": -0.12,
+      "note": ""
     },
     {
-      "name": "WTI",
-      "value": 71.8,
-      "change": 0.5,
-      "note": "crude steady"
+      "name": "Oil",
+      "value": 75.86,
+      "change": -4.89,
+      "note": ""
     },
     {
       "name": "Gold",
-      "value": 2410.0,
-      "change": 7.0,
-      "note": "bid"
-    },
-    {
-      "name": "Breadth",
-      "value": 63,
-      "change": 2,
-      "note": "% S&P > 50-day"
+      "value": 4360.5,
+      "change": 32.5,
+      "note": ""
     }
   ],
   "fed_econ": [
