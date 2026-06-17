@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-17T12:33:17+00:00",
+    "generated_at": "2026-06-17T12:45:51+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-16",
@@ -10,20 +10,20 @@
   "backdrop": [
     {
       "name": "VIX",
-      "value": 16.4,
-      "change": -0.0,
+      "value": 16.3,
+      "change": -0.1,
       "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.49,
-      "change": 0.02,
+      "value": 4.44,
+      "change": -0.04,
       "note": ""
     },
     {
       "name": "30Y",
-      "value": 4.97,
-      "change": 0.02,
+      "value": 4.93,
+      "change": -0.04,
       "note": ""
     },
     {
@@ -34,14 +34,14 @@
     },
     {
       "name": "Oil",
-      "value": 75.91,
-      "change": -0.14,
+      "value": 75.96,
+      "change": -0.09,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4344.3,
-      "change": 13.4,
+      "value": 4347.8,
+      "change": 16.9,
       "note": ""
     }
   ],
