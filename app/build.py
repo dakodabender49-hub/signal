@@ -78,6 +78,55 @@ def fed_econ_sample():
     ]
 
 
+def _num(info, key):
+    v = info.get(key)
+    return v if isinstance(v, (int, float)) and v == v else None
+
+
+def fundamentals(symbol):
+    """Live fundamentals via yfinance .info (resilient; missing fields -> None)."""
+    info = {}
+    try:
+        import yfinance as yf
+        info = yf.Ticker(symbol).info or {}
+    except Exception:
+        info = {}
+    edate = None
+    ts = info.get("earningsTimestamp") or info.get("earningsTimestampStart")
+    if ts:
+        try:
+            edate = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
+        except Exception:
+            edate = None
+    rev_g = _num(info, "revenueGrowth")
+    eps_g = _num(info, "earningsGrowth")
+    pe = _num(info, "trailingPE")
+    fpe = _num(info, "forwardPE")
+    return {
+        "pe": round(pe, 1) if pe else None,
+        "forward_pe": round(fpe, 1) if fpe else None,
+        "market_cap": _num(info, "marketCap"),
+        "rev_growth": round(rev_g * 100, 1) if rev_g is not None else None,
+        "eps_growth": round(eps_g * 100, 1) if eps_g is not None else None,
+        "earnings_date": edate,
+        "sector": info.get("sector"),
+        "w52_high": _num(info, "fiftyTwoWeekHigh"),
+        "w52_low": _num(info, "fiftyTwoWeekLow"),
+        "rs_3m": None, "pos52": None,
+    }
+
+
+def fundamentals_sample(symbol):
+    import random
+    r = random.Random(sum(ord(c) for c in symbol))
+    return {"pe": round(r.uniform(15, 40), 1), "forward_pe": round(r.uniform(12, 35), 1),
+            "market_cap": r.choice([3.1e12, 2.4e11, 8.0e11, 1.5e11]),
+            "rev_growth": round(r.uniform(-5, 25), 1), "eps_growth": round(r.uniform(-10, 30), 1),
+            "earnings_date": "2026-07-24", "sector": "Technology",
+            "w52_high": None, "w52_low": None,
+            "rs_3m": round(r.uniform(-8, 8), 1), "pos52": r.randint(20, 95)}
+
+
 def compute_instrument(symbol, name, typ, bars, settings):
     closes = [b["close"] for b in bars]
     highs = [b["high"] for b in bars]
@@ -164,12 +213,36 @@ def main():
                                     "type": typ, "verified": False,
                                     "read": f"{sym}: {why} - withheld (fail-closed)."})
                 continue
-            instruments.append(compute_instrument(sym, NAMES.get(sym, sym), typ, bars, settings))
+            inst = compute_instrument(sym, NAMES.get(sym, sym), typ, bars, settings)
+            if typ == "stock":
+                inst["fundamentals"] = fundamentals(sym) if args.mode == "live" else fundamentals_sample(sym)
+            instruments.append(inst)
         except Exception as e:
             problems.append({"symbol": sym, "reason": str(e)})
             instruments.append({"symbol": sym, "name": NAMES.get(sym, sym),
                                 "type": typ, "verified": False,
                                 "read": f"{sym}: {e} - withheld (fail-closed)."})
+
+    # relative strength vs SPY (3m) + 52-week position
+    _spy = next((i for i in instruments if i.get("symbol") == "SPY" and i.get("verified")), None)
+
+    def _ret(hist, n):
+        return (hist[-1][4] / hist[-1 - n][4] - 1) * 100 if hist and len(hist) > n else None
+
+    _spy3 = _ret(_spy["history"], 63) if _spy and _spy.get("history") else None
+    for _i in instruments:
+        _fu = _i.get("fundamentals")
+        if not _fu or not _i.get("verified"):
+            continue
+        _h = _i.get("history")
+        if _h and _spy3 is not None:
+            _s3 = _ret(_h, 63)
+            if _s3 is not None:
+                _fu["rs_3m"] = round(_s3 - _spy3, 1)
+        _close = _i.get("ohlc", {}).get("close")
+        _hi, _lo = _fu.get("w52_high"), _fu.get("w52_low")
+        if _close and _hi and _lo and _hi > _lo:
+            _fu["pos52"] = round((_close - _lo) / (_hi - _lo) * 100)
 
     as_of = max([i.get("as_of", "") for i in instruments if i.get("as_of")] or [""])
     state = {
