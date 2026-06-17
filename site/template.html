@@ -94,6 +94,13 @@
 </head>
 <body>
 <div class="wrap">
+<div class="tradingview-widget-container" style="margin-bottom:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden">
+<div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{"symbols":[{"proName":"AMEX:SPY","title":"SPY"},{"proName":"NASDAQ:QQQ","title":"QQQ"},{"proName":"NASDAQ:AAPL","title":"AAPL"},{"proName":"NASDAQ:MSFT","title":"MSFT"},{"proName":"NASDAQ:GOOGL","title":"GOOGL"},{"proName":"NASDAQ:AMZN","title":"AMZN"},{"proName":"NASDAQ:NVDA","title":"NVDA"},{"proName":"NASDAQ:META","title":"META"},{"proName":"NASDAQ:TSLA","title":"TSLA"},{"proName":"NASDAQ:MU","title":"MU"}],"showSymbolLogo":true,"colorTheme":"dark","isTransparent":true,"displayMode":"compact","locale":"en"}
+</script>
+</div>
+
   <header>
     <div class="brand">SIG<b>N</b>AL</div>
     <span id="mode" class="badge">—</span>
@@ -177,6 +184,9 @@ function chart(el,inst,h){
   new ResizeObserver(()=>c.applyOptions({width:el.clientWidth})).observe(el);
 }
 
+const TVSYM={SPY:"AMEX:SPY",QQQ:"NASDAQ:QQQ",AAPL:"NASDAQ:AAPL",MSFT:"NASDAQ:MSFT",GOOGL:"NASDAQ:GOOGL",AMZN:"NASDAQ:AMZN",NVDA:"NASDAQ:NVDA",META:"NASDAQ:META",TSLA:"NASDAQ:TSLA",MU:"NASDAQ:MU",BTC:"BINANCE:BTCUSDT",ETH:"BINANCE:ETHUSDT"};
+function tvChart(el,sym){const tv=TVSYM[sym]||("NASDAQ:"+sym);el.innerHTML="";const w=document.createElement("div");w.className="tradingview-widget-container__widget";w.style.height="320px";el.appendChild(w);const sc=document.createElement("script");sc.src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";sc.async=true;sc.text=JSON.stringify({symbol:tv,theme:"dark",style:"1",locale:"en",autosize:true,hide_side_toolbar:true,allow_symbol_change:false,backgroundColor:"rgba(0,0,0,0)"});el.appendChild(sc);}
+
 function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
@@ -199,7 +209,7 @@ function render(){
 function icard(i){
   const idx=insts_index(i);
   if(!i.verified) return `<div class="icard"><div class="top"><span class="sym">${i.symbol}</span><span class="nm">${i.name||""}</span></div>
-    <div class="read" style="margin-top:10px;color:var(--amber)">Data withheld — feed unverified. ${i.read?("<br><span style=\\"color:var(--dim)\\">"+i.read.replace(/</g,"&lt;")+"</span>"):""}</div></div>`;
+    <div class="read" style="margin-top:10px;color:var(--amber)">Data withheld — feed unverified. </div></div>`;
   return `<div class="icard" onclick="openM(${idx})">
     <div class="top"><span class="sym">${i.symbol}</span><span class="nm">${i.name}</span>
       <span class="px num">${f(i.ohlc.close)}</span><span class="pc num" style="color:${col(i.change_pct)}">${sg(i.change_pct)}%</span></div>
@@ -234,7 +244,7 @@ function openM(ix){
   const lv=(arr)=>arr.slice(0,3).map(z=>`<div class="row"><b class="num">${f(z.price)}</b>${z.score>=2?`<span class="sc">×${z.score}</span>`:""}<span class="ev">${(z.evidence||[]).join(", ")}</span></div>`).join("")||'<div class="row ev">—</div>';
   $("mlv").innerHTML=`<div><div class="h">Resistance / above</div>${lv(i.levels_above||[])}</div><div><div class="h">Support / below</div>${lv(i.levels_below||[])}</div>`;
   $("modal").classList.add("open");
-  setTimeout(()=>chart($("mchart"),i,320),30);
+  setTimeout(()=>tvChart($("mchart"),i.symbol),30);
 }
 function closeM(){$("modal").classList.remove("open");}
 $("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeM();});
