@@ -127,6 +127,100 @@ def fundamentals_sample(symbol):
             "rs_3m": round(r.uniform(-8, 8), 1), "pos52": r.randint(20, 95)}
 
 
+SCREEN_UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU",
+    "AMD", "AVGO", "NFLX", "CRM", "ORCL", "ADBE", "QCOM", "CSCO", "INTC", "PLTR",
+    "UBER", "DIS", "JPM", "BAC", "V", "MA", "WMT", "COST", "HD", "XOM", "CVX",
+    "LLY", "UNH", "JNJ", "PG", "KO", "PEP", "BA", "CAT", "GE", "COIN", "SHOP"]
+
+
+def _mean(xs):
+    xs = [x for x in xs if x == x]
+    return sum(xs) / len(xs) if xs else None
+
+
+def _ret_pct(c, n):
+    return (c[-1] / c[-1 - n] - 1) * 100 if len(c) > n else None
+
+
+def _screen_one(sym, closes, highs, lows, vols, spy3):
+    last, prev = closes[-1], closes[-2]
+    chg = round((last / prev - 1) * 100, 2)
+    avg = _mean(vols[-21:-1])
+    rvol = round(vols[-1] / avg, 2) if avg else None
+    mover = {"symbol": sym, "change_pct": chg, "rvol": rvol, "price": round(last, 2)}
+    setups = []
+    sma200 = ind.sma(closes, 200)
+    if sma200 and last > sma200 and len(closes) > 6 and closes[-6] < sma200:
+        setups.append({"symbol": sym, "setup": "trend reclaim", "detail": "back above 200-SMA"})
+    try:
+        sh, sl = ind.active_swing(highs, lows, 60)
+        fib = ind.fib_retracements(sh, sl, ind.trend_state(highs, lows, 3))
+        gp = fib["golden_pocket"]
+        if gp[0] <= last <= gp[1]:
+            setups.append({"symbol": sym, "setup": "golden pocket", "detail": "0.618 retrace"})
+    except Exception:
+        pass
+    if len(highs) > 21 and last > max(highs[-21:-1]) and rvol and rvol >= 1.5:
+        setups.append({"symbol": sym, "setup": "breakout", "detail": "20-day high on " + str(rvol) + "x vol"})
+    s3 = _ret_pct(closes, 63)
+    if (s3 is not None and spy3 is not None and s3 - spy3 >= 5
+            and len(highs) > 60 and last >= max(highs[-60:]) * 0.97):
+        setups.append({"symbol": sym, "setup": "RS leader",
+                       "detail": "+" + str(round(s3 - spy3, 1)) + "% vs SPY, near highs"})
+    return mover, setups
+
+
+def screener(settings):
+    try:
+        import yfinance as yf
+        df = yf.download(SCREEN_UNIVERSE + ["SPY"], period="1y", interval="1d",
+                         auto_adjust=False, group_by="ticker", threads=True, progress=False)
+    except Exception:
+        return {"movers": [], "setups": [], "note": "screener feed unavailable"}
+
+    def series(sym, field):
+        try:
+            return df[sym][field].dropna().tolist()
+        except Exception:
+            return []
+
+    spy_c = series("SPY", "Close")
+    spy3 = _ret_pct(spy_c, 63) if spy_c else None
+    movers, setups = [], []
+    for sym in SCREEN_UNIVERSE:
+        closes, highs = series(sym, "Close"), series(sym, "High")
+        lows, vols = series(sym, "Low"), series(sym, "Volume")
+        if len(closes) < 60 or len(vols) < 22:
+            continue
+        try:
+            mv, st = _screen_one(sym, closes, highs, lows, vols, spy3)
+            if mv["price"] >= 5:
+                movers.append(mv)
+            setups.extend(st)
+        except Exception:
+            continue
+    movers = [m for m in movers if m.get("rvol")]
+    movers.sort(key=lambda m: m["rvol"], reverse=True)
+    out = {"movers": movers[:8], "setups": setups[:10], "note": ""}
+    if not out["movers"] and not out["setups"]:
+        out["note"] = "No qualifying movers or setups in this scan."
+    return out
+
+
+def screener_sample():
+    return {"movers": [
+        {"symbol": "NVDA", "change_pct": 3.1, "rvol": 2.4, "price": 172.4},
+        {"symbol": "PLTR", "change_pct": -4.5, "rvol": 3.1, "price": 62.3},
+        {"symbol": "COIN", "change_pct": 5.8, "rvol": 2.8, "price": 310.0},
+        {"symbol": "AMD", "change_pct": 2.2, "rvol": 2.0, "price": 168.0}],
+        "setups": [
+        {"symbol": "MSFT", "setup": "trend reclaim", "detail": "back above 200-SMA"},
+        {"symbol": "AVGO", "setup": "breakout", "detail": "20-day high on 1.8x vol"},
+        {"symbol": "META", "setup": "RS leader", "detail": "+7.2% vs SPY, near highs"},
+        {"symbol": "AMZN", "setup": "golden pocket", "detail": "0.618 retrace"}],
+        "note": ""}
+
+
 def compute_instrument(symbol, name, typ, bars, settings):
     closes = [b["close"] for b in bars]
     highs = [b["high"] for b in bars]
@@ -259,8 +353,7 @@ def main():
         "backdrop": backdrop_live(settings) if args.mode == "live" else backdrop_sample(),
         "fed_econ": fed_econ_sample(),
         "instruments": instruments,
-        "screener": {"note": "Movers + objective setup screens arrive in Phase 3.",
-                     "movers": [], "setups": []},
+        "screener": screener(settings) if args.mode == "live" else screener_sample(),
     }
 
     docs = os.path.join(ROOT, "docs")
