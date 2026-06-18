@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-18T03:17:42+00:00",
+    "generated_at": "2026-06-18T03:34:16+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-17",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 100.27,
-      "change": 0.73,
+      "value": 100.25,
+      "change": 0.71,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 74.68,
-      "change": -1.37,
+      "value": 74.67,
+      "change": -1.38,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4333.0,
-      "change": 2.1,
+      "value": 4335.9,
+      "change": 5.0,
       "note": ""
     }
   ],
@@ -14942,8 +14942,83 @@
     }
   ],
   "screener": {
-    "note": "Movers + objective setup screens arrive in Phase 3.",
-    "movers": [],
-    "setups": []
+    "movers": [
+      {
+        "symbol": "NFLX",
+        "change_pct": -2.24,
+        "rvol": 1.42,
+        "price": 76.96
+      },
+      {
+        "symbol": "ADBE",
+        "change_pct": -5.33,
+        "rvol": 1.42,
+        "price": 196.28
+      },
+      {
+        "symbol": "JPM",
+        "change_pct": 0.7,
+        "rvol": 1.37,
+        "price": 333.46
+      },
+      {
+        "symbol": "DIS",
+        "change_pct": -0.41,
+        "rvol": 1.32,
+        "price": 100.86
+      },
+      {
+        "symbol": "PEP",
+        "change_pct": -3.1,
+        "rvol": 1.14,
+        "price": 141.59
+      },
+      {
+        "symbol": "MSFT",
+        "change_pct": -3.79,
+        "rvol": 1.12,
+        "price": 378.91
+      },
+      {
+        "symbol": "CRM",
+        "change_pct": -4.14,
+        "rvol": 1.12,
+        "price": 155.02
+      },
+      {
+        "symbol": "JNJ",
+        "change_pct": -0.42,
+        "rvol": 1.12,
+        "price": 234.2
+      }
+    ],
+    "setups": [
+      {
+        "symbol": "BAC",
+        "setup": "RS leader",
+        "detail": "+8.7% vs SPY, near highs"
+      },
+      {
+        "symbol": "V",
+        "setup": "trend reclaim",
+        "detail": "back above 200-SMA"
+      },
+      {
+        "symbol": "BA",
+        "setup": "trend reclaim",
+        "detail": "back above 200-SMA"
+      },
+      {
+        "symbol": "CAT",
+        "setup": "RS leader",
+        "detail": "+25.8% vs SPY, near highs"
+      },
+      {
+        "symbol": "GE",
+        "setup": "RS leader",
+        "detail": "+6.6% vs SPY, near highs"
+      }
+    ],
+    "note": ""
   }
 }
