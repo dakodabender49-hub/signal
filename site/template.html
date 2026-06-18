@@ -252,7 +252,7 @@ function openM(ix){
 function closeM(){$("modal").classList.remove("open");}
 $("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeM();});
 
-fetch("./state.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){S=j;render();}}).catch(()=>{});
+fetch("./state.json?cb="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){S=j;render();}}).catch(()=>{});
 render();
 </script>
 </body>
