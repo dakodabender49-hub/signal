@@ -90,6 +90,11 @@
   .lv .row .ev{color:var(--dim)}
   .sc{font-size:9px;color:var(--violet);border:1px solid #3a2f55;border-radius:4px;padding:0 4px}
   footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;color:var(--dim);font-size:11px;line-height:1.6}
+  .subh{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin:6px 2px 9px}
+  .scrow{margin-bottom:14px}
+  .dim{color:var(--dim)}
+  .setup{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 11px;margin:0 8px 8px 0;font-size:12px}
+  .setup .tag{font-size:9px}
 </style>
 </head>
 <body>
@@ -116,6 +121,9 @@
 
   <div class="sec">Watchlist</div>
   <div class="heat" id="heat"></div>
+
+  <div class="sec">Screener — movers &amp; setups</div>
+  <div id="screener"></div>
 
   <div class="sec">Fed &amp; economic data</div>
   <div class="fed" id="fed"></div>
@@ -189,6 +197,22 @@ function chart(el,inst,h){
 const TVSYM={SPY:"AMEX:SPY",QQQ:"NASDAQ:QQQ",AAPL:"NASDAQ:AAPL",MSFT:"NASDAQ:MSFT",GOOGL:"NASDAQ:GOOGL",AMZN:"NASDAQ:AMZN",NVDA:"NASDAQ:NVDA",META:"NASDAQ:META",TSLA:"NASDAQ:TSLA",MU:"NASDAQ:MU",BTC:"BINANCE:BTCUSDT",ETH:"BINANCE:ETHUSDT"};
 function tvChart(el,sym){const tv=TVSYM[sym]||("NASDAQ:"+sym);el.innerHTML="";const w=document.createElement("div");w.className="tradingview-widget-container__widget";w.style.height="320px";el.appendChild(w);const sc=document.createElement("script");sc.src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";sc.async=true;sc.text=JSON.stringify({symbol:tv,theme:"dark",style:"1",locale:"en",autosize:true,hide_side_toolbar:true,allow_symbol_change:false,backgroundColor:"rgba(0,0,0,0)"});el.appendChild(sc);}
 
+function renderScreener(){
+  const sc=S.screener||{}; const mv=sc.movers||[]; const su=sc.setups||[];
+  let h="";
+  if(mv.length){
+    h+='<div class="scrow"><div class="subh">Unusual volume / movers</div><div class="chips">';
+    h+=mv.map(m=>`<div class="chip"><div class="k">${m.symbol}</div><div class="v num" style="color:${col(m.change_pct)}">${sg(m.change_pct)}%</div><div class="n">RVOL ${m.rvol}x</div></div>`).join("");
+    h+="</div></div>";
+  }
+  if(su.length){
+    h+='<div class="scrow"><div class="subh">Setups <span class="dim" style="text-transform:none;letter-spacing:0">— screens, not signals</span></div>';
+    h+=su.map(s=>`<span class="setup"><span class="tag uptrend">${s.setup}</span> <b>${s.symbol}</b> <span class="dim">${s.detail||""}</span></span>`).join("");
+    h+="</div>";
+  }
+  if(!mv.length && !su.length) h='<div class="dim" style="padding:8px 2px">'+(sc.note||"Nothing surfaced this scan.")+'</div>';
+  $("screener").innerHTML=h;
+}
 function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
@@ -200,6 +224,7 @@ function render(){
   const insts=S.instruments||[];
   $("idx").innerHTML=insts.filter(i=>i.type==="index").map(icard).join("")||'<div style="color:var(--dim)">—</div>';
   $("heat").innerHTML=insts.filter(i=>i.type!=="index").map(tile).join("");
+  renderScreener();
   // draw index charts
   insts.filter(i=>i.type==="index"&&i.verified).forEach(i=>{const el=document.getElementById("ic-"+i.symbol);if(el)chart(el,i,150);});
 
