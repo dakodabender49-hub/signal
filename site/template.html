@@ -228,8 +228,7 @@ function render(){
   // draw index charts
   insts.filter(i=>i.type==="index"&&i.verified).forEach(i=>{const el=document.getElementById("ic-"+i.symbol);if(el)chart(el,i,150);});
 
-  $("fed").innerHTML=(S.fed_econ||[]).map(e=>`<div class="fcard ${e.impact}">
-    <div class="e">${e.event}</div><div class="m">${e.date} ${e.time} · ${e.actual?("actual "+e.actual):("cons "+e.consensus)}</div></div>`).join("");
+  $("fed").innerHTML=(S.fed_econ||[]).map(e=>{const val=e.value||(e.actual?("actual "+e.actual):(e.consensus?("cons "+e.consensus):""));const dt=[e.date,e.time].filter(Boolean).join(" ");return `<div class="fcard ${e.impact}"><div class="e">${e.event}</div><div class="m">${dt}${val?(" · "+val):""}</div></div>`;}).join("");
   $("footer").innerHTML=(m.disclaimer||"")+"<br>SIGNAL · structural reads, not financial advice.";
 }
 
