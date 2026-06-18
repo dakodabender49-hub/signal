@@ -65,17 +65,77 @@ def backdrop_sample():
     ]
 
 
+FOMC_2026 = ["2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17",
+             "2026-07-29", "2026-09-16", "2026-10-28", "2026-12-09"]
+FOMC_DOTPLOT = {"2026-03-18", "2026-06-17", "2026-09-16", "2026-12-09"}
+
+
+def _fred(series_id):
+    import requests
+    url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=" + series_id
+    r = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0 SIGNAL/1.0"})
+    r.raise_for_status()
+    out = []
+    for ln in r.text.strip().splitlines()[1:]:
+        parts = ln.split(",")
+        if len(parts) >= 2 and parts[1] not in (".", ""):
+            try:
+                out.append((parts[0], float(parts[1])))
+            except ValueError:
+                pass
+    return out
+
+
+def _next_fomc():
+    from datetime import date as _d
+    today = _d.today().isoformat()
+    for dt in FOMC_2026:
+        if dt >= today:
+            return dt, (dt in FOMC_DOTPLOT)
+    return None, False
+
+
+def fed_econ_live(settings):
+    out = []
+    try:
+        up = _fred("DFEDTARU")[-1][1]
+        lo = _fred("DFEDTARL")[-1][1]
+        out.append({"event": "Fed funds target", "impact": "high",
+                    "date": "current", "value": f"{lo:.2f}-{up:.2f}%"})
+    except Exception:
+        pass
+    nd, dot = _next_fomc()
+    if nd:
+        out.append({"event": "Next FOMC decision" + (" + dot plot" if dot else ""),
+                    "impact": "high", "date": nd, "time": "2:00 PM ET"})
+    for sid, label, imp in [("CPIAUCSL", "CPI (YoY)", "high"),
+                            ("PCEPI", "PCE (YoY)", "high")]:
+        try:
+            v = _fred(sid)
+            if len(v) > 13:
+                yoy = (v[-1][1] / v[-13][1] - 1) * 100
+                out.append({"event": label, "impact": imp,
+                            "date": v[-1][0], "actual": f"{yoy:.1f}%"})
+        except Exception:
+            pass
+    try:
+        v = _fred("UNRATE")
+        out.append({"event": "Unemployment", "impact": "medium",
+                    "date": v[-1][0], "actual": f"{v[-1][1]:.1f}%"})
+    except Exception:
+        pass
+    return out
+
+
 def fed_econ_sample():
     return [
-        {"date": "2026-06-17", "time": "14:00 ET", "event": "FOMC rate decision",
-         "impact": "high", "prior": "4.25-4.50%", "consensus": "4.25-4.50%", "actual": None},
-        {"date": "2026-06-17", "time": "14:30 ET", "event": "Fed press conference",
-         "impact": "high", "prior": "-", "consensus": "-", "actual": None},
-        {"date": "2026-06-11", "time": "08:30 ET", "event": "CPI (YoY)",
-         "impact": "high", "prior": "3.3%", "consensus": "3.2%", "actual": "3.1%"},
-        {"date": "2026-06-12", "time": "08:30 ET", "event": "Initial jobless claims",
-         "impact": "medium", "prior": "229K", "consensus": "232K", "actual": "227K"},
+        {"event": "Fed funds target", "impact": "high", "date": "current", "value": "4.00-4.25%"},
+        {"event": "Next FOMC decision + dot plot", "impact": "high", "date": "2026-07-29", "time": "2:00 PM ET"},
+        {"event": "CPI (YoY)", "impact": "high", "date": "2026-05-01", "actual": "3.1%"},
+        {"event": "PCE (YoY)", "impact": "high", "date": "2026-05-01", "actual": "2.7%"},
+        {"event": "Unemployment", "impact": "medium", "date": "2026-05-01", "actual": "4.2%"},
     ]
+
 
 
 def _num(info, key):
@@ -84,7 +144,6 @@ def _num(info, key):
 
 
 def fundamentals(symbol):
-    """Live fundamentals via yfinance .info (resilient; missing fields -> None)."""
     info = {}
     try:
         import yfinance as yf
@@ -102,18 +161,13 @@ def fundamentals(symbol):
     eps_g = _num(info, "earningsGrowth")
     pe = _num(info, "trailingPE")
     fpe = _num(info, "forwardPE")
-    return {
-        "pe": round(pe, 1) if pe else None,
-        "forward_pe": round(fpe, 1) if fpe else None,
-        "market_cap": _num(info, "marketCap"),
-        "rev_growth": round(rev_g * 100, 1) if rev_g is not None else None,
-        "eps_growth": round(eps_g * 100, 1) if eps_g is not None else None,
-        "earnings_date": edate,
-        "sector": info.get("sector"),
-        "w52_high": _num(info, "fiftyTwoWeekHigh"),
-        "w52_low": _num(info, "fiftyTwoWeekLow"),
-        "rs_3m": None, "pos52": None,
-    }
+    return {"pe": round(pe, 1) if pe else None, "forward_pe": round(fpe, 1) if fpe else None,
+            "market_cap": _num(info, "marketCap"),
+            "rev_growth": round(rev_g * 100, 1) if rev_g is not None else None,
+            "eps_growth": round(eps_g * 100, 1) if eps_g is not None else None,
+            "earnings_date": edate, "sector": info.get("sector"),
+            "w52_high": _num(info, "fiftyTwoWeekHigh"), "w52_low": _num(info, "fiftyTwoWeekLow"),
+            "rs_3m": None, "pos52": None}
 
 
 def fundamentals_sample(symbol):
@@ -122,15 +176,14 @@ def fundamentals_sample(symbol):
     return {"pe": round(r.uniform(15, 40), 1), "forward_pe": round(r.uniform(12, 35), 1),
             "market_cap": r.choice([3.1e12, 2.4e11, 8.0e11, 1.5e11]),
             "rev_growth": round(r.uniform(-5, 25), 1), "eps_growth": round(r.uniform(-10, 30), 1),
-            "earnings_date": "2026-07-24", "sector": "Technology",
-            "w52_high": None, "w52_low": None,
-            "rs_3m": round(r.uniform(-8, 8), 1), "pos52": r.randint(20, 95)}
+            "earnings_date": "2026-07-24", "sector": "Technology", "w52_high": None,
+            "w52_low": None, "rs_3m": round(r.uniform(-8, 8), 1), "pos52": r.randint(20, 95)}
 
 
-SCREEN_UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU",
-    "AMD", "AVGO", "NFLX", "CRM", "ORCL", "ADBE", "QCOM", "CSCO", "INTC", "PLTR",
-    "UBER", "DIS", "JPM", "BAC", "V", "MA", "WMT", "COST", "HD", "XOM", "CVX",
-    "LLY", "UNH", "JNJ", "PG", "KO", "PEP", "BA", "CAT", "GE", "COIN", "SHOP"]
+SCREEN_UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU", "AMD",
+    "AVGO", "NFLX", "CRM", "ORCL", "ADBE", "QCOM", "CSCO", "INTC", "PLTR", "UBER", "DIS",
+    "JPM", "BAC", "V", "MA", "WMT", "COST", "HD", "XOM", "CVX", "LLY", "UNH", "JNJ",
+    "PG", "KO", "PEP", "BA", "CAT", "GE", "COIN", "SHOP"]
 
 
 def _mean(xs):
@@ -186,7 +239,6 @@ def screener(settings):
 
     spy_c = series("SPY", "Close")
     spy3 = _ret_pct(spy_c, 63) if spy_c else None
-
     movers, setups, bulk_px = [], [], {}
     for sym in SCREEN_UNIVERSE:
         closes, highs = series(sym, "Close"), series(sym, "High")
@@ -206,9 +258,6 @@ def screener(settings):
     movers = [m for m in movers if m.get("rvol")]
     movers.sort(key=lambda m: m["rvol"], reverse=True)
     movers, setups = movers[:8], setups[:10]
-
-    # Harden: cross-check each surfaced name against the dual-source verified feed,
-    # and drop anything whose bulk price disagrees with verified (mislabel/mis-scale).
     import datafeed
     cache = {}
 
@@ -237,8 +286,7 @@ def screener(settings):
         if v:
             m["price"], m["change_pct"] = v[0], v[1]
             clean_movers.append(m)
-    clean_setups = [s for s in setups if ok(s["symbol"])]
-
+    clean_setups = [x for x in setups if ok(x["symbol"])]
     out = {"movers": clean_movers, "setups": clean_setups, "note": ""}
     if not out["movers"] and not out["setups"]:
         out["note"] = "No verified movers or setups this scan."
@@ -389,7 +437,7 @@ def main():
             "problems": problems,
         },
         "backdrop": backdrop_live(settings) if args.mode == "live" else backdrop_sample(),
-        "fed_econ": fed_econ_sample(),
+        "fed_econ": fed_econ_live(settings) if args.mode == "live" else fed_econ_sample(),
         "instruments": instruments,
         "screener": screener(settings) if args.mode == "live" else screener_sample(),
     }
