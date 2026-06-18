@@ -180,18 +180,22 @@ def screener(settings):
 
     def series(sym, field):
         try:
-            return df[sym][field].dropna().tolist()
+            return [x for x in df[sym][field].tolist() if x == x]
         except Exception:
             return []
 
     spy_c = series("SPY", "Close")
     spy3 = _ret_pct(spy_c, 63) if spy_c else None
-    movers, setups = [], []
+
+    movers, setups, bulk_px = [], [], {}
     for sym in SCREEN_UNIVERSE:
         closes, highs = series(sym, "Close"), series(sym, "High")
         lows, vols = series(sym, "Low"), series(sym, "Volume")
         if len(closes) < 60 or len(vols) < 22:
             continue
+        if closes[-1] <= 0 or not (lows[-1] <= closes[-1] <= highs[-1]):
+            continue
+        bulk_px[sym] = closes[-1]
         try:
             mv, st = _screen_one(sym, closes, highs, lows, vols, spy3)
             if mv["price"] >= 5:
@@ -201,9 +205,43 @@ def screener(settings):
             continue
     movers = [m for m in movers if m.get("rvol")]
     movers.sort(key=lambda m: m["rvol"], reverse=True)
-    out = {"movers": movers[:8], "setups": setups[:10], "note": ""}
+    movers, setups = movers[:8], setups[:10]
+
+    # Harden: cross-check each surfaced name against the dual-source verified feed,
+    # and drop anything whose bulk price disagrees with verified (mislabel/mis-scale).
+    import datafeed
+    cache = {}
+
+    def vclose(sym):
+        if sym not in cache:
+            try:
+                b = datafeed.get_verified_history(sym, settings)
+                cache[sym] = (b[-1]["close"], b[-2]["close"]) if b and len(b) > 1 else None
+            except Exception:
+                cache[sym] = None
+        return cache[sym]
+
+    def ok(sym):
+        vc = vclose(sym)
+        if not vc:
+            return None
+        vlast, vprev = vc
+        bp = bulk_px.get(sym)
+        if bp and vlast and abs(bp - vlast) / vlast > 0.02:
+            return None
+        return (round(vlast, 2), round((vlast / vprev - 1) * 100, 2))
+
+    clean_movers = []
+    for m in movers:
+        v = ok(m["symbol"])
+        if v:
+            m["price"], m["change_pct"] = v[0], v[1]
+            clean_movers.append(m)
+    clean_setups = [s for s in setups if ok(s["symbol"])]
+
+    out = {"movers": clean_movers, "setups": clean_setups, "note": ""}
     if not out["movers"] and not out["setups"]:
-        out["note"] = "No qualifying movers or setups in this scan."
+        out["note"] = "No verified movers or setups this scan."
     return out
 
 
