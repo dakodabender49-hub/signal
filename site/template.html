@@ -225,6 +225,8 @@ function doSearch(){
   if(!sym)return;
   const ix=(S.instruments||[]).findIndex(i=>i.symbol===sym&&i.verified);
   if(ix>=0){openM(ix);return;}
+  const se=(S.searchable||{})[sym];
+  if(se){openInstrument(se);return;}
   openTV(sym);
 }
 function openTV(sym){
@@ -303,8 +305,9 @@ function tile(i){
 
 function insts_index(i){return (S.instruments||[]).indexOf(i);}
 
-function openM(ix){
-  const i=(S.instruments||[])[ix]; if(!i||!i.verified) return;
+function openM(ix){ openInstrument((S.instruments||[])[ix]); }
+function openInstrument(i){
+  if(!i||!i.verified) return;
   $("mtitle").textContent=`${i.symbol} · ${i.name}`;
   $("msub").innerHTML=`<span class="tag ${i.structure}">${i.structure}</span> &nbsp; ${f(i.ohlc.close)} <span style="color:${col(i.change_pct)}">${sg(i.change_pct)}%</span> · ATR ${f(i.atr14)} · ${i.as_of}`;
   $("mread").textContent=i.read;
