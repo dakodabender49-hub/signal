@@ -1,86 +1,56 @@
 {
   "meta": {
-    "generated_at": "2026-06-18T03:41:55+00:00",
+    "generated_at": "2026-06-19T03:07:48+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
-    "as_of_date": "2026-06-17",
+    "as_of_date": "2026-06-18",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
     "problems": []
   },
   "backdrop": [
     {
       "name": "VIX",
-      "value": 18.4,
-      "change": 2.0,
+      "value": 16.4,
+      "change": -2.0,
       "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.46,
-      "change": -0.02,
+      "value": 4.45,
+      "change": -0.04,
       "note": ""
     },
     {
       "name": "30Y",
-      "value": 4.93,
-      "change": -0.05,
+      "value": 4.9,
+      "change": -0.07,
       "note": ""
     },
     {
       "name": "DXY",
-      "value": 100.23,
-      "change": 0.69,
+      "value": 100.85,
+      "change": 0.76,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 74.57,
-      "change": -1.48,
+      "value": 75.63,
+      "change": -1.16,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4338.8,
-      "change": 7.9,
+      "value": 4193.1,
+      "change": -165.8,
       "note": ""
     }
   ],
   "fed_econ": [
     {
-      "date": "2026-06-17",
-      "time": "14:00 ET",
-      "event": "FOMC rate decision",
+      "event": "Next FOMC decision",
       "impact": "high",
-      "prior": "4.25-4.50%",
-      "consensus": "4.25-4.50%",
-      "actual": null
-    },
-    {
-      "date": "2026-06-17",
-      "time": "14:30 ET",
-      "event": "Fed press conference",
-      "impact": "high",
-      "prior": "-",
-      "consensus": "-",
-      "actual": null
-    },
-    {
-      "date": "2026-06-11",
-      "time": "08:30 ET",
-      "event": "CPI (YoY)",
-      "impact": "high",
-      "prior": "3.3%",
-      "consensus": "3.2%",
-      "actual": "3.1%"
-    },
-    {
-      "date": "2026-06-12",
-      "time": "08:30 ET",
-      "event": "Initial jobless claims",
-      "impact": "medium",
-      "prior": "229K",
-      "consensus": "232K",
-      "actual": "227K"
+      "date": "2026-07-29",
+      "time": "2:00 PM ET"
     }
   ],
   "instruments": [
@@ -89,28 +59,28 @@
       "name": "S&P 500 ETF",
       "type": "index",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 751.2899780273438,
-        "high": 752.1500244140625,
-        "low": 739.25,
-        "close": 740.9600219726562
+        "open": 747.760009765625,
+        "high": 748.22998046875,
+        "low": 743.8599853515625,
+        "close": 746.739990234375
       },
-      "prev_close": 750.3300170898438,
-      "change_pct": -1.25,
-      "structure": "range",
-      "location": "below the 21-EMA at 742.39; above the 200-SMA; holding the 0.236 retracement at 729.46",
+      "prev_close": 740.9600219726562,
+      "change_pct": 0.78,
+      "structure": "downtrend",
+      "location": "above the 21-EMA at 742.78; above the 200-SMA; holding the 0.786 retracement at 732.34",
       "fib": {
         "swing_high": 760.4,
         "swing_low": 629.28,
         "levels": [
           {
             "r": 0.236,
-            "price": 729.46
+            "price": 660.22
           },
           {
             "r": 0.382,
-            "price": 710.31
+            "price": 679.37
           },
           {
             "r": 0.5,
@@ -118,98 +88,98 @@
           },
           {
             "r": 0.618,
-            "price": 679.37
+            "price": 710.31
           },
           {
             "r": 0.786,
-            "price": 657.34
+            "price": 732.34
           }
         ],
         "golden_pocket": [
-          675.17,
-          679.37
+          710.31,
+          714.51
         ]
       },
       "extensions": [
         {
           "e": 1.272,
-          "price": 796.06
+          "price": 593.62
         },
         {
           "e": 1.618,
-          "price": 841.43
+          "price": 548.25
         },
         {
           "e": 2.0,
-          "price": 891.52
+          "price": 498.16
         }
       ],
       "ma": {
-        "ema8": 744.29,
-        "ema21": 742.39,
-        "sma50": 728.24,
-        "sma200": 687.83
+        "ema8": 744.83,
+        "ema21": 742.78,
+        "sma50": 729.66,
+        "sma200": 688.36
       },
       "pivots": {
-        "pp": 751.88,
-        "r1": 753.89,
-        "s1": 748.33,
-        "r2": 757.44,
-        "s2": 746.32,
-        "r3": 759.45,
-        "s3": 742.77
+        "pp": 744.11,
+        "r1": 749.0,
+        "s1": 736.07,
+        "r2": 757.04,
+        "s2": 731.18,
+        "r3": 761.93,
+        "s3": 723.14
       },
-      "atr14": 9.87,
+      "atr14": 9.69,
       "levels_above": [
         {
-          "low": 742.39,
-          "high": 751.88,
-          "price": 748.11,
-          "score": 9,
-          "evidence": [
-            "21-EMA",
-            "8-EMA",
-            "pivot S2",
-            "pivot S1",
-            "swing high",
-            "prior-day low",
-            "round number",
-            "prior close",
-            "pivot PP"
-          ]
-        },
-        {
-          "low": 753.89,
-          "high": 760.4,
-          "price": 756.79,
+          "low": 749.0,
+          "high": 752.15,
+          "price": 750.17,
           "score": 4,
           "evidence": [
             "pivot R1",
-            "prior-day high",
-            "pivot R2",
-            "swing high"
+            "swing high",
+            "round number",
+            "prior-day high"
+          ]
+        },
+        {
+          "low": 756.68,
+          "high": 760.4,
+          "price": 758.04,
+          "score": 2,
+          "evidence": [
+            "swing high",
+            "pivot R2"
           ]
         }
       ],
       "levels_below": [
         {
-          "low": 740.0,
-          "high": 740.0,
-          "price": 740.0,
-          "score": 1,
+          "low": 739.22,
+          "high": 744.83,
+          "price": 741.98,
+          "score": 6,
           "evidence": [
-            "round number"
+            "8-EMA",
+            "pivot PP",
+            "21-EMA",
+            "prior close",
+            "round number",
+            "prior-day low"
           ]
         },
         {
-          "low": 728.24,
-          "high": 731.53,
-          "price": 729.81,
-          "score": 4,
+          "low": 729.66,
+          "high": 736.07,
+          "price": 731.8,
+          "score": 6,
           "evidence": [
+            "pivot S1",
+            "Fib 0.786",
             "swing low",
+            "pivot S2",
             "round number",
-            "Fib 0.236",
             "50-SMA"
           ]
         },
@@ -224,86 +194,76 @@
         },
         {
           "low": 708.37,
-          "high": 712.39,
-          "price": 710.36,
-          "score": 3,
+          "high": 710.31,
+          "price": 709.34,
+          "score": 2,
           "evidence": [
-            "swing high",
-            "Fib 0.382",
+            "Fib 0.618",
             "swing low"
           ]
         }
       ],
       "confluence": [
         {
-          "low": 742.39,
-          "high": 751.88,
-          "price": 748.11,
-          "score": 9,
-          "evidence": [
-            "21-EMA",
-            "8-EMA",
-            "pivot S2",
-            "pivot S1",
-            "swing high",
-            "prior-day low",
-            "round number",
-            "prior close",
-            "pivot PP"
-          ]
-        },
-        {
-          "low": 753.89,
-          "high": 760.4,
-          "price": 756.79,
+          "low": 749.0,
+          "high": 752.15,
+          "price": 750.17,
           "score": 4,
           "evidence": [
             "pivot R1",
-            "prior-day high",
-            "pivot R2",
-            "swing high"
-          ]
-        },
-        {
-          "low": 728.24,
-          "high": 731.53,
-          "price": 729.81,
-          "score": 4,
-          "evidence": [
-            "swing low",
+            "swing high",
             "round number",
-            "Fib 0.236",
-            "50-SMA"
+            "prior-day high"
           ]
         },
         {
-          "low": 708.37,
-          "high": 712.39,
-          "price": 710.36,
-          "score": 3,
+          "low": 756.68,
+          "high": 760.4,
+          "price": 758.04,
+          "score": 2,
           "evidence": [
             "swing high",
-            "Fib 0.382",
-            "swing low"
+            "pivot R2"
+          ]
+        },
+        {
+          "low": 739.22,
+          "high": 744.83,
+          "price": 741.98,
+          "score": 6,
+          "evidence": [
+            "8-EMA",
+            "pivot PP",
+            "21-EMA",
+            "prior close",
+            "round number",
+            "prior-day low"
+          ]
+        },
+        {
+          "low": 729.66,
+          "high": 736.07,
+          "price": 731.8,
+          "score": 6,
+          "evidence": [
+            "pivot S1",
+            "Fib 0.786",
+            "swing low",
+            "pivot S2",
+            "round number",
+            "50-SMA"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 748.11 opens 756.79",
-      "bear_trigger": "loss of 740.00 exposes 729.81",
-      "line_in_sand": 740.0,
+      "bull_trigger": "acceptance above 750.17 opens 758.04",
+      "bear_trigger": "loss of 741.98 exposes 731.80",
+      "line_in_sand": 741.98,
       "changed": [
-        "lost the 21-EMA",
+        "reclaimed the 21-EMA",
         "nearest swing low 722.59"
       ],
-      "read": "SPY (2026-06-17): range. At 740.96, below the 21-EMA at 742.39; above the 200-SMA; holding the 0.236 retracement at 729.46. Structure is neutral above 740.00. Above: acceptance above 748.11 opens 756.79. Below: loss of 740.00 exposes 729.81. ATR(14) 9.87.",
+      "read": "SPY (2026-06-18): downtrend. At 746.74, above the 21-EMA at 742.78; above the 200-SMA; holding the 0.786 retracement at 732.34. Structure is bearish. Above: acceptance above 750.17 opens 758.04. Below: loss of 741.98 exposes 731.80. ATR(14) 9.69.",
       "history": [
-        [
-          "2025-09-30",
-          662.9299926757812,
-          666.6500244140625,
-          661.6099853515625,
-          666.1799926757812
-        ],
         [
           "2025-10-01",
           663.1699829101562,
@@ -1554,8 +1514,15 @@
           "2026-06-17",
           751.2899780273438,
           752.1500244140625,
-          739.25,
+          739.219970703125,
           740.9600219726562
+        ],
+        [
+          "2026-06-18",
+          747.760009765625,
+          748.22998046875,
+          743.8599853515625,
+          746.739990234375
         ]
       ]
     },
@@ -1564,28 +1531,28 @@
       "name": "Nasdaq 100 ETF",
       "type": "index",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 735.219970703125,
-        "high": 735.677978515625,
-        "low": 720.8499755859375,
-        "close": 722.510009765625
+        "open": 737.0999755859375,
+        "high": 741.7899780273438,
+        "low": 732.530029296875,
+        "close": 740.6199951171875
       },
-      "prev_close": 729.8599853515625,
-      "change_pct": -1.01,
-      "structure": "range",
-      "location": "above the 21-EMA at 718.72; above the 200-SMA; holding the 0.236 retracement at 703.09",
+      "prev_close": 722.510009765625,
+      "change_pct": 2.51,
+      "structure": "downtrend",
+      "location": "above the 21-EMA at 720.71; above the 200-SMA; holding the 0.786 retracement at 707.34",
       "fib": {
         "swing_high": 748.65,
         "swing_low": 555.6,
         "levels": [
           {
             "r": 0.236,
-            "price": 703.09
+            "price": 601.16
           },
           {
             "r": 0.382,
-            "price": 674.9
+            "price": 629.35
           },
           {
             "r": 0.5,
@@ -1593,184 +1560,166 @@
           },
           {
             "r": 0.618,
-            "price": 629.35
+            "price": 674.9
           },
           {
             "r": 0.786,
-            "price": 596.91
+            "price": 707.34
           }
         ],
         "golden_pocket": [
-          623.17,
-          629.35
+          674.9,
+          681.08
         ]
       },
       "extensions": [
         {
           "e": 1.272,
-          "price": 801.16
+          "price": 503.09
         },
         {
           "e": 1.618,
-          "price": 867.95
+          "price": 436.3
         },
         {
           "e": 2.0,
-          "price": 941.7
+          "price": 362.55
         }
       ],
       "ma": {
-        "ema8": 724.28,
-        "ema21": 718.72,
-        "sma50": 690.49,
-        "sma200": 627.76
+        "ema8": 727.91,
+        "ema21": 720.71,
+        "sma50": 693.18,
+        "sma200": 628.63
       },
       "pivots": {
-        "pp": 734.57,
-        "r1": 739.51,
-        "s1": 724.93,
-        "r2": 749.15,
-        "s2": 719.99,
-        "r3": 754.09,
-        "s3": 710.35
+        "pp": 726.35,
+        "r1": 731.84,
+        "s1": 717.01,
+        "r2": 741.18,
+        "s2": 711.52,
+        "r3": 746.67,
+        "s3": 702.18
       },
-      "atr14": 15.55,
+      "atr14": 15.82,
       "levels_above": [
         {
-          "low": 724.28,
-          "high": 734.57,
-          "price": 728.88,
-          "score": 6,
+          "low": 741.18,
+          "high": 750.0,
+          "price": 746.15,
+          "score": 3,
           "evidence": [
-            "8-EMA",
-            "pivot S1",
-            "prior-day low",
-            "prior close",
-            "round number",
-            "pivot PP"
-          ]
-        },
-        {
-          "low": 739.51,
-          "high": 749.15,
-          "price": 745.38,
-          "score": 4,
-          "evidence": [
-            "pivot R1",
-            "prior-day high",
+            "pivot R2",
             "swing high",
-            "pivot R2"
+            "round number"
           ]
         }
       ],
       "levels_below": [
         {
-          "low": 718.72,
-          "high": 722.03,
-          "price": 720.18,
-          "score": 4,
+          "low": 726.35,
+          "high": 740.0,
+          "price": 731.96,
+          "score": 5,
           "evidence": [
-            "swing high",
             "round number",
-            "pivot S2",
-            "21-EMA"
+            "prior-day high",
+            "pivot R1",
+            "8-EMA",
+            "pivot PP"
           ]
         },
         {
-          "low": 703.09,
-          "high": 710.0,
-          "price": 706.55,
+          "low": 717.01,
+          "high": 722.51,
+          "price": 720.62,
+          "score": 5,
+          "evidence": [
+            "prior close",
+            "swing high",
+            "prior-day low",
+            "21-EMA",
+            "pivot S1"
+          ]
+        },
+        {
+          "low": 707.34,
+          "high": 711.52,
+          "price": 709.43,
           "score": 2,
           "evidence": [
-            "round number",
-            "Fib 0.236"
+            "pivot S2",
+            "Fib 0.786"
           ]
         },
         {
           "low": 686.37,
           "high": 695.25,
-          "price": 690.7,
+          "price": 691.6,
           "score": 2,
           "evidence": [
             "swing low",
             "50-SMA"
           ]
-        },
-        {
-          "low": 674.9,
-          "high": 674.9,
-          "price": 674.9,
-          "score": 1,
-          "evidence": [
-            "Fib 0.382"
-          ]
         }
       ],
       "confluence": [
         {
-          "low": 724.28,
-          "high": 734.57,
-          "price": 728.88,
-          "score": 6,
+          "low": 741.18,
+          "high": 750.0,
+          "price": 746.15,
+          "score": 3,
           "evidence": [
-            "8-EMA",
-            "pivot S1",
-            "prior-day low",
-            "prior close",
+            "pivot R2",
+            "swing high",
+            "round number"
+          ]
+        },
+        {
+          "low": 726.35,
+          "high": 740.0,
+          "price": 731.96,
+          "score": 5,
+          "evidence": [
             "round number",
+            "prior-day high",
+            "pivot R1",
+            "8-EMA",
             "pivot PP"
           ]
         },
         {
-          "low": 739.51,
-          "high": 749.15,
-          "price": 745.38,
-          "score": 4,
+          "low": 717.01,
+          "high": 722.51,
+          "price": 720.62,
+          "score": 5,
           "evidence": [
-            "pivot R1",
-            "prior-day high",
+            "prior close",
             "swing high",
-            "pivot R2"
+            "prior-day low",
+            "21-EMA",
+            "pivot S1"
           ]
         },
         {
-          "low": 718.72,
-          "high": 722.03,
-          "price": 720.18,
-          "score": 4,
-          "evidence": [
-            "swing high",
-            "round number",
-            "pivot S2",
-            "21-EMA"
-          ]
-        },
-        {
-          "low": 703.09,
-          "high": 710.0,
-          "price": 706.55,
+          "low": 707.34,
+          "high": 711.52,
+          "price": 709.43,
           "score": 2,
           "evidence": [
-            "round number",
-            "Fib 0.236"
+            "pivot S2",
+            "Fib 0.786"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 728.88 opens 745.38",
-      "bear_trigger": "loss of 720.18 exposes 706.55",
-      "line_in_sand": 720.18,
+      "bull_trigger": "acceptance above 746.15 opens higher",
+      "bear_trigger": "loss of 731.96 exposes 720.62",
+      "line_in_sand": 731.96,
       "changed": [
         "nearest swing low 686.37"
       ],
-      "read": "QQQ (2026-06-17): range. At 722.51, above the 21-EMA at 718.72; above the 200-SMA; holding the 0.236 retracement at 703.09. Structure is neutral above 720.18. Above: acceptance above 728.88 opens 745.38. Below: loss of 720.18 exposes 706.55. ATR(14) 15.55.",
+      "read": "QQQ (2026-06-18): downtrend. At 740.62, above the 21-EMA at 720.71; above the 200-SMA; holding the 0.786 retracement at 707.34. Structure is bearish. Above: acceptance above 746.15 opens higher. Below: loss of 731.96 exposes 720.62. ATR(14) 15.82.",
       "history": [
-        [
-          "2025-09-30",
-          598.4299926757812,
-          600.7100219726562,
-          596.0999755859375,
-          600.3699951171875
-        ],
         [
           "2025-10-01",
           597.1699829101562,
@@ -3019,10 +2968,17 @@
         ],
         [
           "2026-06-17",
-          735.219970703125,
-          735.677978515625,
+          735.1900024414062,
+          735.6799926757812,
           720.8499755859375,
           722.510009765625
+        ],
+        [
+          "2026-06-18",
+          737.0999755859375,
+          741.7899780273438,
+          732.530029296875,
+          740.6199951171875
         ]
       ]
     },
@@ -3031,17 +2987,17 @@
       "name": "Apple",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 300.8450012207031,
-        "high": 302.07000732421875,
-        "low": 294.3800048828125,
-        "close": 295.95001220703125
+        "open": 298.44000244140625,
+        "high": 300.57000732421875,
+        "low": 295.6199951171875,
+        "close": 298.010009765625
       },
-      "prev_close": 299.239990234375,
-      "change_pct": -1.1,
+      "prev_close": 295.95001220703125,
+      "change_pct": 0.7,
       "structure": "range",
-      "location": "below the 21-EMA at 298.48; above the 200-SMA; testing the 0.236 retracement at 300.43",
+      "location": "below the 21-EMA at 298.44; above the 200-SMA; testing the 0.236 retracement at 300.43",
       "fib": {
         "swing_high": 317.4,
         "swing_low": 245.51,
@@ -3087,47 +3043,44 @@
         }
       ],
       "ma": {
-        "ema8": 297.5,
-        "ema21": 298.48,
-        "sma50": 287.96,
-        "sma200": 267.85
+        "ema8": 297.61,
+        "ema21": 298.44,
+        "sma50": 288.74,
+        "sma200": 268.19
       },
       "pivots": {
-        "pp": 297.9,
-        "r1": 301.82,
-        "s1": 295.31,
-        "r2": 304.41,
-        "s2": 291.39,
-        "r3": 308.33,
-        "s3": 288.8
+        "pp": 297.46,
+        "r1": 300.56,
+        "s1": 292.85,
+        "r2": 305.17,
+        "s2": 289.75,
+        "r3": 308.27,
+        "s3": 285.14
       },
-      "atr14": 7.25,
+      "atr14": 7.09,
       "levels_above": [
         {
-          "low": 297.5,
-          "high": 301.82,
-          "price": 299.48,
-          "score": 8,
+          "low": 298.44,
+          "high": 303.2,
+          "price": 300.78,
+          "score": 6,
           "evidence": [
-            "8-EMA",
-            "pivot PP",
             "21-EMA",
-            "prior close",
             "round number",
             "Fib 0.236",
+            "pivot R1",
             "prior-day high",
-            "pivot R1"
+            "swing high"
           ]
         },
         {
-          "low": 303.2,
-          "high": 305.02,
-          "price": 304.21,
-          "score": 3,
+          "low": 305.02,
+          "high": 305.17,
+          "price": 305.1,
+          "score": 2,
           "evidence": [
-            "swing high",
-            "pivot R2",
-            "swing low"
+            "swing low",
+            "pivot R2"
           ]
         },
         {
@@ -3142,24 +3095,27 @@
       ],
       "levels_below": [
         {
-          "low": 289.94,
-          "high": 295.31,
-          "price": 292.12,
+          "low": 292.85,
+          "high": 297.61,
+          "price": 295.65,
           "score": 5,
           "evidence": [
-            "pivot S1",
+            "8-EMA",
+            "pivot PP",
+            "prior close",
             "prior-day low",
-            "pivot S2",
-            "round number",
-            "Fib 0.382"
+            "pivot S1"
           ]
         },
         {
           "low": 287.38,
-          "high": 287.96,
-          "price": 287.67,
-          "score": 2,
+          "high": 290.0,
+          "price": 289.16,
+          "score": 5,
           "evidence": [
+            "round number",
+            "Fib 0.382",
+            "pivot S2",
             "50-SMA",
             "swing low"
           ]
@@ -3187,72 +3143,64 @@
       ],
       "confluence": [
         {
-          "low": 297.5,
-          "high": 301.82,
-          "price": 299.48,
-          "score": 8,
+          "low": 298.44,
+          "high": 303.2,
+          "price": 300.78,
+          "score": 6,
+          "evidence": [
+            "21-EMA",
+            "round number",
+            "Fib 0.236",
+            "pivot R1",
+            "prior-day high",
+            "swing high"
+          ]
+        },
+        {
+          "low": 305.02,
+          "high": 305.17,
+          "price": 305.1,
+          "score": 2,
+          "evidence": [
+            "swing low",
+            "pivot R2"
+          ]
+        },
+        {
+          "low": 292.85,
+          "high": 297.61,
+          "price": 295.65,
+          "score": 5,
           "evidence": [
             "8-EMA",
             "pivot PP",
-            "21-EMA",
             "prior close",
-            "round number",
-            "Fib 0.236",
-            "prior-day high",
-            "pivot R1"
-          ]
-        },
-        {
-          "low": 303.2,
-          "high": 305.02,
-          "price": 304.21,
-          "score": 3,
-          "evidence": [
-            "swing high",
-            "pivot R2",
-            "swing low"
-          ]
-        },
-        {
-          "low": 289.94,
-          "high": 295.31,
-          "price": 292.12,
-          "score": 5,
-          "evidence": [
-            "pivot S1",
             "prior-day low",
-            "pivot S2",
-            "round number",
-            "Fib 0.382"
+            "pivot S1"
           ]
         },
         {
           "low": 287.38,
-          "high": 287.96,
-          "price": 287.67,
-          "score": 2,
+          "high": 290.0,
+          "price": 289.16,
+          "score": 5,
           "evidence": [
+            "round number",
+            "Fib 0.382",
+            "pivot S2",
             "50-SMA",
             "swing low"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 299.48 opens 304.21",
-      "bear_trigger": "loss of 292.12 exposes 287.67",
-      "line_in_sand": 292.12,
+      "bull_trigger": "acceptance above 300.78 opens 305.10",
+      "bear_trigger": "loss of 295.65 exposes 289.16",
+      "line_in_sand": 295.65,
       "changed": [
-        "lost the 21-EMA",
         "nearest swing low 287.38"
       ],
-      "read": "AAPL (2026-06-17): range. At 295.95, below the 21-EMA at 298.48; above the 200-SMA; testing the 0.236 retracement at 300.43. Structure is neutral above 292.12. Above: acceptance above 299.48 opens 304.21. Below: loss of 292.12 exposes 287.67. ATR(14) 7.25.",
+      "read": "AAPL (2026-06-18): range. At 298.01, below the 21-EMA at 298.44; above the 200-SMA; testing the 0.236 retracement at 300.43. Structure is neutral above 295.65. Above: acceptance above 300.78 opens 305.10. Below: loss of 295.65 exposes 289.16. ATR(14) 7.09.",
       "history": [
-        [
-          "2025-09-30",
-          254.86000061035156,
-          255.9199981689453,
-          253.11000061035156,
-          254.6300048828125
-        ],
         [
           "2025-10-01",
           255.0399932861328,
@@ -4501,24 +4449,31 @@
         ],
         [
           "2026-06-17",
-          300.8450012207031,
+          300.8500061035156,
           302.07000732421875,
-          294.3800048828125,
+          294.3599853515625,
           295.95001220703125
+        ],
+        [
+          "2026-06-18",
+          298.44000244140625,
+          300.57000732421875,
+          295.6199951171875,
+          298.010009765625
         ]
       ],
       "fundamentals": {
-        "pe": 35.8,
-        "forward_pe": 30.8,
-        "market_cap": 4346723172352,
+        "pe": 36.1,
+        "forward_pe": 31.1,
+        "market_cap": 4376979046400,
         "rev_growth": 16.6,
         "eps_growth": 21.8,
         "earnings_date": "2026-04-30",
         "sector": "Technology",
         "w52_high": 317.4,
         "w52_low": 196.86,
-        "rs_3m": 6.4,
-        "pos52": 82
+        "rs_3m": 6.5,
+        "pos52": 84
       }
     },
     {
@@ -4526,17 +4481,17 @@
       "name": "Microsoft",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 390.25,
-        "high": 390.3699951171875,
-        "low": 377.3699951171875,
-        "close": 378.9100036621094
+        "open": 377.9150085449219,
+        "high": 381.3699951171875,
+        "low": 373.2799987792969,
+        "close": 379.3999938964844
       },
-      "prev_close": 393.8299865722656,
-      "change_pct": -3.79,
+      "prev_close": 378.9100036621094,
+      "change_pct": 0.13,
       "structure": "range",
-      "location": "below the 21-EMA at 408.17; below the 200-SMA; testing the 0.786 retracement at 379.83",
+      "location": "below the 21-EMA at 405.55; below the 200-SMA; testing the 0.786 retracement at 379.83",
       "fib": {
         "swing_high": 466.32,
         "swing_low": 356.28,
@@ -4582,66 +4537,62 @@
         }
       ],
       "ma": {
-        "ema8": 396.77,
-        "ema21": 408.17,
-        "sma50": 412.87,
-        "sma200": 451.98
+        "ema8": 392.91,
+        "ema21": 405.55,
+        "sma50": 412.98,
+        "sma200": 451.35
       },
       "pivots": {
-        "pp": 393.79,
-        "r1": 396.88,
-        "s1": 390.73,
-        "r2": 399.94,
-        "s2": 387.64,
-        "r3": 403.03,
-        "s3": 384.58
+        "pp": 382.2,
+        "r1": 387.08,
+        "s1": 374.03,
+        "r2": 395.25,
+        "s2": 369.15,
+        "r3": 400.13,
+        "s3": 360.98
       },
-      "atr14": 12.2,
+      "atr14": 11.91,
       "levels_above": [
         {
           "low": 379.83,
-          "high": 380.0,
-          "price": 379.91,
-          "score": 2,
+          "high": 382.2,
+          "price": 380.68,
+          "score": 3,
           "evidence": [
             "Fib 0.786",
-            "round number"
+            "round number",
+            "pivot PP"
           ]
         },
         {
-          "low": 387.64,
-          "high": 399.94,
-          "price": 394.54,
-          "score": 10,
+          "low": 387.08,
+          "high": 395.25,
+          "price": 391.4,
+          "score": 4,
           "evidence": [
-            "pivot S2",
-            "prior-day low",
-            "pivot S1",
-            "pivot PP",
-            "prior close",
-            "8-EMA",
-            "prior-day high",
             "pivot R1",
-            "Fib 0.618",
+            "prior-day high",
+            "8-EMA",
             "pivot R2"
           ]
         },
         {
-          "low": 400.88,
-          "high": 400.88,
-          "price": 400.88,
-          "score": 1,
+          "low": 398.32,
+          "high": 405.55,
+          "price": 401.58,
+          "score": 3,
           "evidence": [
-            "swing low"
+            "Fib 0.618",
+            "swing low",
+            "21-EMA"
           ]
         },
         {
-          "low": 408.17,
-          "high": 412.87,
-          "price": 410.64,
-          "score": 4,
+          "low": 409.58,
+          "high": 412.98,
+          "price": 411.29,
+          "score": 3,
           "evidence": [
-            "21-EMA",
             "swing low",
             "Fib 0.5",
             "50-SMA"
@@ -4650,12 +4601,24 @@
       ],
       "levels_below": [
         {
-          "low": 370.0,
-          "high": 370.0,
-          "price": 370.0,
-          "score": 1,
+          "low": 374.03,
+          "high": 378.91,
+          "price": 376.75,
+          "score": 3,
           "evidence": [
-            "round number"
+            "prior close",
+            "prior-day low",
+            "pivot S1"
+          ]
+        },
+        {
+          "low": 369.15,
+          "high": 370.0,
+          "price": 369.57,
+          "score": 2,
+          "evidence": [
+            "round number",
+            "pivot S2"
           ]
         },
         {
@@ -4671,60 +4634,58 @@
       "confluence": [
         {
           "low": 379.83,
-          "high": 380.0,
-          "price": 379.91,
-          "score": 2,
+          "high": 382.2,
+          "price": 380.68,
+          "score": 3,
           "evidence": [
             "Fib 0.786",
-            "round number"
+            "round number",
+            "pivot PP"
           ]
         },
         {
-          "low": 387.64,
-          "high": 399.94,
-          "price": 394.54,
-          "score": 10,
+          "low": 387.08,
+          "high": 395.25,
+          "price": 391.4,
+          "score": 4,
           "evidence": [
-            "pivot S2",
-            "prior-day low",
-            "pivot S1",
-            "pivot PP",
-            "prior close",
-            "8-EMA",
-            "prior-day high",
             "pivot R1",
-            "Fib 0.618",
+            "prior-day high",
+            "8-EMA",
             "pivot R2"
           ]
         },
         {
-          "low": 408.17,
-          "high": 412.87,
-          "price": 410.64,
-          "score": 4,
+          "low": 398.32,
+          "high": 405.55,
+          "price": 401.58,
+          "score": 3,
           "evidence": [
-            "21-EMA",
+            "Fib 0.618",
+            "swing low",
+            "21-EMA"
+          ]
+        },
+        {
+          "low": 409.58,
+          "high": 412.98,
+          "price": 411.29,
+          "score": 3,
+          "evidence": [
             "swing low",
             "Fib 0.5",
             "50-SMA"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 379.91 opens 394.54",
-      "bear_trigger": "loss of 370.00 exposes 360.00",
-      "line_in_sand": 370.0,
+      "bull_trigger": "acceptance above 380.68 opens 391.40",
+      "bear_trigger": "loss of 376.75 exposes 369.57",
+      "line_in_sand": 376.75,
       "changed": [
         "nearest swing low 409.58"
       ],
-      "read": "MSFT (2026-06-17): range. At 378.91, below the 21-EMA at 408.17; below the 200-SMA; testing the 0.786 retracement at 379.83. Structure is neutral above 370.00. Above: acceptance above 379.91 opens 394.54. Below: loss of 370.00 exposes 360.00. ATR(14) 12.20.",
+      "read": "MSFT (2026-06-18): range. At 379.40, below the 21-EMA at 405.55; below the 200-SMA; testing the 0.786 retracement at 379.83. Structure is neutral above 376.75. Above: acceptance above 380.68 opens 391.40. Below: loss of 376.75 exposes 369.57. ATR(14) 11.91.",
       "history": [
-        [
-          "2025-09-30",
-          513.239990234375,
-          518.1599731445312,
-          509.6600036621094,
-          517.9500122070312
-        ],
         [
           "2025-10-01",
           514.7999877929688,
@@ -5975,22 +5936,29 @@
           "2026-06-17",
           390.25,
           390.3699951171875,
-          377.3699951171875,
+          377.32000732421875,
           378.9100036621094
+        ],
+        [
+          "2026-06-18",
+          377.9150085449219,
+          381.3699951171875,
+          373.2799987792969,
+          379.3999938964844
         ]
       ],
       "fundamentals": {
         "pe": 22.6,
         "forward_pe": 19.6,
-        "market_cap": 2814708285440,
+        "market_cap": 2818348154880,
         "rev_growth": 18.3,
         "eps_growth": 23.4,
         "earnings_date": "2026-04-29",
         "sector": "Technology",
         "w52_high": 555.45,
         "w52_low": 356.28,
-        "rs_3m": -15.3,
-        "pos52": 11
+        "rs_3m": -15.6,
+        "pos52": 12
       }
     },
     {
@@ -5998,17 +5966,17 @@
       "name": "Alphabet",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 369.125,
-        "high": 372.3299865722656,
-        "low": 362.0199890136719,
-        "close": 363.7900085449219
+        "open": 365.75,
+        "high": 369.4800109863281,
+        "low": 358.6700134277344,
+        "close": 368.0299987792969
       },
-      "prev_close": 373.25,
-      "change_pct": -2.53,
+      "prev_close": 363.7900085449219,
+      "change_pct": 1.17,
       "structure": "downtrend",
-      "location": "below the 21-EMA at 369.77; above the 200-SMA; holding the 0.618 retracement at 356.47",
+      "location": "below the 21-EMA at 369.61; above the 200-SMA; testing the 0.786 retracement at 379.40",
       "fib": {
         "swing_high": 408.61,
         "swing_low": 272.11,
@@ -6054,48 +6022,42 @@
         }
       ],
       "ma": {
-        "ema8": 366.04,
-        "ema21": 369.77,
-        "sma50": 366.36,
-        "sma200": 310.32
+        "ema8": 366.49,
+        "ema21": 369.61,
+        "sma50": 367.37,
+        "sma200": 311.1
       },
       "pivots": {
-        "pp": 372.1,
-        "r1": 377.15,
-        "s1": 368.21,
-        "r2": 381.04,
-        "s2": 363.16,
-        "r3": 386.09,
-        "s3": 359.27
+        "pp": 366.05,
+        "r1": 370.07,
+        "s1": 359.76,
+        "r2": 376.36,
+        "s2": 355.74,
+        "r3": 380.38,
+        "s3": 349.45
       },
-      "atr14": 10.76,
+      "atr14": 10.77,
       "levels_above": [
         {
-          "low": 366.04,
-          "high": 373.25,
-          "price": 369.1,
-          "score": 8,
+          "low": 369.61,
+          "high": 372.33,
+          "price": 370.5,
+          "score": 4,
           "evidence": [
-            "8-EMA",
-            "50-SMA",
-            "prior-day low",
-            "pivot S1",
             "21-EMA",
             "round number",
-            "pivot PP",
-            "prior close"
+            "pivot R1",
+            "prior-day high"
           ]
         },
         {
-          "low": 376.0,
+          "low": 376.36,
           "high": 381.77,
-          "price": 379.07,
-          "score": 5,
+          "price": 379.18,
+          "score": 3,
           "evidence": [
-            "prior-day high",
-            "pivot R1",
-            "Fib 0.786",
             "pivot R2",
+            "Fib 0.786",
             "swing low"
           ]
         },
@@ -6120,15 +6082,29 @@
       ],
       "levels_below": [
         {
-          "low": 356.47,
-          "high": 363.16,
-          "price": 359.43,
-          "score": 4,
+          "low": 359.76,
+          "high": 367.37,
+          "price": 363.64,
+          "score": 7,
           "evidence": [
-            "pivot S2",
+            "50-SMA",
+            "8-EMA",
+            "pivot PP",
+            "prior close",
+            "prior-day low",
             "round number",
+            "pivot S1"
+          ]
+        },
+        {
+          "low": 355.74,
+          "high": 358.08,
+          "price": 356.76,
+          "score": 3,
+          "evidence": [
             "swing low",
-            "Fib 0.618"
+            "Fib 0.618",
+            "pivot S2"
           ]
         },
         {
@@ -6150,86 +6126,67 @@
             "swing high",
             "Fib 0.5"
           ]
-        },
-        {
-          "low": 324.25,
-          "high": 324.25,
-          "price": 324.25,
-          "score": 1,
-          "evidence": [
-            "Fib 0.382"
-          ]
         }
       ],
       "confluence": [
         {
-          "low": 366.04,
-          "high": 373.25,
-          "price": 369.1,
-          "score": 8,
-          "evidence": [
-            "8-EMA",
-            "50-SMA",
-            "prior-day low",
-            "pivot S1",
-            "21-EMA",
-            "round number",
-            "pivot PP",
-            "prior close"
-          ]
-        },
-        {
-          "low": 376.0,
-          "high": 381.77,
-          "price": 379.07,
-          "score": 5,
-          "evidence": [
-            "prior-day high",
-            "pivot R1",
-            "Fib 0.786",
-            "pivot R2",
-            "swing low"
-          ]
-        },
-        {
-          "low": 356.47,
-          "high": 363.16,
-          "price": 359.43,
+          "low": 369.61,
+          "high": 372.33,
+          "price": 370.5,
           "score": 4,
           "evidence": [
-            "pivot S2",
+            "21-EMA",
             "round number",
-            "swing low",
-            "Fib 0.618"
+            "pivot R1",
+            "prior-day high"
           ]
         },
         {
-          "low": 346.36,
-          "high": 350.0,
-          "price": 348.18,
-          "score": 2,
+          "low": 376.36,
+          "high": 381.77,
+          "price": 379.18,
+          "score": 3,
           "evidence": [
-            "round number",
+            "pivot R2",
+            "Fib 0.786",
             "swing low"
+          ]
+        },
+        {
+          "low": 359.76,
+          "high": 367.37,
+          "price": 363.64,
+          "score": 7,
+          "evidence": [
+            "50-SMA",
+            "8-EMA",
+            "pivot PP",
+            "prior close",
+            "prior-day low",
+            "round number",
+            "pivot S1"
+          ]
+        },
+        {
+          "low": 355.74,
+          "high": 358.08,
+          "price": 356.76,
+          "score": 3,
+          "evidence": [
+            "swing low",
+            "Fib 0.618",
+            "pivot S2"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 369.10 opens 379.07",
-      "bear_trigger": "loss of 359.43 exposes 348.18",
-      "line_in_sand": 359.43,
+      "bull_trigger": "acceptance above 370.50 opens 379.18",
+      "bear_trigger": "loss of 363.64 exposes 356.76",
+      "line_in_sand": 363.64,
       "changed": [
-        "lost the 21-EMA",
         "nearest swing low 346.36"
       ],
-      "read": "GOOGL (2026-06-17): downtrend. At 363.79, below the 21-EMA at 369.77; above the 200-SMA; holding the 0.618 retracement at 356.47. Structure is bearish. Above: acceptance above 369.10 opens 379.07. Below: loss of 359.43 exposes 348.18. ATR(14) 10.76.",
+      "read": "GOOGL (2026-06-18): downtrend. At 368.03, below the 21-EMA at 369.61; above the 200-SMA; testing the 0.786 retracement at 379.40. Structure is bearish. Above: acceptance above 370.50 opens 379.18. Below: loss of 363.64 exposes 356.76. ATR(14) 10.77.",
       "history": [
-        [
-          "2025-09-30",
-          242.80999755859375,
-          243.2899932861328,
-          239.25,
-          243.10000610351562
-        ],
         [
           "2025-10-01",
           240.75,
@@ -7478,24 +7435,31 @@
         ],
         [
           "2026-06-17",
-          369.125,
+          369.1300048828125,
           372.3299865722656,
           362.0199890136719,
           363.7900085449219
+        ],
+        [
+          "2026-06-18",
+          365.75,
+          369.4800109863281,
+          358.6700134277344,
+          368.0299987792969
         ]
       ],
       "fundamentals": {
-        "pe": 27.8,
-        "forward_pe": 25.1,
-        "market_cap": 4439174283264,
+        "pe": 28.1,
+        "forward_pe": 25.4,
+        "market_cap": 4490912595968,
         "rev_growth": 21.8,
         "eps_growth": 82.0,
         "earnings_date": "2026-04-29",
         "sector": "Communication Services",
         "w52_high": 408.61,
         "w52_low": 162.0,
-        "rs_3m": 6.2,
-        "pos52": 82
+        "rs_3m": 6.7,
+        "pos52": 84
       }
     },
     {
@@ -7503,17 +7467,17 @@
       "name": "Amazon",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 245.00999450683594,
-        "high": 245.91000366210938,
-        "low": 236.63499450683594,
-        "close": 237.5
+        "open": 240.22000122070312,
+        "high": 245.72999572753906,
+        "low": 236.02000427246094,
+        "close": 244.38999938964844
       },
-      "prev_close": 246.0,
-      "change_pct": -3.46,
+      "prev_close": 237.5,
+      "change_pct": 2.9,
       "structure": "downtrend",
-      "location": "below the 21-EMA at 250.62; above the 200-SMA; testing the 0.5 retracement at 238.85",
+      "location": "below the 21-EMA at 250.05; above the 200-SMA; testing the 0.618 retracement at 248.22",
       "fib": {
         "swing_high": 278.56,
         "swing_low": 199.14,
@@ -7559,55 +7523,39 @@
         }
       ],
       "ma": {
-        "ema8": 243.79,
-        "ema21": 250.62,
-        "sma50": 256.64,
-        "sma200": 232.71
+        "ema8": 243.93,
+        "ema21": 250.05,
+        "sma50": 257.1,
+        "sma200": 232.8
       },
       "pivots": {
-        "pp": 246.99,
-        "r1": 248.52,
-        "s1": 244.46,
-        "r2": 251.05,
-        "s2": 242.93,
-        "r3": 252.58,
-        "s3": 240.4
+        "pp": 239.8,
+        "r1": 243.61,
+        "s1": 233.7,
+        "r2": 249.71,
+        "s2": 229.89,
+        "r3": 253.52,
+        "s3": 223.79
       },
-      "atr14": 7.48,
+      "atr14": 7.68,
       "levels_above": [
         {
-          "low": 238.85,
-          "high": 246.0,
-          "price": 243.07,
-          "score": 7,
+          "low": 245.91,
+          "high": 250.05,
+          "price": 248.78,
+          "score": 5,
           "evidence": [
-            "Fib 0.5",
-            "round number",
-            "pivot S2",
-            "8-EMA",
-            "pivot S1",
-            "prior-day low",
-            "prior close"
-          ]
-        },
-        {
-          "low": 246.99,
-          "high": 251.05,
-          "price": 249.15,
-          "score": 6,
-          "evidence": [
-            "pivot PP",
-            "Fib 0.618",
-            "pivot R1",
             "prior-day high",
-            "21-EMA",
-            "pivot R2"
+            "Fib 0.618",
+            "pivot R2",
+            "round number",
+            "21-EMA"
           ]
         },
         {
           "low": 255.19,
-          "high": 256.64,
-          "price": 256.04,
+          "high": 257.1,
+          "price": 256.16,
           "score": 3,
           "evidence": [
             "swing low",
@@ -7623,66 +7571,83 @@
           "evidence": [
             "Fib 0.786"
           ]
+        },
+        {
+          "low": 274.75,
+          "high": 278.56,
+          "price": 276.65,
+          "score": 1,
+          "evidence": [
+            "swing high"
+          ]
         }
       ],
       "levels_below": [
         {
-          "low": 229.48,
-          "high": 233.59,
-          "price": 231.44,
+          "low": 237.5,
+          "high": 243.93,
+          "price": 240.61,
+          "score": 6,
+          "evidence": [
+            "8-EMA",
+            "pivot R1",
+            "round number",
+            "pivot PP",
+            "Fib 0.5",
+            "prior close"
+          ]
+        },
+        {
+          "low": 232.8,
+          "high": 236.0,
+          "price": 234.02,
           "score": 4,
           "evidence": [
+            "prior-day low",
+            "pivot S1",
             "swing low",
-            "200-SMA",
+            "200-SMA"
+          ]
+        },
+        {
+          "low": 229.48,
+          "high": 230.0,
+          "price": 229.79,
+          "score": 3,
+          "evidence": [
             "round number",
+            "pivot S2",
             "Fib 0.382"
           ]
         },
         {
           "low": 217.88,
-          "high": 220.0,
-          "price": 218.94,
-          "score": 2,
+          "high": 217.88,
+          "price": 217.88,
+          "score": 1,
           "evidence": [
-            "round number",
             "Fib 0.236"
           ]
         }
       ],
       "confluence": [
         {
-          "low": 238.85,
-          "high": 246.0,
-          "price": 243.07,
-          "score": 7,
+          "low": 245.91,
+          "high": 250.05,
+          "price": 248.78,
+          "score": 5,
           "evidence": [
-            "Fib 0.5",
-            "round number",
-            "pivot S2",
-            "8-EMA",
-            "pivot S1",
-            "prior-day low",
-            "prior close"
-          ]
-        },
-        {
-          "low": 246.99,
-          "high": 251.05,
-          "price": 249.15,
-          "score": 6,
-          "evidence": [
-            "pivot PP",
-            "Fib 0.618",
-            "pivot R1",
             "prior-day high",
-            "21-EMA",
-            "pivot R2"
+            "Fib 0.618",
+            "pivot R2",
+            "round number",
+            "21-EMA"
           ]
         },
         {
           "low": 255.19,
-          "high": 256.64,
-          "price": 256.04,
+          "high": 257.1,
+          "price": 256.16,
           "score": 3,
           "evidence": [
             "swing low",
@@ -7691,33 +7656,40 @@
           ]
         },
         {
-          "low": 229.48,
-          "high": 233.59,
-          "price": 231.44,
+          "low": 237.5,
+          "high": 243.93,
+          "price": 240.61,
+          "score": 6,
+          "evidence": [
+            "8-EMA",
+            "pivot R1",
+            "round number",
+            "pivot PP",
+            "Fib 0.5",
+            "prior close"
+          ]
+        },
+        {
+          "low": 232.8,
+          "high": 236.0,
+          "price": 234.02,
           "score": 4,
           "evidence": [
+            "prior-day low",
+            "pivot S1",
             "swing low",
-            "200-SMA",
-            "round number",
-            "Fib 0.382"
+            "200-SMA"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 243.07 opens 249.15",
-      "bear_trigger": "loss of 231.44 exposes 218.94",
-      "line_in_sand": 231.44,
+      "bull_trigger": "acceptance above 248.78 opens 256.16",
+      "bear_trigger": "loss of 240.61 exposes 234.02",
+      "line_in_sand": 240.61,
       "changed": [
         "nearest swing low 233.59"
       ],
-      "read": "AMZN (2026-06-17): downtrend. At 237.50, below the 21-EMA at 250.62; above the 200-SMA; testing the 0.5 retracement at 238.85. Structure is bearish. Above: acceptance above 243.07 opens 249.15. Below: loss of 231.44 exposes 218.94. ATR(14) 7.48.",
+      "read": "AMZN (2026-06-18): downtrend. At 244.39, below the 21-EMA at 250.05; above the 200-SMA; testing the 0.618 retracement at 248.22. Structure is bearish. Above: acceptance above 248.78 opens 256.16. Below: loss of 240.61 exposes 234.02. ATR(14) 7.68.",
       "history": [
-        [
-          "2025-09-30",
-          222.02999877929688,
-          222.24000549316406,
-          217.88999938964844,
-          219.57000732421875
-        ],
         [
           "2025-10-01",
           217.36000061035156,
@@ -8966,24 +8938,31 @@
         ],
         [
           "2026-06-17",
-          245.00999450683594,
+          244.89999389648438,
           245.91000366210938,
-          236.63499450683594,
+          236.0,
           237.5
+        ],
+        [
+          "2026-06-18",
+          240.22000122070312,
+          245.72999572753906,
+          236.02000427246094,
+          244.38999938964844
         ]
       ],
       "fundamentals": {
-        "pe": 30.6,
-        "forward_pe": 24.1,
-        "market_cap": 2554813480960,
+        "pe": 31.5,
+        "forward_pe": 24.8,
+        "market_cap": 2628929978368,
         "rev_growth": 16.6,
         "eps_growth": 74.8,
         "earnings_date": "2026-04-29",
         "sector": "Consumer Cyclical",
         "w52_high": 278.56,
         "w52_low": 196.0,
-        "rs_3m": 1.1,
-        "pos52": 50
+        "rs_3m": 3.9,
+        "pos52": 59
       }
     },
     {
@@ -8991,17 +8970,17 @@
       "name": "Nvidia",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 208.52999877929688,
-        "high": 209.2100067138672,
-        "low": 203.4499969482422,
-        "close": 204.64999389648438
+        "open": 207.27499389648438,
+        "high": 211.38999938964844,
+        "low": 206.5,
+        "close": 210.69000244140625
       },
-      "prev_close": 207.41000366210938,
-      "change_pct": -1.33,
+      "prev_close": 204.64999389648438,
+      "change_pct": 2.95,
       "structure": "downtrend",
-      "location": "below the 21-EMA at 210.36; above the 200-SMA; holding the 0.5 retracement at 200.40",
+      "location": "above the 21-EMA at 210.39; above the 200-SMA; holding the 0.618 retracement at 208.93",
       "fib": {
         "swing_high": 236.54,
         "swing_low": 164.27,
@@ -9047,100 +9026,102 @@
         }
       ],
       "ma": {
-        "ema8": 207.71,
-        "ema21": 210.36,
-        "sma50": 208.74,
-        "sma200": 189.7
+        "ema8": 208.37,
+        "ema21": 210.39,
+        "sma50": 209.31,
+        "sma200": 189.9
       },
       "pivots": {
-        "pp": 208.73,
-        "r1": 210.17,
-        "s1": 205.97,
-        "r2": 212.93,
-        "s2": 204.53,
-        "r3": 214.37,
-        "s3": 201.77
+        "pp": 205.65,
+        "r1": 208.21,
+        "s1": 202.08,
+        "r2": 211.78,
+        "s2": 199.52,
+        "r3": 214.34,
+        "s3": 195.95
       },
-      "atr14": 7.65,
+      "atr14": 7.61,
       "levels_above": [
         {
-          "low": 205.97,
-          "high": 211.49,
-          "price": 208.8,
-          "score": 12,
+          "low": 211.78,
+          "high": 212.71,
+          "price": 212.25,
+          "score": 2,
           "evidence": [
-            "pivot S1",
-            "prior-day low",
-            "prior close",
-            "8-EMA",
-            "pivot PP",
-            "50-SMA",
-            "swing low",
-            "Fib 0.618",
+            "pivot R2",
+            "swing high"
+          ]
+        },
+        {
+          "low": 220.0,
+          "high": 221.07,
+          "price": 220.53,
+          "score": 2,
+          "evidence": [
             "round number",
-            "pivot R1",
-            "21-EMA",
-            "prior-day high"
+            "Fib 0.786"
           ]
         },
         {
-          "low": 212.93,
-          "high": 212.93,
-          "price": 212.93,
-          "score": 1,
-          "evidence": [
-            "pivot R2"
-          ]
-        },
-        {
-          "low": 216.83,
-          "high": 216.83,
-          "price": 216.83,
+          "low": 232.28,
+          "high": 232.28,
+          "price": 232.28,
           "score": 1,
           "evidence": [
             "swing high"
           ]
         },
         {
-          "low": 221.07,
-          "high": 221.07,
-          "price": 221.07,
+          "low": 236.54,
+          "high": 236.54,
+          "price": 236.54,
           "score": 1,
           "evidence": [
-            "Fib 0.786"
+            "swing high"
           ]
         }
       ],
       "levels_below": [
         {
-          "low": 204.53,
-          "high": 204.53,
-          "price": 204.53,
-          "score": 1,
+          "low": 205.65,
+          "high": 210.39,
+          "price": 208.76,
+          "score": 9,
           "evidence": [
-            "pivot S2"
+            "21-EMA",
+            "round number",
+            "50-SMA",
+            "prior-day high",
+            "Fib 0.618",
+            "swing low",
+            "8-EMA",
+            "pivot R1",
+            "pivot PP"
           ]
         },
         {
           "low": 199.34,
-          "high": 200.4,
-          "price": 199.91,
-          "score": 3,
+          "high": 204.65,
+          "price": 201.3,
+          "score": 7,
           "evidence": [
+            "prior close",
+            "prior-day low",
+            "pivot S1",
             "Fib 0.5",
             "round number",
+            "pivot S2",
             "swing low"
           ]
         },
         {
-          "low": 189.7,
+          "low": 189.9,
           "high": 194.74,
-          "price": 191.58,
-          "score": 4,
+          "price": 192.17,
+          "score": 3,
           "evidence": [
             "swing low",
             "Fib 0.382",
-            "round number",
             "200-SMA"
           ]
         },
@@ -9156,64 +9137,67 @@
       ],
       "confluence": [
         {
-          "low": 205.97,
-          "high": 211.49,
-          "price": 208.8,
-          "score": 12,
+          "low": 211.78,
+          "high": 212.71,
+          "price": 212.25,
+          "score": 2,
           "evidence": [
-            "pivot S1",
-            "prior-day low",
-            "prior close",
-            "8-EMA",
-            "pivot PP",
-            "50-SMA",
-            "swing low",
-            "Fib 0.618",
+            "pivot R2",
+            "swing high"
+          ]
+        },
+        {
+          "low": 220.0,
+          "high": 221.07,
+          "price": 220.53,
+          "score": 2,
+          "evidence": [
             "round number",
-            "pivot R1",
+            "Fib 0.786"
+          ]
+        },
+        {
+          "low": 205.65,
+          "high": 210.39,
+          "price": 208.76,
+          "score": 9,
+          "evidence": [
             "21-EMA",
-            "prior-day high"
+            "round number",
+            "50-SMA",
+            "prior-day high",
+            "Fib 0.618",
+            "swing low",
+            "8-EMA",
+            "pivot R1",
+            "pivot PP"
           ]
         },
         {
           "low": 199.34,
-          "high": 200.4,
-          "price": 199.91,
-          "score": 3,
+          "high": 204.65,
+          "price": 201.3,
+          "score": 7,
           "evidence": [
+            "prior close",
+            "prior-day low",
+            "pivot S1",
             "Fib 0.5",
             "round number",
+            "pivot S2",
             "swing low"
-          ]
-        },
-        {
-          "low": 189.7,
-          "high": 194.74,
-          "price": 191.58,
-          "score": 4,
-          "evidence": [
-            "swing low",
-            "Fib 0.382",
-            "round number",
-            "200-SMA"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 208.80 opens 212.93",
-      "bear_trigger": "loss of 204.53 exposes 199.91",
-      "line_in_sand": 204.53,
+      "bull_trigger": "acceptance above 212.25 opens 220.53",
+      "bear_trigger": "loss of 208.76 exposes 201.30",
+      "line_in_sand": 208.76,
       "changed": [
+        "reclaimed the 21-EMA",
         "nearest swing low 199.34"
       ],
-      "read": "NVDA (2026-06-17): downtrend. At 204.65, below the 21-EMA at 210.36; above the 200-SMA; holding the 0.5 retracement at 200.40. Structure is bearish. Above: acceptance above 208.80 opens 212.93. Below: loss of 204.53 exposes 199.91. ATR(14) 7.65.",
+      "read": "NVDA (2026-06-18): downtrend. At 210.69, above the 21-EMA at 210.39; above the 200-SMA; holding the 0.618 retracement at 208.93. Structure is bearish. Above: acceptance above 212.25 opens 220.53. Below: loss of 208.76 exposes 201.30. ATR(14) 7.61.",
       "history": [
-        [
-          "2025-09-30",
-          182.0800018310547,
-          187.35000610351562,
-          181.47999572753906,
-          186.5800018310547
-        ],
         [
           "2025-10-01",
           185.24000549316406,
@@ -10464,22 +10448,29 @@
           "2026-06-17",
           208.52999877929688,
           209.2100067138672,
-          203.4499969482422,
+          203.0800018310547,
           204.64999389648438
+        ],
+        [
+          "2026-06-18",
+          207.27499389648438,
+          211.38999938964844,
+          206.5,
+          210.69000244140625
         ]
       ],
       "fundamentals": {
-        "pe": 31.3,
-        "forward_pe": 16.1,
-        "market_cap": 4956827418624,
+        "pe": 32.3,
+        "forward_pe": 16.6,
+        "market_cap": 5103122644992,
         "rev_growth": 85.2,
         "eps_growth": 214.5,
         "earnings_date": "2026-08-26",
         "sector": "Technology",
         "w52_high": 236.54,
         "w52_low": 142.03,
-        "rs_3m": 1.4,
-        "pos52": 66
+        "rs_3m": 4.8,
+        "pos52": 73
       }
     },
     {
@@ -10487,17 +10478,17 @@
       "name": "Meta",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 592.0020141601562,
-        "high": 593.8099975585938,
-        "low": 566.1900024414062,
-        "close": 567.5800170898438
+        "open": 572.9550170898438,
+        "high": 580.2150268554688,
+        "low": 563.0999755859375,
+        "close": 577.219970703125
       },
-      "prev_close": 600.2100219726562,
-      "change_pct": -5.44,
+      "prev_close": 567.5800170898438,
+      "change_pct": 1.7,
       "structure": "downtrend",
-      "location": "below the 21-EMA at 596.92; below the 200-SMA; holding the 0.236 retracement at 560.68",
+      "location": "below the 21-EMA at 595.13; below the 200-SMA; testing the 0.382 retracement at 585.68",
       "fib": {
         "swing_high": 691.52,
         "swing_low": 520.26,
@@ -10543,119 +10534,124 @@
         }
       ],
       "ma": {
-        "ema8": 584.47,
-        "ema21": 596.92,
-        "sma50": 622.6,
-        "sma200": 655.71
+        "ema8": 582.86,
+        "ema21": 595.13,
+        "sma50": 621.9,
+        "sma200": 654.92
       },
       "pivots": {
-        "pp": 599.34,
-        "r1": 606.68,
-        "s1": 592.87,
-        "r2": 613.15,
-        "s2": 585.53,
-        "r3": 620.49,
-        "s3": 579.06
+        "pp": 575.86,
+        "r1": 585.53,
+        "s1": 557.91,
+        "r2": 603.48,
+        "s2": 548.24,
+        "r3": 613.15,
+        "s3": 530.29
       },
-      "atr14": 20.33,
+      "atr14": 20.1,
       "levels_above": [
         {
-          "low": 570.0,
-          "high": 570.0,
-          "price": 570.0,
-          "score": 1,
+          "low": 580.0,
+          "high": 595.13,
+          "price": 588.8,
+          "score": 7,
           "evidence": [
-            "round number"
-          ]
-        },
-        {
-          "low": 584.47,
-          "high": 600.21,
-          "price": 592.44,
-          "score": 9,
-          "evidence": [
+            "round number",
             "8-EMA",
-            "pivot S2",
-            "Fib 0.382",
-            "prior-day low",
-            "swing low",
-            "pivot S1",
-            "21-EMA",
-            "pivot PP",
-            "prior close"
-          ]
-        },
-        {
-          "low": 605.81,
-          "high": 613.15,
-          "price": 607.88,
-          "score": 4,
-          "evidence": [
-            "prior-day high",
-            "Fib 0.5",
             "pivot R1",
-            "pivot R2"
+            "Fib 0.382",
+            "swing low",
+            "prior-day high",
+            "21-EMA"
           ]
         },
         {
-          "low": 622.6,
+          "low": 603.48,
+          "high": 605.89,
+          "price": 604.68,
+          "score": 2,
+          "evidence": [
+            "pivot R2",
+            "Fib 0.5"
+          ]
+        },
+        {
+          "low": 621.9,
           "high": 626.1,
-          "price": 624.14,
+          "price": 623.91,
           "score": 3,
           "evidence": [
             "50-SMA",
             "swing high",
             "Fib 0.618"
+          ]
+        },
+        {
+          "low": 642.4,
+          "high": 643.0,
+          "price": 642.7,
+          "score": 1,
+          "evidence": [
+            "swing high"
           ]
         }
       ],
       "levels_below": [
         {
-          "low": 550.0,
-          "high": 560.68,
-          "price": 556.92,
-          "score": 3,
+          "low": 557.01,
+          "high": 575.86,
+          "price": 564.4,
+          "score": 7,
           "evidence": [
-            "Fib 0.236",
+            "pivot PP",
             "round number",
+            "prior close",
+            "prior-day low",
+            "Fib 0.236",
+            "pivot S1",
             "swing low"
+          ]
+        },
+        {
+          "low": 548.24,
+          "high": 548.24,
+          "price": 548.24,
+          "score": 1,
+          "evidence": [
+            "pivot S2"
           ]
         }
       ],
       "confluence": [
         {
-          "low": 584.47,
-          "high": 600.21,
-          "price": 592.44,
-          "score": 9,
+          "low": 580.0,
+          "high": 595.13,
+          "price": 588.8,
+          "score": 7,
           "evidence": [
+            "round number",
             "8-EMA",
-            "pivot S2",
-            "Fib 0.382",
-            "prior-day low",
-            "swing low",
-            "pivot S1",
-            "21-EMA",
-            "pivot PP",
-            "prior close"
-          ]
-        },
-        {
-          "low": 605.81,
-          "high": 613.15,
-          "price": 607.88,
-          "score": 4,
-          "evidence": [
-            "prior-day high",
-            "Fib 0.5",
             "pivot R1",
-            "pivot R2"
+            "Fib 0.382",
+            "swing low",
+            "prior-day high",
+            "21-EMA"
           ]
         },
         {
-          "low": 622.6,
+          "low": 603.48,
+          "high": 605.89,
+          "price": 604.68,
+          "score": 2,
+          "evidence": [
+            "pivot R2",
+            "Fib 0.5"
+          ]
+        },
+        {
+          "low": 621.9,
           "high": 626.1,
-          "price": 624.14,
+          "price": 623.91,
           "score": 3,
           "evidence": [
             "50-SMA",
@@ -10664,33 +10660,29 @@
           ]
         },
         {
-          "low": 550.0,
-          "high": 560.68,
-          "price": 556.92,
-          "score": 3,
+          "low": 557.01,
+          "high": 575.86,
+          "price": 564.4,
+          "score": 7,
           "evidence": [
-            "Fib 0.236",
+            "pivot PP",
             "round number",
+            "prior close",
+            "prior-day low",
+            "Fib 0.236",
+            "pivot S1",
             "swing low"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 570.00 opens 592.44",
-      "bear_trigger": "loss of 556.92 exposes lower",
-      "line_in_sand": 556.92,
+      "bull_trigger": "acceptance above 588.80 opens 604.68",
+      "bear_trigger": "loss of 564.40 exposes 548.24",
+      "line_in_sand": 564.4,
       "changed": [
-        "lost the 21-EMA",
         "nearest swing low 557.01"
       ],
-      "read": "META (2026-06-17): downtrend. At 567.58, below the 21-EMA at 596.92; below the 200-SMA; holding the 0.236 retracement at 560.68. Structure is bearish. Above: acceptance above 570.00 opens 592.44. Below: loss of 556.92 exposes lower. ATR(14) 20.33.",
+      "read": "META (2026-06-18): downtrend. At 577.22, below the 21-EMA at 595.13; below the 200-SMA; testing the 0.382 retracement at 585.68. Structure is bearish. Above: acceptance above 588.80 opens 604.68. Below: loss of 564.40 exposes 548.24. ATR(14) 20.10.",
       "history": [
-        [
-          "2025-09-30",
-          742.25,
-          742.969970703125,
-          726.2999877929688,
-          734.3800048828125
-        ],
         [
           "2025-10-01",
           721.489990234375,
@@ -11939,24 +11931,31 @@
         ],
         [
           "2026-06-17",
-          592.0020141601562,
+          592.0,
           593.8099975585938,
           566.1900024414062,
           567.5800170898438
+        ],
+        [
+          "2026-06-18",
+          572.9550170898438,
+          580.2150268554688,
+          563.0999755859375,
+          577.219970703125
         ]
       ],
       "fundamentals": {
-        "pe": 20.6,
-        "forward_pe": 15.7,
-        "market_cap": 1440758366208,
+        "pe": 21.0,
+        "forward_pe": 15.9,
+        "market_cap": 1465228591104,
         "rev_growth": 33.1,
         "eps_growth": 62.4,
         "earnings_date": "2026-04-29",
         "sector": "Communication Services",
         "w52_high": 796.25,
         "w52_low": 520.26,
-        "rs_3m": -19.8,
-        "pos52": 17
+        "rs_3m": -18.0,
+        "pos52": 21
       }
     },
     {
@@ -11964,17 +11963,17 @@
       "name": "Tesla",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 401.5299987792969,
-        "high": 405.8900146484375,
-        "low": 393.760009765625,
-        "close": 396.3800048828125
+        "open": 398.0849914550781,
+        "high": 402.5199890136719,
+        "low": 384.70001220703125,
+        "close": 400.489990234375
       },
-      "prev_close": 404.6600036621094,
-      "change_pct": -2.05,
+      "prev_close": 396.3800048828125,
+      "change_pct": 1.04,
       "structure": "downtrend",
-      "location": "below the 21-EMA at 408.44; below the 200-SMA; holding the 0.5 retracement at 395.32",
+      "location": "below the 21-EMA at 407.71; below the 200-SMA; holding the 0.5 retracement at 395.32",
       "fib": {
         "swing_high": 453.4,
         "swing_low": 337.24,
@@ -12020,50 +12019,46 @@
         }
       ],
       "ma": {
-        "ema8": 403.41,
-        "ema21": 408.44,
-        "sma50": 401.34,
-        "sma200": 416.61
+        "ema8": 402.76,
+        "ema21": 407.71,
+        "sma50": 402.49,
+        "sma200": 416.96
       },
       "pivots": {
-        "pp": 405.87,
-        "r1": 411.21,
-        "s1": 399.33,
-        "r2": 417.75,
-        "s2": 393.99,
-        "r3": 423.09,
-        "s3": 387.45
+        "pp": 398.69,
+        "r1": 403.63,
+        "s1": 391.45,
+        "r2": 410.87,
+        "s2": 386.51,
+        "r3": 415.81,
+        "s3": 379.27
       },
-      "atr14": 16.74,
+      "atr14": 16.82,
       "levels_above": [
         {
-          "low": 399.33,
-          "high": 412.42,
-          "price": 405.46,
-          "score": 12,
+          "low": 402.49,
+          "high": 410.87,
+          "price": 406.55,
+          "score": 8,
           "evidence": [
-            "pivot S1",
-            "round number",
-            "prior-day low",
             "50-SMA",
             "8-EMA",
-            "prior close",
-            "pivot PP",
+            "pivot R1",
+            "prior-day high",
             "21-EMA",
             "Fib 0.618",
-            "swing high",
-            "pivot R1",
-            "prior-day high"
+            "round number",
+            "pivot R2"
           ]
         },
         {
-          "low": 416.61,
-          "high": 417.75,
-          "price": 417.18,
+          "low": 416.0,
+          "high": 416.96,
+          "price": 416.48,
           "score": 2,
           "evidence": [
-            "200-SMA",
-            "pivot R2"
+            "swing high",
+            "200-SMA"
           ]
         },
         {
@@ -12087,26 +12082,29 @@
       ],
       "levels_below": [
         {
-          "low": 390.0,
-          "high": 395.32,
-          "price": 393.24,
-          "score": 4,
+          "low": 386.51,
+          "high": 400.0,
+          "price": 393.97,
+          "score": 8,
           "evidence": [
+            "round number",
+            "pivot PP",
+            "prior close",
             "Fib 0.5",
-            "pivot S2",
+            "prior-day low",
             "swing low",
-            "round number"
+            "pivot S1",
+            "pivot S2"
           ]
         },
         {
-          "low": 380.0,
+          "low": 380.15,
           "high": 381.61,
-          "price": 380.59,
-          "score": 3,
+          "price": 380.88,
+          "score": 2,
           "evidence": [
             "Fib 0.382",
-            "swing low",
-            "round number"
+            "swing low"
           ]
         },
         {
@@ -12122,74 +12120,66 @@
       ],
       "confluence": [
         {
-          "low": 399.33,
-          "high": 412.42,
-          "price": 405.46,
-          "score": 12,
+          "low": 402.49,
+          "high": 410.87,
+          "price": 406.55,
+          "score": 8,
           "evidence": [
-            "pivot S1",
-            "round number",
-            "prior-day low",
             "50-SMA",
             "8-EMA",
-            "prior close",
-            "pivot PP",
+            "pivot R1",
+            "prior-day high",
             "21-EMA",
             "Fib 0.618",
-            "swing high",
-            "pivot R1",
-            "prior-day high"
-          ]
-        },
-        {
-          "low": 416.61,
-          "high": 417.75,
-          "price": 417.18,
-          "score": 2,
-          "evidence": [
-            "200-SMA",
+            "round number",
             "pivot R2"
           ]
         },
         {
-          "low": 390.0,
-          "high": 395.32,
-          "price": 393.24,
-          "score": 4,
+          "low": 416.0,
+          "high": 416.96,
+          "price": 416.48,
+          "score": 2,
           "evidence": [
-            "Fib 0.5",
-            "pivot S2",
-            "swing low",
-            "round number"
+            "swing high",
+            "200-SMA"
           ]
         },
         {
-          "low": 380.0,
+          "low": 386.51,
+          "high": 400.0,
+          "price": 393.97,
+          "score": 8,
+          "evidence": [
+            "round number",
+            "pivot PP",
+            "prior close",
+            "Fib 0.5",
+            "prior-day low",
+            "swing low",
+            "pivot S1",
+            "pivot S2"
+          ]
+        },
+        {
+          "low": 380.15,
           "high": 381.61,
-          "price": 380.59,
-          "score": 3,
+          "price": 380.88,
+          "score": 2,
           "evidence": [
             "Fib 0.382",
-            "swing low",
-            "round number"
+            "swing low"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 405.46 opens 417.18",
-      "bear_trigger": "loss of 393.24 exposes 380.59",
-      "line_in_sand": 393.24,
+      "bull_trigger": "acceptance above 406.55 opens 416.48",
+      "bear_trigger": "loss of 393.97 exposes 380.88",
+      "line_in_sand": 393.97,
       "changed": [
         "nearest swing low 380.15"
       ],
-      "read": "TSLA (2026-06-17): downtrend. At 396.38, below the 21-EMA at 408.44; below the 200-SMA; holding the 0.5 retracement at 395.32. Structure is bearish. Above: acceptance above 405.46 opens 417.18. Below: loss of 393.24 exposes 380.59. ATR(14) 16.74.",
+      "read": "TSLA (2026-06-18): downtrend. At 400.49, below the 21-EMA at 407.71; below the 200-SMA; holding the 0.5 retracement at 395.32. Structure is bearish. Above: acceptance above 406.55 opens 416.48. Below: loss of 393.97 exposes 380.88. ATR(14) 16.82.",
       "history": [
-        [
-          "2025-09-30",
-          441.5199890136719,
-          445.0,
-          433.1199951171875,
-          444.7200012207031
-        ],
         [
           "2025-10-01",
           443.79998779296875,
@@ -13439,23 +13429,30 @@
         [
           "2026-06-17",
           401.5299987792969,
-          405.8900146484375,
+          405.94000244140625,
           393.760009765625,
           396.3800048828125
+        ],
+        [
+          "2026-06-18",
+          398.0849914550781,
+          402.5199890136719,
+          384.70001220703125,
+          400.489990234375
         ]
       ],
       "fundamentals": {
-        "pe": 363.7,
-        "forward_pe": 158.6,
-        "market_cap": 1488693755904,
+        "pe": 367.4,
+        "forward_pe": 160.2,
+        "market_cap": 1504129843200,
         "rev_growth": 15.8,
         "eps_growth": 8.3,
         "earnings_date": "2026-04-22",
         "sector": "Consumer Cyclical",
         "w52_high": 498.83,
         "w52_low": 288.77,
-        "rs_3m": -11.1,
-        "pos52": 51
+        "rs_3m": -7.9,
+        "pos52": 53
       }
     },
     {
@@ -13463,215 +13460,198 @@
       "name": "Micron",
       "type": "stock",
       "verified": true,
-      "as_of": "2026-06-17",
+      "as_of": "2026-06-18",
       "ohlc": {
-        "open": 1061.300048828125,
-        "high": 1093.6700439453125,
-        "low": 1014.1400146484375,
-        "close": 1043.18994140625
+        "open": 1108.06494140625,
+        "high": 1149.4300537109375,
+        "low": 1092.79345703125,
+        "close": 1133.989990234375
       },
-      "prev_close": 1020.760009765625,
-      "change_pct": 2.2,
+      "prev_close": 1043.18994140625,
+      "change_pct": 8.7,
       "structure": "uptrend",
-      "location": "above the 21-EMA at 926.82; above the 200-SMA; holding the 0.236 retracement at 921.86",
+      "location": "above the 21-EMA at 945.65; above the 200-SMA; holding the 0.236 retracement at 951.68",
       "fib": {
-        "swing_high": 1110.4,
+        "swing_high": 1149.43,
         "swing_low": 311.49,
         "levels": [
           {
             "r": 0.236,
-            "price": 921.86
+            "price": 951.68
           },
           {
             "r": 0.382,
-            "price": 805.22
+            "price": 829.34
           },
           {
             "r": 0.5,
-            "price": 710.95
+            "price": 730.46
           },
           {
             "r": 0.618,
-            "price": 616.67
+            "price": 631.58
           },
           {
             "r": 0.786,
-            "price": 482.46
+            "price": 490.81
           }
         ],
         "golden_pocket": [
-          591.11,
-          616.67
+          604.77,
+          631.58
         ]
       },
       "extensions": [
         {
           "e": 1.272,
-          "price": 1327.7
+          "price": 1377.35
         },
         {
           "e": 1.618,
-          "price": 1604.13
+          "price": 1667.28
         },
         {
           "e": 2.0,
-          "price": 1909.31
+          "price": 1987.37
         }
       ],
       "ma": {
-        "ema8": 1004.13,
-        "ema21": 926.82,
-        "sma50": 718.25,
-        "sma200": 395.67
+        "ema8": 1032.99,
+        "ema21": 945.65,
+        "sma50": 732.8,
+        "sma200": 400.75
       },
       "pivots": {
-        "pp": 1050.39,
-        "r1": 1080.77,
-        "s1": 990.37,
-        "r2": 1140.79,
-        "s2": 959.99,
-        "r3": 1171.17,
-        "s3": 899.97
+        "pp": 1050.33,
+        "r1": 1086.53,
+        "s1": 1007.0,
+        "r2": 1129.86,
+        "s2": 970.8,
+        "r3": 1166.06,
+        "s3": 927.47
       },
-      "atr14": 77.79,
+      "atr14": 79.82,
       "levels_above": [
         {
-          "low": 1050.39,
-          "high": 1110.4,
-          "price": 1086.17,
-          "score": 5,
-          "evidence": [
-            "pivot PP",
-            "pivot R1",
-            "swing high",
-            "round number",
-            "prior-day high"
-          ]
-        },
-        {
-          "low": 1140.79,
-          "high": 1140.79,
-          "price": 1140.79,
+          "low": 1200.0,
+          "high": 1200.0,
+          "price": 1200.0,
           "score": 1,
           "evidence": [
-            "pivot R2"
+            "round number"
           ]
         }
       ],
       "levels_below": [
         {
-          "low": 990.37,
-          "high": 1020.76,
-          "price": 1007.05,
+          "low": 1086.53,
+          "high": 1129.86,
+          "price": 1099.87,
           "score": 5,
           "evidence": [
-            "prior close",
-            "prior-day low",
-            "8-EMA",
+            "pivot R2",
             "round number",
-            "pivot S1"
+            "prior-day high",
+            "swing high",
+            "pivot R1"
           ]
         },
         {
-          "low": 900.0,
-          "high": 959.99,
-          "price": 927.17,
-          "score": 4,
+          "low": 1000.0,
+          "high": 1050.33,
+          "price": 1024.61,
+          "score": 6,
           "evidence": [
-            "pivot S2",
-            "21-EMA",
-            "Fib 0.236",
+            "pivot PP",
+            "prior close",
+            "8-EMA",
+            "prior-day low",
+            "pivot S1",
             "round number"
           ]
         },
         {
-          "low": 805.22,
-          "high": 854.35,
-          "price": 826.08,
+          "low": 945.65,
+          "high": 970.8,
+          "price": 956.04,
           "score": 3,
           "evidence": [
-            "swing low",
-            "swing high",
-            "Fib 0.382"
+            "pivot S2",
+            "Fib 0.236",
+            "21-EMA"
           ]
         },
         {
-          "low": 710.95,
-          "high": 718.25,
-          "price": 714.6,
-          "score": 2,
+          "low": 818.67,
+          "high": 854.35,
+          "price": 834.12,
+          "score": 3,
           "evidence": [
-            "50-SMA",
-            "Fib 0.5"
+            "swing low",
+            "Fib 0.382",
+            "swing high"
           ]
         }
       ],
       "confluence": [
         {
-          "low": 1050.39,
-          "high": 1110.4,
-          "price": 1086.17,
+          "low": 1086.53,
+          "high": 1129.86,
+          "price": 1099.87,
           "score": 5,
+          "evidence": [
+            "pivot R2",
+            "round number",
+            "prior-day high",
+            "swing high",
+            "pivot R1"
+          ]
+        },
+        {
+          "low": 1000.0,
+          "high": 1050.33,
+          "price": 1024.61,
+          "score": 6,
           "evidence": [
             "pivot PP",
-            "pivot R1",
-            "swing high",
-            "round number",
-            "prior-day high"
-          ]
-        },
-        {
-          "low": 990.37,
-          "high": 1020.76,
-          "price": 1007.05,
-          "score": 5,
-          "evidence": [
             "prior close",
-            "prior-day low",
             "8-EMA",
-            "round number",
-            "pivot S1"
-          ]
-        },
-        {
-          "low": 900.0,
-          "high": 959.99,
-          "price": 927.17,
-          "score": 4,
-          "evidence": [
-            "pivot S2",
-            "21-EMA",
-            "Fib 0.236",
+            "prior-day low",
+            "pivot S1",
             "round number"
           ]
         },
         {
-          "low": 805.22,
+          "low": 945.65,
+          "high": 970.8,
+          "price": 956.04,
+          "score": 3,
+          "evidence": [
+            "pivot S2",
+            "Fib 0.236",
+            "21-EMA"
+          ]
+        },
+        {
+          "low": 818.67,
           "high": 854.35,
-          "price": 826.08,
+          "price": 834.12,
           "score": 3,
           "evidence": [
             "swing low",
-            "swing high",
-            "Fib 0.382"
+            "Fib 0.382",
+            "swing high"
           ]
         }
       ],
-      "bull_trigger": "acceptance above 1,086.17 opens 1,140.79",
-      "bear_trigger": "loss of 1,007.05 exposes 927.17",
-      "line_in_sand": 1007.05,
+      "bull_trigger": "acceptance above 1,200.00 opens higher",
+      "bear_trigger": "loss of 1,099.87 exposes 1,024.61",
+      "line_in_sand": 1099.87,
       "changed": [
         "nearest swing low 854.35"
       ],
-      "read": "MU (2026-06-17): uptrend. At 1,043.19, above the 21-EMA at 926.82; above the 200-SMA; holding the 0.236 retracement at 921.86. Structure is bullish above 1,007.05. Above: acceptance above 1,086.17 opens 1,140.79. Below: loss of 1,007.05 exposes 927.17. ATR(14) 77.79.",
+      "read": "MU (2026-06-18): uptrend. At 1,133.99, above the 21-EMA at 945.65; above the 200-SMA; holding the 0.236 retracement at 951.68. Structure is bullish above 1,099.87. Above: acceptance above 1,200.00 opens higher. Below: loss of 1,099.87 exposes 1,024.61. ATR(14) 79.82.",
       "history": [
-        [
-          "2025-09-30",
-          164.11000061035156,
-          168.9499969482422,
-          163.9600067138672,
-          167.32000732421875
-        ],
         [
           "2025-10-01",
           165.60000610351562,
@@ -14924,99 +14904,115 @@
           1093.6700439453125,
           1014.1400146484375,
           1043.18994140625
+        ],
+        [
+          "2026-06-18",
+          1108.06494140625,
+          1149.4300537109375,
+          1092.79345703125,
+          1133.989990234375
         ]
       ],
       "fundamentals": {
-        "pe": 49.1,
-        "forward_pe": 9.1,
-        "market_cap": 1176440799232,
+        "pe": 53.4,
+        "forward_pe": 9.9,
+        "market_cap": 1278839095296,
         "rev_growth": 196.3,
         "eps_growth": 756.0,
         "earnings_date": "2026-06-24",
         "sector": "Technology",
-        "w52_high": 1110.4,
+        "w52_high": 1149.43,
         "w52_low": 103.38,
-        "rs_3m": 113.9,
-        "pos52": 93
+        "rs_3m": 142.1,
+        "pos52": 99
       }
     }
   ],
   "screener": {
     "movers": [
       {
+        "symbol": "XOM",
+        "change_pct": -2.08,
+        "rvol": 2.82,
+        "price": 137.81
+      },
+      {
+        "symbol": "KO",
+        "change_pct": -0.68,
+        "rvol": 2.8,
+        "price": 79.39
+      },
+      {
         "symbol": "NFLX",
-        "change_pct": -2.24,
-        "rvol": 1.42,
-        "price": 76.96
-      },
-      {
-        "symbol": "ADBE",
-        "change_pct": -5.33,
-        "rvol": 1.42,
-        "price": 196.28
-      },
-      {
-        "symbol": "JPM",
-        "change_pct": 0.7,
-        "rvol": 1.37,
-        "price": 333.46
-      },
-      {
-        "symbol": "DIS",
-        "change_pct": -0.41,
-        "rvol": 1.32,
-        "price": 100.86
-      },
-      {
-        "symbol": "PEP",
-        "change_pct": -3.1,
-        "rvol": 1.14,
-        "price": 141.59
-      },
-      {
-        "symbol": "MSFT",
-        "change_pct": -3.79,
-        "rvol": 1.12,
-        "price": 378.91
-      },
-      {
-        "symbol": "CRM",
-        "change_pct": -4.14,
-        "rvol": 1.12,
-        "price": 155.02
+        "change_pct": 0.55,
+        "rvol": 2.53,
+        "price": 77.38
       },
       {
         "symbol": "JNJ",
-        "change_pct": -0.42,
-        "rvol": 1.12,
-        "price": 234.2
+        "change_pct": -2.48,
+        "rvol": 2.51,
+        "price": 228.39
+      },
+      {
+        "symbol": "JPM",
+        "change_pct": -2.47,
+        "rvol": 2.19,
+        "price": 325.22
+      },
+      {
+        "symbol": "CSCO",
+        "change_pct": 1.88,
+        "rvol": 2.13,
+        "price": 119.54
+      },
+      {
+        "symbol": "ADBE",
+        "change_pct": -0.57,
+        "rvol": 2.04,
+        "price": 195.16
       }
     ],
     "setups": [
       {
-        "symbol": "BAC",
-        "setup": "RS leader",
-        "detail": "+8.7% vs SPY, near highs"
+        "symbol": "NVDA",
+        "setup": "golden pocket",
+        "detail": "0.618 retrace"
       },
       {
-        "symbol": "V",
-        "setup": "trend reclaim",
-        "detail": "back above 200-SMA"
+        "symbol": "MU",
+        "setup": "RS leader",
+        "detail": "+142.1% vs SPY, near highs"
+      },
+      {
+        "symbol": "INTC",
+        "setup": "breakout",
+        "detail": "20-day high on 1.65x vol"
+      },
+      {
+        "symbol": "INTC",
+        "setup": "RS leader",
+        "detail": "+177.0% vs SPY, near highs"
+      },
+      {
+        "symbol": "DIS",
+        "setup": "golden pocket",
+        "detail": "0.618 retrace"
       },
       {
         "symbol": "BA",
-        "setup": "trend reclaim",
-        "detail": "back above 200-SMA"
+        "setup": "golden pocket",
+        "detail": "0.618 retrace"
       },
       {
         "symbol": "CAT",
         "setup": "RS leader",
-        "detail": "+25.8% vs SPY, near highs"
+        "detail": "+30.0% vs SPY, near highs"
       },
       {
         "symbol": "GE",
         "setup": "RS leader",
-        "detail": "+6.6% vs SPY, near highs"
+        "detail": "+9.5% vs SPY, near highs"
       }
     ],
     "note": ""
