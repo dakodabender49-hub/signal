@@ -234,6 +234,27 @@ function openTV(sym){
   $("modal").classList.add("open");
   setTimeout(()=>tvChart($("mchart"),sym),30);
 }
+function detailChart(el,i){
+  el.innerHTML="";
+  if(typeof LightweightCharts==="undefined"||!(i.history&&i.history.length)){el.innerHTML='<div style="padding:20px;color:var(--dim);font-size:12px">chart loads when online</div>';return;}
+  const c=LightweightCharts.createChart(el,{width:el.clientWidth,height:el.clientHeight||320,
+    layout:{background:{color:"transparent"},textColor:"#8b97a7",fontFamily:"monospace"},
+    grid:{vertLines:{color:"rgba(255,255,255,.03)"},horzLines:{color:"rgba(255,255,255,.05)"}},
+    rightPriceScale:{borderColor:"#222b39"},timeScale:{borderColor:"#222b39"}});
+  const ser=c.addCandlestickSeries({upColor:"#3fd07f",downColor:"#ff5c79",borderUpColor:"#3fd07f",borderDownColor:"#ff5c79",wickUpColor:"#2a8f5a",wickDownColor:"#a23a4d"});
+  ser.setData((i.history||[]).map(r=>({time:r[0],open:r[1],high:r[2],low:r[3],close:r[4]})));
+  const L=[];
+  (i.levels_above||[]).slice(0,3).forEach(z=>L.push([z.price,"#ff5c79",(z.evidence&&z.evidence[0])||"resistance"]));
+  (i.levels_below||[]).slice(0,3).forEach(z=>L.push([z.price,"#3fd07f",(z.evidence&&z.evidence[0])||"support"]));
+  const m=i.ma||{};
+  if(m.ema21)L.push([m.ema21,"#5aa6ff","21-EMA"]);
+  if(m.sma50)L.push([m.sma50,"#f2b755","50-SMA"]);
+  if(m.sma200)L.push([m.sma200,"#b794ff","200-SMA"]);
+  ((i.fib&&i.fib.levels)||[]).forEach(f=>{if(f.r===0.618||f.r===0.5)L.push([f.price,"#9aa4b2","Fib "+f.r]);});
+  L.forEach(a=>{if(a[0])ser.createPriceLine({price:a[0],color:a[1],lineWidth:1,lineStyle:2,axisLabelVisible:true,title:a[2]});});
+  c.timeScale().fitContent();
+  try{new ResizeObserver(()=>c.applyOptions({width:el.clientWidth})).observe(el);}catch(e){}
+}
 function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
@@ -292,7 +313,7 @@ function openM(ix){
   const lv=(arr)=>arr.slice(0,3).map(z=>`<div class="row"><b class="num">${f(z.price)}</b>${z.score>=2?`<span class="sc">×${z.score}</span>`:""}<span class="ev">${(z.evidence||[]).join(", ")}</span></div>`).join("")||'<div class="row ev">—</div>';
   $("mlv").innerHTML=`<div><div class="h">Resistance / above</div>${lv(i.levels_above||[])}</div><div><div class="h">Support / below</div>${lv(i.levels_below||[])}</div>`;
   $("modal").classList.add("open");
-  setTimeout(()=>tvChart($("mchart"),i.symbol),30);
+  setTimeout(()=>detailChart($("mchart"),i),30);
 }
 function closeM(){$("modal").classList.remove("open");}
 $("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeM();});
