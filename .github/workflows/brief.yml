@@ -36,7 +36,8 @@ jobs:
         run: echo "name=$([ $(date -u +%H) -lt 16 ] && echo pre-open || echo post-close)" >> "$GITHUB_OUTPUT"
       - name: Build dashboard + state
         run: python app/build.py --mode live --session ${{ steps.sess.outputs.name }}
-      - name: Email the brief
+      - name: Email the brief (non-blocking)
+        continue-on-error: true
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
