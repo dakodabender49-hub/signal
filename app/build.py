@@ -206,6 +206,25 @@ def _screen_one(sym, closes, highs, lows, vols, spy3):
     return mover, setups
 
 
+def _bars_from_df(df, sym):
+    try:
+        sub = df[sym]
+    except Exception:
+        return []
+    bars = []
+    for idx, row in sub.iterrows():
+        try:
+            o, h, l, c = row["Open"], row["High"], row["Low"], row["Close"]
+            if any((x is None) or (x != x) for x in (o, h, l, c)):
+                continue
+            v = row["Volume"]
+            bars.append({"date": idx.strftime("%Y-%m-%d"), "open": float(o), "high": float(h),
+                         "low": float(l), "close": float(c), "volume": 0.0 if (v != v) else float(v)})
+        except Exception:
+            continue
+    return bars
+
+
 def screener(settings):
     try:
         import yfinance as yf
@@ -270,7 +289,18 @@ def screener(settings):
             m["price"], m["change_pct"] = v[0], v[1]
             clean_movers.append(m)
     clean_setups = [x for x in setups if ok(x["symbol"])]
-    out = {"movers": clean_movers, "setups": clean_setups, "note": ""}
+    searchable = {}
+    for _sym in SCREEN_UNIVERSE:
+        _b = _bars_from_df(df, _sym)
+        if len(_b) < 60:
+            continue
+        try:
+            _inst = compute_instrument(_sym, _sym, "stock", _b, settings)
+            _inst["history"] = _inst["history"][-100:]
+            searchable[_sym] = _inst
+        except Exception:
+            continue
+    out = {"movers": clean_movers, "setups": clean_setups, "note": "", "_searchable": searchable}
     if not out["movers"] and not out["setups"]:
         out["note"] = "No verified movers or setups this scan."
     return out
@@ -408,6 +438,8 @@ def main():
             _fu["pos52"] = round((_close - _lo) / (_hi - _lo) * 100)
 
     as_of = max([i.get("as_of", "") for i in instruments if i.get("as_of")] or [""])
+    scr = screener(settings) if args.mode == "live" else screener_sample()
+    searchable = scr.pop("_searchable", {}) if isinstance(scr, dict) else {}
     state = {
         "meta": {
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -422,7 +454,8 @@ def main():
         "backdrop": backdrop_live(settings) if args.mode == "live" else backdrop_sample(),
         "fed_econ": fed_econ_live(settings) if args.mode == "live" else fed_econ_sample(),
         "instruments": instruments,
-        "screener": screener(settings) if args.mode == "live" else screener_sample(),
+        "screener": scr,
+        "searchable": searchable,
     }
 
     docs = os.path.join(ROOT, "docs")
