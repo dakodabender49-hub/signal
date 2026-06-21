@@ -201,11 +201,11 @@ function pulse(){
   const up=ins.filter(i=>i.structure==="uptrend").length;
   const dn=ins.filter(i=>i.structure==="downtrend").length;
   const rg=ins.filter(i=>i.structure==="range").length;
-  const hi=(S.fed_econ||[]).find(e=>e.impact==="high"&&!e.actual);
+  const hi=(S.fed_econ||[]).find(e=>e.impact==="high"&&!e.actual&&!/held|target/i.test((e.event||"")+" "+(e.date||"")));
   let txt=`<b>${reg} tape</b>${vix?` · VIX ${vix.value}`:""}. `;
   if(ins.length) txt+=`<b>${up}</b> up / <b>${dn}</b> down / <b>${rg}</b> ranging across ${ins.length} names. `;
   else txt+=`Data is being verified — cards fill once the feed reports. `;
-  if(hi) txt+=`Next catalyst: <b>${hi.event}</b> ${hi.time}.`;
+  if(hi) txt+=`Next catalyst: <b>${hi.event}</b> ${[hi.date,hi.time].filter(Boolean).join(" ")}.`;
   return txt;
 }
 
