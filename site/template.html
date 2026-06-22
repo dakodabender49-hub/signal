@@ -35,6 +35,11 @@
          font-size:13px;line-height:1.5;color:var(--muted)}
   .pulse::before{content:"›";color:var(--cyan);font-weight:800}
   .pulse b{color:var(--text);font-weight:700}
+  /* breadth */
+  .breadth{margin:6px 0 2px}
+  .bbar{display:flex;height:8px;border-radius:2px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+  .bbar span{display:block}
+  .blegend{font-size:10px;color:var(--dim);margin-top:5px;letter-spacing:1.2px;text-transform:uppercase}
   /* search */
   .searchbar{display:flex;align-items:center;margin:13px 0 2px;background:var(--panel);
              border:1px solid var(--line2);border-radius:3px;overflow:hidden}
@@ -83,7 +88,8 @@
   .trig.s{background:rgba(255,77,106,.06);border:1px solid #6e2233;color:#ffaeba}
   .trig .l{display:block;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;opacity:.8;margin-bottom:2px}
   /* watchlist table */
-  .dtbl{width:100%;border-collapse:collapse;border:1px solid var(--line2);border-radius:3px;overflow:hidden}
+  .dtbl{width:100%;min-width:720px;border-collapse:collapse;border:1px solid var(--line2);border-radius:3px;overflow:hidden}
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .dtbl th{text-align:left;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);
            font-weight:700;padding:8px 12px;border-bottom:1px solid var(--line2);background:var(--panel2)}
   .dtbl th.r{text-align:right}
@@ -152,6 +158,7 @@
   </div>
 
   <div class="pulse" id="pulse"></div>
+  <div class="breadth" id="breadth"></div>
   <div class="searchbar"><input id="q" type="text" placeholder="SEARCH ANY TICKER — AMD, NFLX, COIN, AVGO ..." autocomplete="off"/><button id="qbtn">RUN</button></div>
 
   <div class="sec">Intermarket Backdrop</div>
@@ -291,11 +298,23 @@ function detailChart(el,i){
   c.timeScale().fitContent();
   try{new ResizeObserver(()=>c.applyOptions({width:el.clientWidth})).observe(el);}catch(e){}
 }
+function renderBreadth(){
+  const el=$("breadth"); if(!el) return;
+  const ins=(S.instruments||[]).filter(i=>i.verified);
+  if(!ins.length){el.innerHTML="";return;}
+  const up=ins.filter(i=>i.structure==="uptrend").length;
+  const dn=ins.filter(i=>i.structure==="downtrend").length;
+  const rg=ins.length-up-dn;
+  const pct=x=>(x/ins.length*100).toFixed(1)+"%";
+  el.innerHTML=`<div class="bbar"><span style="width:${pct(up)};background:var(--green)"></span><span style="width:${pct(rg)};background:var(--muted)"></span><span style="width:${pct(dn)};background:var(--red)"></span></div>
+    <div class="blegend"><span style="color:var(--green)">${up} uptrend</span> &middot; <span style="color:var(--muted)">${rg} range</span> &middot; <span style="color:var(--red)">${dn} downtrend</span> &middot; ${ins.length} names</div>`;
+}
 function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
   $("meta").innerHTML=`${m.session} · ${m.as_of_date||"latest"}<br>updated ${new Date(m.generated_at).toLocaleString()}`;
   $("pulse").innerHTML=pulse();
+  renderBreadth();
   $("chips").innerHTML=(S.backdrop||[]).map(b=>`<div class="chip"><div class="k">${b.name}</div>
     <div class="v num">${b.value}</div><div class="d num" style="color:${col(b.change)}">${sg(b.change)}</div></div>`).join("");
 
@@ -343,7 +362,7 @@ function renderWatchlist(){
   const cols=[["sym","Ticker",0],["name","Name",0],["spark","30d",-1],["last","Last",1],["chg","Chg%",1],["trend","Trend",0],["atr","ATR",1],["pos","52w",1]];
   const head=cols.map(c=>`<th class="${c[2]===1?'r':''}"${c[2]>=0?` data-k="${c[0]}"`:''}>${c[1]}${c[2]>=0?arrow(c[0]):''}</th>`).join("");
   if(!wl.length){$("heat").innerHTML='<div class="dim">\u2014</div>';return;}
-  $("heat").innerHTML=`<table class="dtbl"><thead><tr>${head}</tr></thead><tbody>${ver.map(tile).join("")+unv.map(tile).join("")}</tbody></table>`;
+  $("heat").innerHTML=`<div class="tscroll"><table class="dtbl"><thead><tr>${head}</tr></thead><tbody>${ver.map(tile).join("")+unv.map(tile).join("")}</tbody></table></div>`;
   $("heat").querySelectorAll("th[data-k]").forEach(th=>th.onclick=()=>{const k=th.getAttribute("data-k");if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==="sym"||k==="name")?1:-1;}renderWatchlist();});
 }
 function tile(i){
