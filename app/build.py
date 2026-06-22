@@ -168,6 +168,15 @@ SCREEN_UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU"
     "JPM", "BAC", "V", "MA", "WMT", "COST", "HD", "XOM", "CVX", "LLY", "UNH", "JNJ",
     "PG", "KO", "PEP", "BA", "CAT", "GE", "COIN", "SHOP"]
 
+UNIVERSE_NAMES = {"AAPL":"Apple","MSFT":"Microsoft","GOOGL":"Alphabet","AMZN":"Amazon",
+    "NVDA":"Nvidia","META":"Meta","TSLA":"Tesla","MU":"Micron","AMD":"Advanced Micro Devices",
+    "AVGO":"Broadcom","NFLX":"Netflix","CRM":"Salesforce","ORCL":"Oracle","ADBE":"Adobe",
+    "QCOM":"Qualcomm","CSCO":"Cisco","INTC":"Intel","PLTR":"Palantir","UBER":"Uber","DIS":"Disney",
+    "JPM":"JPMorgan Chase","BAC":"Bank of America","V":"Visa","MA":"Mastercard","WMT":"Walmart",
+    "COST":"Costco","HD":"Home Depot","XOM":"Exxon Mobil","CVX":"Chevron","LLY":"Eli Lilly",
+    "UNH":"UnitedHealth","JNJ":"Johnson & Johnson","PG":"Procter & Gamble","KO":"Coca-Cola",
+    "PEP":"PepsiCo","BA":"Boeing","CAT":"Caterpillar","GE":"GE Aerospace","COIN":"Coinbase","SHOP":"Shopify"}
+
 
 def _mean(xs):
     xs = [x for x in xs if x == x]
@@ -295,7 +304,7 @@ def screener(settings):
         if len(_b) < 60:
             continue
         try:
-            _inst = compute_instrument(_sym, _sym, "stock", _b, settings)
+            _inst = compute_instrument(_sym, UNIVERSE_NAMES.get(_sym, _sym), "stock", _b, settings)
             _inst["history"] = _inst["history"][-100:]
             searchable[_sym] = _inst
         except Exception:
@@ -372,7 +381,7 @@ def compute_instrument(symbol, name, typ, bars, settings):
         "confluence": [z for z in (za + zb) if z["score"] >= 2][:4],
         "bull_trigger": r["bull_trigger"], "bear_trigger": r["bear_trigger"],
         "line_in_sand": r["line_in_sand"], "changed": changed, "read": r["read"],
-        "history": [[b["date"], b["open"], b["high"], b["low"], b["close"]] for b in bars[-180:]],
+        "history": [[b["date"], b["open"], b["high"], b["low"], b["close"], b.get("volume", 0)] for b in bars[-180:]],
     }
 
 
