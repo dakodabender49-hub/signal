@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-06-21T23:54:37+00:00",
-    "session": "post-close",
+    "generated_at": "2026-06-22T00:00:47+00:00",
+    "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-18",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 100.88,
-      "change": 0.03,
+      "value": 100.89,
+      "change": 0.04,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 77.63,
-      "change": 1.03,
+      "value": 77.77,
+      "change": 1.17,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4161.9,
-      "change": -62.2,
+      "value": 4155.0,
+      "change": -69.1,
       "note": ""
     }
   ],
