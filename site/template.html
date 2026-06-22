@@ -97,6 +97,10 @@
   .dtbl td.chg{font-weight:700}
   .dtbl td.dim2{color:var(--dim)}
   .dtbl .na td{color:var(--dim)}
+  .dtbl td.spk{padding:4px 10px;width:96px}
+  .dtbl td.spk svg{display:block}
+  .dtbl th[data-k]{cursor:pointer}
+  .dtbl th[data-k]:hover{color:var(--amber)}
   /* screener */
   .scrow{margin-bottom:12px}
   .subh{color:var(--cyan);font-size:9.5px;text-transform:uppercase;letter-spacing:1.5px;margin:4px 2px 8px}
@@ -297,8 +301,7 @@ function render(){
 
   const insts=S.instruments||[];
   $("idx").innerHTML=insts.filter(i=>i.type==="index").map(icard).join("")||'<div class="dim">—</div>';
-  const wl=insts.filter(i=>i.type!=="index");
-  $("heat").innerHTML=wl.length?('<table class="dtbl"><thead><tr><th>Ticker</th><th>Name</th><th class="r">Last</th><th class="r">Chg%</th><th>Trend</th><th class="r">ATR</th><th class="r">52w</th></tr></thead><tbody>'+wl.map(tile).join("")+'</tbody></table>'):'<div class="dim">—</div>';
+  renderWatchlist();
   renderScreener();
   insts.filter(i=>i.type==="index"&&i.verified).forEach(i=>{const el=document.getElementById("ic-"+i.symbol);if(el)chart(el,i,140);});
 
@@ -321,14 +324,37 @@ function icard(i){
       <div class="trig s"><span class="l">Bear</span>${i.bear_trigger}</div></div></div>`;
 }
 
+let sortKey=null, sortDir=-1;
+function sparkline(hist){
+  const n=(hist||[]).slice(-40).map(r=>r[4]).filter(v=>v===v);
+  if(n.length<2) return "";
+  const w=90,h=26,mn=Math.min(...n),mx=Math.max(...n),rng=(mx-mn)||1;
+  const pts=n.map((v,k)=>`${(k/(n.length-1)*w).toFixed(1)},${(h-2-((v-mn)/rng)*(h-4)).toFixed(1)}`).join(" ");
+  const c=n[n.length-1]>=n[0]?"#26e07b":"#ff4d6a";
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.3"/></svg>`;
+}
+function renderWatchlist(){
+  const insts=S.instruments||[];
+  const wl=insts.filter(i=>i.type!=="index");
+  const ver=wl.filter(i=>i.verified), unv=wl.filter(i=>!i.verified);
+  const V={sym:i=>i.symbol,name:i=>i.name||"",last:i=>i.ohlc.close,chg:i=>i.change_pct,trend:i=>i.structure,atr:i=>i.atr14,pos:i=>(i.fundamentals&&i.fundamentals.pos52!=null)?i.fundamentals.pos52:-1};
+  if(sortKey)ver.sort((a,b)=>{const x=V[sortKey](a),y=V[sortKey](b);if(typeof x==="string")return sortDir*String(x).localeCompare(String(y));return sortDir*((x>y)?1:(x<y?-1:0));});
+  const arrow=k=>sortKey===k?(sortDir<0?" \u25be":" \u25b4"):"";
+  const cols=[["sym","Ticker",0],["name","Name",0],["spark","30d",-1],["last","Last",1],["chg","Chg%",1],["trend","Trend",0],["atr","ATR",1],["pos","52w",1]];
+  const head=cols.map(c=>`<th class="${c[2]===1?'r':''}"${c[2]>=0?` data-k="${c[0]}"`:''}>${c[1]}${c[2]>=0?arrow(c[0]):''}</th>`).join("");
+  if(!wl.length){$("heat").innerHTML='<div class="dim">\u2014</div>';return;}
+  $("heat").innerHTML=`<table class="dtbl"><thead><tr>${head}</tr></thead><tbody>${ver.map(tile).join("")+unv.map(tile).join("")}</tbody></table>`;
+  $("heat").querySelectorAll("th[data-k]").forEach(th=>th.onclick=()=>{const k=th.getAttribute("data-k");if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==="sym"||k==="name")?1:-1;}renderWatchlist();});
+}
 function tile(i){
   const idx=insts_index(i);
-  if(!i.verified) return `<tr class="dr na"><td class="sy">${i.symbol}</td><td class="nm">${i.name||""}</td><td class="r" colspan="5">data withheld — unverified</td></tr>`;
+  if(!i.verified) return `<tr class="dr na"><td class="sy">${i.symbol}</td><td class="nm">${i.name||""}</td><td class="r" colspan="6">data withheld — unverified</td></tr>`;
   const hc=heatColor(i.change_pct);
   const pos=(i.fundamentals&&i.fundamentals.pos52!=null)?(i.fundamentals.pos52+"%"):"—";
   return `<tr class="dr" onclick="openM(${idx})">
     <td class="sy">${i.symbol}</td>
     <td class="nm">${i.name||""}</td>
+    <td class="spk">${sparkline(i.history)}</td>
     <td class="r num">${f(i.ohlc.close)}</td>
     <td class="r num chg" style="color:${col(i.change_pct)};background:${hc.bg}">${sg(i.change_pct)}%</td>
     <td><span class="tag ${i.structure}">${i.structure}</span></td>
@@ -359,6 +385,7 @@ setInterval(tick,1000);tick();
 
 fetch("./state.json?cb="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){S=j;render();}}).catch(()=>{});
 if($("qbtn")){$("qbtn").onclick=doSearch;$("q").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});}
+document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==$("q")){e.preventDefault();$("q").focus();}});
 render();
 </script>
 </body>
