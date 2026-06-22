@@ -286,6 +286,9 @@ function detailChart(el,i){
     rightPriceScale:{borderColor:"#1f2b3a"},timeScale:{borderColor:"#1f2b3a"}});
   const ser=c.addCandlestickSeries({upColor:"#26e07b",downColor:"#ff4d6a",borderUpColor:"#26e07b",borderDownColor:"#ff4d6a",wickUpColor:"#1f9e5a",wickDownColor:"#a8364a"});
   ser.setData((i.history||[]).map(r=>({time:r[0],open:r[1],high:r[2],low:r[3],close:r[4]})));
+  try{const vs=c.addHistogramSeries({priceFormat:{type:"volume"},priceScaleId:"vol"});
+    vs.priceScale().applyOptions({scaleMargins:{top:0.82,bottom:0}});
+    vs.setData((i.history||[]).map(r=>({time:r[0],value:r[5]||0,color:(r[4]>=r[1])?"rgba(38,224,123,.38)":"rgba(255,77,106,.38)"})));}catch(e){}
   const L=[];
   (i.levels_above||[]).slice(0,3).forEach(z=>L.push([z.price,"#ff4d6a",(z.evidence&&z.evidence[0])||"resistance"]));
   (i.levels_below||[]).slice(0,3).forEach(z=>L.push([z.price,"#26e07b",(z.evidence&&z.evidence[0])||"support"]));
@@ -405,6 +408,7 @@ setInterval(tick,1000);tick();
 fetch("./state.json?cb="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){S=j;render();}}).catch(()=>{});
 if($("qbtn")){$("qbtn").onclick=doSearch;$("q").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});}
 document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==$("q")){e.preventDefault();$("q").focus();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeM();});
 render();
 </script>
 </body>
