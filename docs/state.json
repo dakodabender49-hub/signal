@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-22T00:24:40+00:00",
+    "generated_at": "2026-06-22T13:21:19+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-18",
@@ -10,38 +10,38 @@
   "backdrop": [
     {
       "name": "VIX",
-      "value": 16.4,
-      "change": -2.0,
+      "value": 17.0,
+      "change": 0.6,
       "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.45,
-      "change": -0.01,
+      "value": 4.49,
+      "change": 0.04,
       "note": ""
     },
     {
       "name": "30Y",
-      "value": 4.9,
-      "change": -0.03,
+      "value": 4.93,
+      "change": 0.03,
       "note": ""
     },
     {
       "name": "DXY",
-      "value": 100.85,
-      "change": -0.0,
+      "value": 100.94,
+      "change": 0.09,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 77.6,
-      "change": 1.0,
+      "value": 74.61,
+      "change": -1.99,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4178.1,
-      "change": -46.0,
+      "value": 4211.4,
+      "change": -12.7,
       "note": ""
     }
   ],
@@ -14939,7 +14939,7 @@
       ],
       "fundamentals": {
         "pe": 53.5,
-        "forward_pe": 9.6,
+        "forward_pe": 9.5,
         "market_cap": 1278839095296,
         "rev_growth": 196.3,
         "eps_growth": 756.0,
