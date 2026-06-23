@@ -531,6 +531,31 @@ def main():
             _i["flags"] = _fl
             alerts.append({"symbol": _i["symbol"], "name": _i.get("name", _i["symbol"]), "flags": _fl})
 
+    # live / pre-market quote per verified name (freshest price; EOD levels unchanged)
+    if args.mode == "live":
+        try:
+            import yfinance as yf
+            _vs = [i["symbol"] for i in instruments if i.get("verified")]
+            if _vs:
+                _intr = yf.download(_vs, period="1d", interval="1m", prepost=True,
+                                    group_by="ticker", threads=True, progress=False)
+                for _i in instruments:
+                    if not _i.get("verified"):
+                        continue
+                    _sym = _i["symbol"]
+                    try:
+                        _ser = (_intr[_sym]["Close"] if len(_vs) > 1 else _intr["Close"]).dropna()
+                        if len(_ser):
+                            _lp = float(_ser.iloc[-1]); _pc = _i.get("ohlc", {}).get("close")
+                            if _lp > 0 and _pc:
+                                _i["live"] = {"price": round(_lp, 2),
+                                              "change_pct": round((_lp / _pc - 1) * 100, 2),
+                                              "session": args.session}
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
     as_of = max([i.get("as_of", "") for i in instruments if i.get("as_of")] or [""])
     scr = screener(settings) if args.mode == "live" else screener_sample()
     searchable = scr.pop("_searchable", {}) if isinstance(scr, dict) else {}
