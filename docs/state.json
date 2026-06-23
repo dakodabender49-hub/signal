@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-23T02:40:41+00:00",
+    "generated_at": "2026-06-23T02:49:07+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-22",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 100.99,
-      "change": 0.14,
+      "value": 101.0,
+      "change": 0.15,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 74.09,
-      "change": -2.51,
+      "value": 74.26,
+      "change": -2.34,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4177.5,
-      "change": -46.6,
+      "value": 4176.6,
+      "change": -47.5,
       "note": ""
     }
   ],
@@ -1728,6 +1728,16 @@
           744.39,
           45157614
         ]
+      ],
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 748.11 (8-EMA)"
+        },
+        {
+          "k": "near",
+          "t": "testing support 742.60"
+        }
       ]
     },
     {
@@ -3367,6 +3377,12 @@
           737.95,
           41264194
         ]
+      ],
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 743.24 (pivot PP)"
+        }
       ]
     },
     {
@@ -5041,7 +5057,13 @@
         "w52_low": 199.26,
         "rs_3m": 5.0,
         "pos52": 83
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 299.17 (8-EMA)"
+        }
+      ]
     },
     {
       "symbol": "MSFT",
@@ -6702,7 +6724,17 @@
         "w52_low": 356.28,
         "rs_3m": -18.6,
         "pos52": 6
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-3.18% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 371.97 (pivot S2)"
+        }
+      ]
     },
     {
       "symbol": "GOOGL",
@@ -8387,7 +8419,21 @@
         "w52_low": 166.13,
         "rs_3m": 1.4,
         "pos52": 76
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.99% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 356.52 (round number)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
     },
     {
       "symbol": "AMZN",
@@ -10051,7 +10097,17 @@
         "w52_low": 196.0,
         "rs_3m": -1.4,
         "pos52": 45
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.75% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 234.15 (200-SMA)"
+        }
+      ]
     },
     {
       "symbol": "NVDA",
@@ -11739,7 +11795,17 @@
         "w52_low": 145.5,
         "rs_3m": 6.0,
         "pos52": 69
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 210.46 (swing low)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
     },
     {
       "symbol": "META",
@@ -15064,7 +15130,17 @@
         "w52_low": 288.77,
         "rs_3m": -4.7,
         "pos52": 55
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 411.52 (pivot R1)"
+        },
+        {
+          "k": "tag",
+          "t": "tagged support 399.35 (50-SMA)"
+        }
+      ]
     },
     {
       "symbol": "MU",
@@ -16714,7 +16790,17 @@
         "w52_low": 103.38,
         "rs_3m": 171.7,
         "pos52": 100
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "+6.82% day"
+        },
+        {
+          "k": "hi",
+          "t": "near 52-wk high"
+        }
+      ]
     },
     {
       "symbol": "AMD",
@@ -18351,7 +18437,21 @@
         "w52_low": 132.93,
         "rs_3m": 159.2,
         "pos52": 97
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 559.18 (swing high)"
+        },
+        {
+          "k": "tag",
+          "t": "tagged support 538.29 (round number)"
+        },
+        {
+          "k": "hi",
+          "t": "near 52-wk high"
+        }
+      ]
     },
     {
       "symbol": "AVGO",
@@ -20028,7 +20128,21 @@
         "w52_low": 258.77,
         "rs_3m": 11.5,
         "pos52": 56
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.67% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 405.62 (Fib 0.5)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
     },
     {
       "symbol": "PLTR",
@@ -21687,7 +21801,21 @@
         "w52_low": 119.2,
         "rs_3m": -35.5,
         "pos52": 0
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-6.98% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 120.94 (round number)"
+        },
+        {
+          "k": "lo",
+          "t": "near 52-wk low"
+        }
+      ]
     },
     {
       "symbol": "COIN",
@@ -23354,7 +23482,13 @@
         "w52_low": 139.36,
         "rs_3m": -31.3,
         "pos52": 8
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 170.18 (Fib 0.236)"
+        }
+      ]
     },
     {
       "symbol": "HOOD",
@@ -25019,7 +25153,13 @@
         "w52_low": 63.515,
         "rs_3m": 34.3,
         "pos52": 47
-      }
+      },
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 108.89 (pivot PP)"
+        }
+      ]
     },
     {
       "symbol": "SOFI",
@@ -26694,7 +26834,229 @@
         "w52_low": 14.92,
         "rs_3m": -13.6,
         "pos52": 12
-      }
+      },
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.52% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 17.43 (8-EMA)"
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "symbol": "SPY",
+      "name": "S&P 500 ETF",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 748.11 (8-EMA)"
+        },
+        {
+          "k": "near",
+          "t": "testing support 742.60"
+        }
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "name": "Nasdaq 100 ETF",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 743.24 (pivot PP)"
+        }
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 299.17 (8-EMA)"
+        }
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-3.18% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 371.97 (pivot S2)"
+        }
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.99% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 356.52 (round number)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.75% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 234.15 (200-SMA)"
+        }
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "name": "Nvidia",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 210.46 (swing low)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 411.52 (pivot R1)"
+        },
+        {
+          "k": "tag",
+          "t": "tagged support 399.35 (50-SMA)"
+        }
+      ]
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron",
+      "flags": [
+        {
+          "k": "move",
+          "t": "+6.82% day"
+        },
+        {
+          "k": "hi",
+          "t": "near 52-wk high"
+        }
+      ]
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 559.18 (swing high)"
+        },
+        {
+          "k": "tag",
+          "t": "tagged support 538.29 (round number)"
+        },
+        {
+          "k": "hi",
+          "t": "near 52-wk high"
+        }
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.67% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 405.62 (Fib 0.5)"
+        },
+        {
+          "k": "ma",
+          "t": "lost the 21-EMA"
+        }
+      ]
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-6.98% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 120.94 (round number)"
+        },
+        {
+          "k": "lo",
+          "t": "near 52-wk low"
+        }
+      ]
+    },
+    {
+      "symbol": "COIN",
+      "name": "Coinbase",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 170.18 (Fib 0.236)"
+        }
+      ]
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood",
+      "flags": [
+        {
+          "k": "tag",
+          "t": "tagged resistance 108.89 (pivot PP)"
+        }
+      ]
+    },
+    {
+      "symbol": "SOFI",
+      "name": "SoFi",
+      "flags": [
+        {
+          "k": "move",
+          "t": "-4.52% day"
+        },
+        {
+          "k": "tag",
+          "t": "tagged resistance 17.43 (8-EMA)"
+        }
+      ]
     }
   ],
   "screener": {
