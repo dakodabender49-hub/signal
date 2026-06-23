@@ -465,10 +465,25 @@ def main():
                 + [("stock", s) for s in wl["stocks"]]
                 + [("crypto", s) for s in wl.get("crypto", [])])
 
+    batch_df = None
+    if args.mode == "live":
+        try:
+            import yfinance as yf
+            _syms = [s for _t, s in universe]
+            batch_df = yf.download(_syms, period="2y", interval="1d", auto_adjust=False,
+                                   group_by="ticker", threads=True, progress=False)
+        except Exception:
+            batch_df = None
+
     instruments, problems = [], []
     for typ, sym in universe:
         try:
-            bars = get_bars(sym, args.mode, settings)
+            try:
+                bars = get_bars(sym, args.mode, settings)
+            except Exception as _e_primary:
+                bars = _bars_from_df(batch_df, sym) if batch_df is not None else []
+                if not bars:
+                    raise _e_primary
             ok, why = integ.validate_series(bars)
             if not ok:
                 problems.append({"symbol": sym, "reason": why})
