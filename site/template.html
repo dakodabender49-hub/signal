@@ -56,6 +56,15 @@
                     padding:0 18px;align-self:stretch;font-family:var(--mono);font-weight:800;cursor:pointer;
                     font-size:12px;letter-spacing:1.5px}
   .searchbar button:hover{background:var(--amber);color:#0a0a0a}
+  .searchwrap{position:relative}
+  .acmenu{position:absolute;left:0;right:0;top:100%;z-index:50;background:var(--panel);border:1px solid var(--line2);border-top:none;border-radius:0 0 3px 3px;max-height:300px;overflow:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  .acmenu.open{display:block}
+  .acitem{padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);font-size:13px}
+  .acitem:last-child{border-bottom:none}
+  .acitem.sel,.acitem:hover{background:rgba(255,176,0,.08)}
+  .acsym{color:var(--amber);font-weight:800;min-width:62px}
+  .acname{color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .acwl{font-size:8.5px;letter-spacing:1px;color:var(--cyan);border:1px solid var(--line2);border-radius:2px;padding:1px 5px}
   /* section header */
   .sec{display:flex;align-items:center;gap:10px;margin:22px 0 10px;color:var(--amber);
        font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px}
@@ -165,7 +174,10 @@
   <div class="pulse" id="pulse"></div>
   <div class="breadth" id="breadth"></div>
   <div class="alerts" id="alerts"></div>
-  <div class="searchbar"><input id="q" type="text" placeholder="SEARCH ANY TICKER — AMD, NFLX, COIN, AVGO ..." autocomplete="off"/><button id="qbtn">RUN</button></div>
+  <div class="searchwrap">
+    <div class="searchbar"><input id="q" type="text" placeholder="SEARCH ANY TICKER — AMD, NFLX, COIN, AVGO ..." autocomplete="off"/><button id="qbtn">RUN</button></div>
+    <div class="acmenu" id="acmenu"></div>
+  </div>
 
   <div class="sec">Intermarket Backdrop</div>
   <div class="chips" id="chips"></div>
@@ -276,6 +288,30 @@ function doSearch(){
   if(se){openInstrument(se);return;}
   openTV(sym);
 }
+let acItems=[], acSel=-1;
+function searchIndex(){
+  const seen={}, out=[];
+  (S.instruments||[]).forEach(i=>{if(i.symbol&&i.verified&&!seen[i.symbol]){seen[i.symbol]=1;out.push({sym:i.symbol,name:i.name||"",wl:true});}});
+  Object.values(S.searchable||{}).forEach(i=>{if(i&&i.symbol&&!seen[i.symbol]){seen[i.symbol]=1;out.push({sym:i.symbol,name:i.name||""});}});
+  return out;
+}
+function acHighlight(){const m=$("acmenu");if(!m)return;[...m.querySelectorAll(".acitem")].forEach((el,k)=>el.classList.toggle("sel",k===acSel));}
+function acRender(list){
+  const m=$("acmenu");if(!m)return; acItems=list; acSel=-1;
+  if(!list.length){m.classList.remove("open");m.innerHTML="";return;}
+  m.innerHTML=list.map((x,k)=>`<div class="acitem" data-k="${k}" onmousedown="acPick(${k})"><span class="acsym">${x.sym}</span><span class="acname">${x.name}</span>${x.wl?'<span class="acwl">WATCHLIST</span>':''}</div>`).join("");
+  m.classList.add("open");
+}
+function acFilter(){
+  const q=(($("q")||{}).value||"").trim().toUpperCase();
+  if(!q){acRender([]);return;}
+  const idx=searchIndex();
+  const starts=idx.filter(x=>x.sym.startsWith(q));
+  const nameHit=idx.filter(x=>!x.sym.startsWith(q)&&x.name.toUpperCase().includes(q));
+  acRender(starts.concat(nameHit).slice(0,8));
+}
+function acPick(k){const x=acItems[k];if(!x)return;$("q").value=x.sym;acRender([]);doSearch();}
+function acClose(){const m=$("acmenu");if(m)m.classList.remove("open");}
 function openTV(sym){
   $("mtitle").textContent=sym;
   $("msub").innerHTML='<span class="dim">Live chart — not in your watchlist or the computed universe yet. Add it to your watchlist for full structure + labeled levels.</span>';
@@ -425,7 +461,18 @@ function tick(){const el=$("clock");if(!el)return;const d=new Date();let tz="";t
 setInterval(tick,1000);tick();
 
 fetch("./state.json?cb="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){S=j;render();}}).catch(()=>{});
-if($("qbtn")){$("qbtn").onclick=doSearch;$("q").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});}
+if($("qbtn")){
+  $("qbtn").onclick=()=>{acClose();doSearch();};
+  $("q").addEventListener("input",acFilter);
+  $("q").addEventListener("blur",()=>setTimeout(acClose,160));
+  $("q").addEventListener("keydown",e=>{
+    const open=$("acmenu")&&$("acmenu").classList.contains("open");
+    if(e.key==="ArrowDown"&&open){e.preventDefault();acSel=Math.min(acSel+1,acItems.length-1);acHighlight();}
+    else if(e.key==="ArrowUp"&&open){e.preventDefault();acSel=Math.max(acSel-1,-1);acHighlight();}
+    else if(e.key==="Enter"){e.preventDefault();if(open&&acSel>=0)acPick(acSel);else{acClose();doSearch();}}
+    else if(e.key==="Escape"){acClose();}
+  });
+}
 document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==$("q")){e.preventDefault();$("q").focus();}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeM();});
 render();
