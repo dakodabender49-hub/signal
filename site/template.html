@@ -5,13 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SIGNAL — Terminal</title>
 <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%2305080d'/%3E%3Crect x='6' y='13' width='4' height='13' rx='1' fill='%23ffb000'/%3E%3Crect x='14' y='7' width='4' height='19' rx='1' fill='%2326e07b'/%3E%3Crect x='22' y='11' width='4' height='15' rx='1' fill='%233cc9d6'/%3E%3C/svg%3E">
 <style>
   :root{
     --bg:#05080d; --bg2:#080c12; --panel:#0a1018; --panel2:#0e151f;
     --line:#161f2b; --line2:#1f2b3a;
     --text:#d4dde8; --muted:#7a8a9e; --dim:#4f5e72;
     --green:#26e07b; --red:#ff4d6a; --amber:#ffb000; --cyan:#3cc9d6; --violet:#b08cff; --blue:#5aa6ff;
-    --mono:"SF Mono",ui-monospace,"JetBrains Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;
+    --display:"Space Grotesk","JetBrains Mono",var(--mono);
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:var(--mono);font-size:14px;color:var(--text);-webkit-font-smoothing:antialiased;
@@ -21,7 +26,8 @@
   /* command bar */
   .cmdbar{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-top:2px solid var(--amber);
           background:var(--panel);padding:10px 14px;border-radius:3px}
-  .brand{font-size:20px;font-weight:800;letter-spacing:4px;color:var(--text)}
+  .brand{display:flex;align-items:center;font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:6px;color:var(--text)}
+  .mark{margin-right:9px;flex:none}
   .brand b{color:var(--amber)}
   .spacer{flex:1}
   .badge{font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 8px;border-radius:2px;border:1px solid var(--dim);color:var(--dim)}
@@ -66,7 +72,7 @@
   .acname{color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .acwl{font-size:8.5px;letter-spacing:1px;color:var(--cyan);border:1px solid var(--line2);border-radius:2px;padding:1px 5px}
   /* section header */
-  .sec{display:flex;align-items:center;gap:10px;margin:22px 0 10px;color:var(--amber);
+  .sec{display:flex;align-items:center;gap:10px;margin:22px 0 10px;color:var(--amber);font-family:var(--display);
        font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px}
   .sec::before{content:"";width:3px;height:13px;background:var(--amber)}
   .sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
@@ -157,7 +163,7 @@
 <div class="wrap">
 
   <header class="cmdbar">
-    <div class="brand">SIG<b>N</b>AL</div>
+    <div class="brand"><svg class="mark" viewBox="0 0 28 22" width="23" height="18" aria-hidden="true"><rect x="2" y="8" width="5" height="12" rx="1" fill="#ffb000"/><rect x="11" y="3" width="5" height="17" rx="1" fill="#26e07b"/><rect x="20" y="6" width="5" height="14" rx="1" fill="#3cc9d6"/></svg>SIGNAL</div>
     <span id="mode" class="badge">—</span>
     <div class="spacer"></div>
     <div class="hmeta" id="meta"></div>
@@ -383,7 +389,7 @@ function render(){
   insts.filter(i=>i.type==="index"&&i.verified).forEach(i=>{const el=document.getElementById("ic-"+i.symbol);if(el)chart(el,i,140);});
 
   $("fed").innerHTML=(S.fed_econ||[]).map(e=>{const val=e.value||(e.actual?("actual "+e.actual):(e.consensus?("cons "+e.consensus):""));const dt=[e.date,e.time].filter(Boolean).join(" ");return `<div class="fcard ${e.impact}"><div class="e">${e.event}</div><div class="m">${dt}${val?(" · "+val):""}</div></div>`;}).join("");
-  $("footer").innerHTML=(m.disclaimer||"")+"<br>SIGNAL · structural reads, not financial advice.";
+  $("footer").innerHTML=`SIGNAL — structural reads &amp; screens, not financial advice. Cross-source verified, fail-closed.<br><span style="color:var(--dim)">v1 · built by Dakoda · ${m.data_mode==="SAMPLE"?"sample data":"live data"} · as of ${m.as_of_date||"\u2014"}</span>`;
 }
 
 function icard(i){
