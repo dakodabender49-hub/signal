@@ -260,6 +260,27 @@ def fed_block(S):
     return section("Fed & economic data") + f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" role="presentation">{rows}</table></td></tr>'
 
 
+def onwatch_block(S):
+    alerts = S.get("alerts", []) or []
+    if not alerts:
+        return (section("On watch", "what changed")
+                + f'<tr><td style="font-family:{MONO};font-size:12px;color:{DIM};padding:2px 2px 0">'
+                  f'Quiet \u2014 nothing tagged a key level or flipped a moving average this run.</td></tr>')
+    cmap = {"move": AMBER, "tag": CYAN, "near": MUTED, "ma": "#5aa6ff", "hi": GREEN, "lo": RED}
+    rows = ""
+    for a in alerts:
+        flags = " &nbsp;\u00b7&nbsp; ".join(
+            f'<span style="color:{cmap.get(f.get("k"), MUTED)}">{esc(f.get("t",""))}</span>'
+            for f in a.get("flags", []))
+        rows += (f'<tr><td style="padding:4px 0"><table width="100%" cellpadding="0" cellspacing="0" role="presentation" '
+                 f'style="background:{PANEL};border:1px solid {LINE};border-left:3px solid {AMBER};border-radius:2px">'
+                 f'<tr><td style="padding:7px 11px;font-family:{MONO};font-size:12px">'
+                 f'<span style="color:{AMBER};font-weight:bold">{esc(a.get("symbol",""))}</span> '
+                 f'<span style="color:{DIM}">{esc(a.get("name",""))}</span> &nbsp; {flags}'
+                 f'</td></tr></table></td></tr>')
+    return section("On watch", "what changed") + f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" role="presentation">{rows}</table></td></tr>'
+
+
 def build_html(S):
     meta = S.get("meta", {})
     session = str(meta.get("session", "pre-open"))
@@ -304,6 +325,7 @@ def build_html(S):
 
   {pulse_line(S)}
   {breadth_bar(S)}
+  {onwatch_block(S)}
 
   {section("Intermarket backdrop")}
   {backdrop_row(S.get("backdrop", []))}

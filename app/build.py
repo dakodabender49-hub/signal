@@ -409,6 +409,48 @@ def get_bars(symbol, mode, settings):
     return datafeed.get_verified_history(symbol, settings)
 
 
+def instrument_flags(i):
+    """Notable, computable 'what changed' signals for a verified instrument."""
+    flags = []
+    ohlc = i.get("ohlc", {})
+    close, hi, lo = ohlc.get("close"), ohlc.get("high"), ohlc.get("low")
+    chg, atr = i.get("change_pct"), i.get("atr14")
+    if close is None:
+        return flags
+    if chg is not None and abs(chg) >= 3:
+        flags.append({"k": "move", "t": f"{('+' if chg > 0 else '')}{chg}% day"})
+
+    def _state(p):
+        if not p or not close:
+            return None
+        if lo is not None and hi is not None and lo <= p <= hi:
+            return "tag"
+        return "near" if abs(close - p) / close <= 0.0075 else None
+
+    def _flag_levels(zlist, kind):
+        for z in (zlist or []):
+            if z.get("score", 0) < 2:        # only confluence (key) levels
+                continue
+            st = _state(z.get("price")); ev = (z.get("evidence") or [""])[0]
+            if st == "tag":
+                flags.append({"k": "tag", "t": f"tagged {kind} {z['price']:.2f}" + (f" ({ev})" if ev else "")}); return
+            if st == "near":
+                flags.append({"k": "near", "t": f"testing {kind} {z['price']:.2f}"}); return
+
+    _flag_levels(i.get("levels_above"), "resistance")
+    _flag_levels(i.get("levels_below"), "support")
+    for c in (i.get("changed") or []):
+        if "EMA" in c or "SMA" in c:
+            flags.append({"k": "ma", "t": c})
+    pos = (i.get("fundamentals") or {}).get("pos52")
+    if pos is not None:
+        if pos >= 95:
+            flags.append({"k": "hi", "t": "near 52-wk high"})
+        elif pos <= 5:
+            flags.append({"k": "lo", "t": "near 52-wk low"})
+    return flags
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="sample", choices=["sample", "live"])
@@ -463,6 +505,15 @@ def main():
         if _close and _hi and _lo and _hi > _lo:
             _fu["pos52"] = round((_close - _lo) / (_hi - _lo) * 100)
 
+    alerts = []
+    for _i in instruments:
+        if not _i.get("verified"):
+            continue
+        _fl = instrument_flags(_i)
+        if _fl:
+            _i["flags"] = _fl
+            alerts.append({"symbol": _i["symbol"], "name": _i.get("name", _i["symbol"]), "flags": _fl})
+
     as_of = max([i.get("as_of", "") for i in instruments if i.get("as_of")] or [""])
     scr = screener(settings) if args.mode == "live" else screener_sample()
     searchable = scr.pop("_searchable", {}) if isinstance(scr, dict) else {}
@@ -480,6 +531,7 @@ def main():
         "backdrop": backdrop_live(settings) if args.mode == "live" else backdrop_sample(),
         "fed_econ": fed_econ_live(settings) if args.mode == "live" else fed_econ_sample(),
         "instruments": instruments,
+        "alerts": alerts,
         "screener": scr,
         "searchable": searchable,
     }
