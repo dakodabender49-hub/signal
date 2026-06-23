@@ -51,6 +51,25 @@
   .achip{display:inline-block;font-size:11px;background:var(--panel);border:1px solid var(--line2);border-radius:2px;padding:5px 9px;margin:0 6px 6px 0;cursor:pointer}
   .achip:hover{border-color:var(--amber)}
   .achip b{color:var(--amber);letter-spacing:.5px}
+  /* hero / editorial lead */
+  .hero{display:grid;grid-template-columns:1.7fr 1fr;gap:12px;margin:13px 0 2px}
+  @media(max-width:760px){.hero{grid-template-columns:1fr}}
+  .lead{background:var(--panel);border:1px solid var(--line2);border-top:2px solid var(--amber);border-radius:3px;padding:14px 16px}
+  .gauges{background:var(--panel);border:1px solid var(--line2);border-radius:3px;padding:14px 16px}
+  .leadhd{font-family:var(--display);color:var(--amber);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:11px}
+  .regime{display:flex;align-items:baseline;gap:13px;margin-bottom:6px}
+  .rword{font-family:var(--display);font-size:34px;font-weight:700;letter-spacing:1px;color:var(--text);line-height:.9}
+  .rsub{color:var(--dim);font-size:11px;letter-spacing:2px}
+  .lead .breadth{margin:8px 0 0}
+  .lead .pulse{background:transparent;border:none;border-left:2px solid var(--cyan);border-radius:0;padding:6px 0 6px 11px;margin:12px 0 0}
+  .lead .pulse:empty{display:none}
+  .lead .pulse::before{content:""}
+  .lead .alerts{margin:12px 0 0}
+  .grow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .grow:last-child{border-bottom:none}
+  .gk{color:var(--cyan);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;min-width:40px}
+  .gv{flex:1;text-align:right;color:var(--text);font-weight:700;font-variant-numeric:tabular-nums}
+  .gd{min-width:54px;text-align:right;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
   /* search */
   .searchbar{display:flex;align-items:center;margin:13px 0 2px;background:var(--panel);
              border:1px solid var(--line2);border-radius:3px;overflow:hidden}
@@ -177,16 +196,24 @@
   </script>
   </div>
 
-  <div class="pulse" id="pulse"></div>
-  <div class="breadth" id="breadth"></div>
-  <div class="alerts" id="alerts"></div>
+  <section class="hero">
+    <div class="lead">
+      <div class="leadhd">The Tape</div>
+      <div class="regime" id="hregime"></div>
+      <div class="breadth" id="breadth"></div>
+      <div class="pulse" id="pulse"></div>
+      <div class="alerts" id="alerts"></div>
+    </div>
+    <div class="gauges">
+      <div class="leadhd">Market</div>
+      <div id="gauges"></div>
+    </div>
+  </section>
+
   <div class="searchwrap">
     <div class="searchbar"><input id="q" type="text" placeholder="SEARCH ANY TICKER — AMD, NFLX, COIN, AVGO ..." autocomplete="off"/><button id="qbtn">RUN</button></div>
     <div class="acmenu" id="acmenu"></div>
   </div>
-
-  <div class="sec">Intermarket Backdrop</div>
-  <div class="chips" id="chips"></div>
 
   <div class="sec">Indexes</div>
   <div class="idx" id="idx"></div>
@@ -229,6 +256,19 @@ function heatColor(p){
   return {bg:`rgba(255,77,106,${0.07+(-c)*0.22})`};
 }
 
+function renderRegime(){
+  const el=$("hregime"); if(!el) return;
+  const vix=(S.backdrop||[]).find(b=>b.name==="VIX");
+  const reg=vix?(vix.value<15?"CALM":vix.value>20?"ELEVATED":"NORMAL"):"—";
+  el.innerHTML=`<span class="rword">${reg}</span><span class="rsub">TAPE${vix?` · VIX ${vix.value}`:""}</span>`;
+}
+function renderGauges(){
+  const el=$("gauges"); if(!el) return;
+  const ins=S.instruments||[]; const rows=[];
+  ["SPY","QQQ"].forEach(s=>{const i=ins.find(x=>x.symbol===s&&x.verified);if(i)rows.push([s,f(i.ohlc.close),sg(i.change_pct)+"%",col(i.change_pct)]);});
+  (S.backdrop||[]).forEach(b=>rows.push([b.name,b.value,sg(b.change),col(b.change)]));
+  el.innerHTML=rows.map(r=>`<div class="grow"><span class="gk">${r[0]}</span><span class="gv num">${r[1]}</span><span class="gd num" style="color:${r[3]}">${r[2]}</span></div>`).join("");
+}
 function pulse(){
   const vix=(S.backdrop||[]).find(b=>b.name==="VIX");
   const reg=vix?(vix.value<15?"Calm":vix.value>20?"Elevated":"Normal"):"—";
@@ -237,9 +277,7 @@ function pulse(){
   const dn=ins.filter(i=>i.structure==="downtrend").length;
   const rg=ins.filter(i=>i.structure==="range").length;
   const hi=(S.fed_econ||[]).find(e=>e.impact==="high"&&!e.actual&&!/held|target/i.test((e.event||"")+" "+(e.date||"")));
-  let txt=`<b>${reg} tape</b>${vix?` · VIX ${vix.value}`:""}. `;
-  if(ins.length) txt+=`<b>${up}</b> up / <b>${dn}</b> down / <b>${rg}</b> ranging across ${ins.length} names. `;
-  else txt+=`Data is being verified — cards fill once the feed reports. `;
+  let txt = ins.length ? "" : "Data is being verified — cards fill once the feed reports. ";
   if(hi) txt+=`Next catalyst: <b>${hi.event}</b> ${[hi.date,hi.time].filter(Boolean).join(" ")}.`;
   return txt;
 }
@@ -376,11 +414,11 @@ function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
   $("meta").innerHTML=`${m.session} · ${m.as_of_date||"latest"}<br>updated ${new Date(m.generated_at).toLocaleString()}`;
+  renderRegime();
   $("pulse").innerHTML=pulse();
   renderBreadth();
   renderAlerts();
-  $("chips").innerHTML=(S.backdrop||[]).map(b=>`<div class="chip"><div class="k">${b.name}</div>
-    <div class="v num">${b.value}</div><div class="d num" style="color:${col(b.change)}">${sg(b.change)}</div></div>`).join("");
+  renderGauges();
 
   const insts=S.instruments||[];
   $("idx").innerHTML=insts.filter(i=>i.type==="index").map(icard).join("")||'<div class="dim">—</div>';
