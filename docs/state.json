@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-23T02:27:12+00:00",
+    "generated_at": "2026-06-23T02:28:28+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-22",
@@ -28,8 +28,8 @@
     },
     {
       "name": "DXY",
-      "value": 100.99,
-      "change": 0.14,
+      "value": 100.98,
+      "change": 0.13,
       "note": ""
     },
     {
@@ -40,8 +40,8 @@
     },
     {
       "name": "Gold",
-      "value": 4173.5,
-      "change": -50.6,
+      "value": 4175.6,
+      "change": -48.5,
       "note": ""
     }
   ],
