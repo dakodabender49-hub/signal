@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-23T02:49:07+00:00",
+    "generated_at": "2026-06-23T02:55:38+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-22",
@@ -34,14 +34,14 @@
     },
     {
       "name": "Oil",
-      "value": 74.26,
-      "change": -2.34,
+      "value": 74.18,
+      "change": -2.42,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4176.6,
-      "change": -47.5,
+      "value": 4172.8,
+      "change": -51.3,
       "note": ""
     }
   ],
@@ -20117,7 +20117,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 65.4,
+        "pe": 65.2,
         "forward_pe": 20.2,
         "market_cap": 1865589981184,
         "rev_growth": 47.9,
@@ -25142,7 +25142,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 51.3,
+        "pe": 51.6,
         "forward_pe": 36.5,
         "market_cap": 95192391680,
         "rev_growth": 15.1,
