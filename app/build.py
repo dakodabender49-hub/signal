@@ -24,7 +24,9 @@ import sample_data
 
 NAMES = {"SPY": "S&P 500 ETF", "QQQ": "Nasdaq 100 ETF", "AAPL": "Apple",
          "MSFT": "Microsoft", "GOOGL": "Alphabet", "AMZN": "Amazon",
-         "NVDA": "Nvidia", "META": "Meta", "TSLA": "Tesla", "MU": "Micron"}
+         "NVDA": "Nvidia", "META": "Meta", "TSLA": "Tesla", "MU": "Micron",
+         "AMD": "Advanced Micro Devices", "AVGO": "Broadcom", "PLTR": "Palantir",
+         "COIN": "Coinbase", "HOOD": "Robinhood", "SOFI": "SoFi"}
 
 
 def load_watchlist():
