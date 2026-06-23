@@ -175,7 +175,12 @@
   .lv .row b{min-width:62px;color:var(--text)}
   .lv .row .ev{color:var(--dim)}
   .sc{font-size:9px;color:var(--amber);border:1px solid #5a4410;border-radius:2px;padding:0 4px}
-  footer{margin-top:30px;border-top:1px solid var(--line2);padding-top:14px;color:var(--dim);font-size:11px;line-height:1.6}
+  footer{margin-top:12px;color:var(--dim);font-size:11px;line-height:1.6}
+  .statusbar{margin-top:26px;border-top:1px solid var(--line2);padding-top:11px;color:var(--dim);font-size:10.5px;letter-spacing:.5px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .statusbar .kbd{color:var(--muted);border:1px solid var(--line2);border-radius:2px;padding:1px 5px;font-size:9.5px}
+  .statusbar .stright{margin-left:auto}
+  .curs{display:inline-block;width:7px;height:12px;background:var(--green);animation:blink 1.1s steps(1) infinite;vertical-align:-1px}
+  @keyframes blink{50%{opacity:0}}
 </style>
 </head>
 <body>
@@ -215,7 +220,7 @@
     <div class="acmenu" id="acmenu"></div>
   </div>
 
-  <div class="sec">Indexes</div>
+  <div class="sec">Benchmarks</div>
   <div class="idx" id="idx"></div>
 
   <div class="sec">Watchlist</div>
@@ -224,9 +229,10 @@
   <div class="sec">Screener <span class="sub">movers &amp; setups</span></div>
   <div id="screener"></div>
 
-  <div class="sec">Fed &amp; Economic Data</div>
+  <div class="sec">Macro &amp; Fed</div>
   <div class="fed" id="fed"></div>
 
+  <div class="statusbar" id="statusbar"></div>
   <footer id="footer"></footer>
 </div>
 
@@ -410,6 +416,12 @@ function renderBreadth(){
   el.innerHTML=`<div class="bbar"><span style="width:${pct(up)};background:var(--green)"></span><span style="width:${pct(rg)};background:var(--muted)"></span><span style="width:${pct(dn)};background:var(--red)"></span></div>
     <div class="blegend"><span style="color:var(--green)">${up} uptrend</span> &middot; <span style="color:var(--muted)">${rg} range</span> &middot; <span style="color:var(--red)">${dn} downtrend</span> &middot; ${ins.length} names</div>`;
 }
+function renderStatus(){
+  const el=$("statusbar"); if(!el) return;
+  const n=(S.instruments||[]).filter(i=>i.verified).length;
+  const sc=Object.keys(S.searchable||{}).length;
+  el.innerHTML=`<span class="curs"></span><span><span class="kbd">/</span> search &nbsp; <span class="kbd">Esc</span> close &nbsp; <span class="kbd">\u2191\u2193</span> pick &nbsp; click any row for the full read</span><span class="stright">${n} names tracked \u00b7 ${sc} searchable \u00b7 v1 \u00b7 built by Dakoda</span>`;
+}
 function render(){
   const m=S.meta;
   $("mode").textContent=m.data_mode; $("mode").className="badge "+(m.data_mode==="LIVE"?"live":"sample");
@@ -425,6 +437,7 @@ function render(){
   renderWatchlist();
   renderScreener();
   insts.filter(i=>i.type==="index"&&i.verified).forEach(i=>{const el=document.getElementById("ic-"+i.symbol);if(el)chart(el,i,140);});
+  renderStatus();
 
   $("fed").innerHTML=(S.fed_econ||[]).map(e=>{const val=e.value||(e.actual?("actual "+e.actual):(e.consensus?("cons "+e.consensus):""));const dt=[e.date,e.time].filter(Boolean).join(" ");return `<div class="fcard ${e.impact}"><div class="e">${e.event}</div><div class="m">${dt}${val?(" · "+val):""}</div></div>`;}).join("");
   $("footer").innerHTML=`SIGNAL — structural reads &amp; screens, not financial advice. Cross-source verified, fail-closed.<br><span style="color:var(--dim)">v1 · built by Dakoda · ${m.data_mode==="SAMPLE"?"sample data":"live data"} · as of ${m.as_of_date||"\u2014"}</span>`;
