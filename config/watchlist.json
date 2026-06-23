@@ -1,7 +1,7 @@
 {
   "_comment": "Edit this file to change what SIGNAL tracks. Add/remove tickers in 'stocks'. The next run (or local build) picks them up everywhere: dashboard + emails.",
   "indexes": ["SPY", "QQQ"],
-  "stocks": ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU", "AMD", "AVGO", "PLTR", "COIN", "HOOD", "SOFI"],
+  "stocks": ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU", "AMD", "AVGO", "PLTR", "COIN", "HOOD", "SOFI", "IWM", "SMH", "TLT", "XLF", "XLE", "XLK"],
   "crypto": [],
   "email_to": "dakodabender49@gmail.com",
   "settings": {
