@@ -163,19 +163,31 @@ def fundamentals_sample(symbol):
             "w52_low": None, "rs_3m": round(r.uniform(-8, 8), 1), "pos52": r.randint(20, 95)}
 
 
-SCREEN_UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "MU", "AMD",
-    "AVGO", "NFLX", "CRM", "ORCL", "ADBE", "QCOM", "CSCO", "INTC", "PLTR", "UBER", "DIS",
-    "JPM", "BAC", "V", "MA", "WMT", "COST", "HD", "XOM", "CVX", "LLY", "UNH", "JNJ",
-    "PG", "KO", "PEP", "BA", "CAT", "GE", "COIN", "SHOP"]
-
-UNIVERSE_NAMES = {"AAPL":"Apple","MSFT":"Microsoft","GOOGL":"Alphabet","AMZN":"Amazon",
-    "NVDA":"Nvidia","META":"Meta","TSLA":"Tesla","MU":"Micron","AMD":"Advanced Micro Devices",
-    "AVGO":"Broadcom","NFLX":"Netflix","CRM":"Salesforce","ORCL":"Oracle","ADBE":"Adobe",
-    "QCOM":"Qualcomm","CSCO":"Cisco","INTC":"Intel","PLTR":"Palantir","UBER":"Uber","DIS":"Disney",
-    "JPM":"JPMorgan Chase","BAC":"Bank of America","V":"Visa","MA":"Mastercard","WMT":"Walmart",
-    "COST":"Costco","HD":"Home Depot","XOM":"Exxon Mobil","CVX":"Chevron","LLY":"Eli Lilly",
-    "UNH":"UnitedHealth","JNJ":"Johnson & Johnson","PG":"Procter & Gamble","KO":"Coca-Cola",
-    "PEP":"PepsiCo","BA":"Boeing","CAT":"Caterpillar","GE":"GE Aerospace","COIN":"Coinbase","SHOP":"Shopify"}
+UNIVERSE_NAMES = {
+    "AAPL":"Apple","MSFT":"Microsoft","GOOGL":"Alphabet","AMZN":"Amazon","NVDA":"Nvidia",
+    "META":"Meta","TSLA":"Tesla","AVGO":"Broadcom","AMD":"Advanced Micro Devices","MU":"Micron",
+    "QCOM":"Qualcomm","INTC":"Intel","TXN":"Texas Instruments","AMAT":"Applied Materials",
+    "LRCX":"Lam Research","KLAC":"KLA Corp","MRVL":"Marvell","ARM":"Arm Holdings","SMCI":"Super Micro",
+    "CRM":"Salesforce","ORCL":"Oracle","ADBE":"Adobe","CSCO":"Cisco","IBM":"IBM","NOW":"ServiceNow",
+    "INTU":"Intuit","PANW":"Palo Alto Networks","SNOW":"Snowflake","PLTR":"Palantir","CRWD":"CrowdStrike",
+    "DDOG":"Datadog","NET":"Cloudflare","UBER":"Uber","ABNB":"Airbnb","SHOP":"Shopify","PYPL":"PayPal",
+    "COIN":"Coinbase","MSTR":"MicroStrategy","DELL":"Dell","NFLX":"Netflix","DIS":"Disney",
+    "CMCSA":"Comcast","T":"AT&T","VZ":"Verizon","TMUS":"T-Mobile","SPOT":"Spotify",
+    "WBD":"Warner Bros Discovery","ROKU":"Roku","WMT":"Walmart","COST":"Costco","HD":"Home Depot",
+    "LOW":"Lowe's","NKE":"Nike","MCD":"McDonald's","SBUX":"Starbucks","TGT":"Target",
+    "PG":"Procter & Gamble","KO":"Coca-Cola","PEP":"PepsiCo","PM":"Philip Morris","MDLZ":"Mondelez",
+    "BKNG":"Booking","CMG":"Chipotle","LULU":"Lululemon","F":"Ford","GM":"General Motors",
+    "JPM":"JPMorgan Chase","BAC":"Bank of America","WFC":"Wells Fargo","C":"Citigroup","GS":"Goldman Sachs",
+    "MS":"Morgan Stanley","V":"Visa","MA":"Mastercard","AXP":"American Express","SCHW":"Charles Schwab",
+    "BLK":"BlackRock","SPGI":"S&P Global","COF":"Capital One","BX":"Blackstone","LLY":"Eli Lilly",
+    "UNH":"UnitedHealth","JNJ":"Johnson & Johnson","ABBV":"AbbVie","MRK":"Merck","PFE":"Pfizer",
+    "TMO":"Thermo Fisher","ABT":"Abbott","DHR":"Danaher","AMGN":"Amgen","GILD":"Gilead","CVS":"CVS Health",
+    "MRNA":"Moderna","ISRG":"Intuitive Surgical","VRTX":"Vertex","BMY":"Bristol Myers Squibb",
+    "XOM":"Exxon Mobil","CVX":"Chevron","COP":"ConocoPhillips","SLB":"SLB","OXY":"Occidental",
+    "BA":"Boeing","CAT":"Caterpillar","GE":"GE Aerospace","HON":"Honeywell","UPS":"UPS","FDX":"FedEx",
+    "LMT":"Lockheed Martin","RTX":"RTX","DE":"Deere","UNP":"Union Pacific","MMM":"3M",
+    "NEE":"NextEra Energy","LIN":"Linde","NEM":"Newmont","RIVN":"Rivian"}
+SCREEN_UNIVERSE = list(UNIVERSE_NAMES.keys())
 
 
 def _mean(xs):
@@ -304,9 +316,12 @@ def screener(settings):
         if len(_b) < 60:
             continue
         try:
-            _inst = compute_instrument(_sym, UNIVERSE_NAMES.get(_sym, _sym), "stock", _b, settings)
-            _inst["history"] = _inst["history"][-100:]
-            searchable[_sym] = _inst
+            _full = compute_instrument(_sym, UNIVERSE_NAMES.get(_sym, _sym), "stock", _b, settings)
+            _slim = {k: _full[k] for k in ("symbol", "name", "type", "verified", "as_of", "ohlc",
+                     "change_pct", "structure", "atr14", "read", "bull_trigger", "bear_trigger",
+                     "levels_above", "levels_below", "ma", "fib") if k in _full}
+            _slim["history"] = _full["history"][-60:]
+            searchable[_sym] = _slim
         except Exception:
             continue
     out = {"movers": clean_movers, "setups": clean_setups, "note": "", "_searchable": searchable}
@@ -381,7 +396,7 @@ def compute_instrument(symbol, name, typ, bars, settings):
         "confluence": [z for z in (za + zb) if z["score"] >= 2][:4],
         "bull_trigger": r["bull_trigger"], "bear_trigger": r["bear_trigger"],
         "line_in_sand": r["line_in_sand"], "changed": changed, "read": r["read"],
-        "history": [[b["date"], b["open"], b["high"], b["low"], b["close"], b.get("volume", 0)] for b in bars[-180:]],
+        "history": [[b["date"], round(b["open"], 2), round(b["high"], 2), round(b["low"], 2), round(b["close"], 2), int(b.get("volume", 0) or 0)] for b in bars[-180:]],
     }
 
 
