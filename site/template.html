@@ -40,6 +40,11 @@
   .bbar{display:flex;height:8px;border-radius:2px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
   .bbar span{display:block}
   .blegend{font-size:10px;color:var(--dim);margin-top:5px;letter-spacing:1.2px;text-transform:uppercase}
+  .alerts{margin:6px 0 2px}
+  .alabel{color:var(--amber);font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;margin:8px 0 7px}
+  .achip{display:inline-block;font-size:11px;background:var(--panel);border:1px solid var(--line2);border-radius:2px;padding:5px 9px;margin:0 6px 6px 0;cursor:pointer}
+  .achip:hover{border-color:var(--amber)}
+  .achip b{color:var(--amber);letter-spacing:.5px}
   /* search */
   .searchbar{display:flex;align-items:center;margin:13px 0 2px;background:var(--panel);
              border:1px solid var(--line2);border-radius:3px;overflow:hidden}
@@ -159,6 +164,7 @@
 
   <div class="pulse" id="pulse"></div>
   <div class="breadth" id="breadth"></div>
+  <div class="alerts" id="alerts"></div>
   <div class="searchbar"><input id="q" type="text" placeholder="SEARCH ANY TICKER — AMD, NFLX, COIN, AVGO ..." autocomplete="off"/><button id="qbtn">RUN</button></div>
 
   <div class="sec">Intermarket Backdrop</div>
@@ -301,6 +307,18 @@ function detailChart(el,i){
   c.timeScale().fitContent();
   try{new ResizeObserver(()=>c.applyOptions({width:el.clientWidth})).observe(el);}catch(e){}
 }
+function flagColor(k){return {move:"var(--amber)",tag:"var(--cyan)",near:"var(--muted)",ma:"var(--blue)",hi:"var(--green)",lo:"var(--red)"}[k]||"var(--muted)";}
+function openSym(s){const ix=(S.instruments||[]).findIndex(i=>i.symbol===s&&i.verified);if(ix>=0)openM(ix);}
+function renderAlerts(){
+  const el=$("alerts"); if(!el) return;
+  const a=S.alerts||[];
+  if(!a.length){el.innerHTML="";return;}
+  const chips=a.map(x=>{
+    const fl=(x.flags||[]).map(f=>`<span style="color:${flagColor(f.k)}">${f.t}</span>`).join(" \u00b7 ");
+    return `<span class="achip" onclick="openSym('${x.symbol}')"><b>${x.symbol}</b> ${fl}</span>`;
+  }).join("");
+  el.innerHTML=`<div class="alabel">\u25b2 On watch \u2014 what changed</div>${chips}`;
+}
 function renderBreadth(){
   const el=$("breadth"); if(!el) return;
   const ins=(S.instruments||[]).filter(i=>i.verified);
@@ -318,6 +336,7 @@ function render(){
   $("meta").innerHTML=`${m.session} · ${m.as_of_date||"latest"}<br>updated ${new Date(m.generated_at).toLocaleString()}`;
   $("pulse").innerHTML=pulse();
   renderBreadth();
+  renderAlerts();
   $("chips").innerHTML=(S.backdrop||[]).map(b=>`<div class="chip"><div class="k">${b.name}</div>
     <div class="v num">${b.value}</div><div class="d num" style="color:${col(b.change)}">${sg(b.change)}</div></div>`).join("");
 
