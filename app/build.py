@@ -453,6 +453,22 @@ def instrument_flags(i):
     return flags
 
 
+def _market_phase(now_utc):
+    """Rough US market phase by wall clock (ET = UTC-4 in summer/EDT)."""
+    import datetime as _dt
+    et = now_utc - _dt.timedelta(hours=4)
+    if et.weekday() >= 5:
+        return "closed"
+    mins = et.hour * 60 + et.minute
+    if 4 * 60 <= mins < 9 * 60 + 30:
+        return "pre-market"
+    if 9 * 60 + 30 <= mins < 16 * 60:
+        return "live"
+    if 16 * 60 <= mins < 20 * 60:
+        return "after-hours"
+    return "closed"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="sample", choices=["sample", "live"])
@@ -550,7 +566,7 @@ def main():
                             if _lp > 0 and _pc:
                                 _i["live"] = {"price": round(_lp, 2),
                                               "change_pct": round((_lp / _pc - 1) * 100, 2),
-                                              "session": args.session}
+                                              "phase": _market_phase(datetime.now(timezone.utc))}
                     except Exception:
                         pass
         except Exception:
