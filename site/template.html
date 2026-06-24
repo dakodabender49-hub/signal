@@ -24,6 +24,9 @@
   .wrap{max-width:1240px;margin:0 auto;padding:16px 16px 70px}
   .num{font-variant-numeric:tabular-nums}
   .livetag{display:inline-block;font-size:8px;font-weight:700;letter-spacing:1px;color:#0a0a0a;background:var(--cyan);border-radius:2px;padding:1px 4px;margin-left:5px;vertical-align:1px}
+  .vprow{display:flex;align-items:center;gap:8px;height:9px;margin:1.5px 0}
+  .vpp{font-size:9px;color:var(--dim);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
+  .vpbar{height:7px;border-radius:1px;min-width:2px}
   /* command bar */
   .cmdbar{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-top:2px solid var(--amber);
           background:var(--panel);padding:10px 14px;border-radius:3px}
@@ -245,6 +248,7 @@
   <div id="mfund" class="read"></div>
   <div class="trigs" id="mtrigs"></div>
   <div class="lv" id="mlv"></div>
+  <div id="mvp"></div>
 </div></div>
 
 <script>
@@ -373,7 +377,7 @@ function acClose(){const m=$("acmenu");if(m)m.classList.remove("open");}
 function openTV(sym){
   $("mtitle").textContent=sym;
   $("msub").innerHTML='<span class="dim">Live chart — not in your watchlist or the computed universe yet. Add it to your watchlist for full structure + labeled levels.</span>';
-  $("mread").textContent="";$("mfund").innerHTML="";$("mtrigs").innerHTML="";$("mlv").innerHTML="";
+  $("mread").textContent="";$("mfund").innerHTML="";$("mtrigs").innerHTML="";$("mlv").innerHTML="";$("mvp").innerHTML="";
   $("modal").classList.add("open");
   setTimeout(()=>tvChart($("mchart"),sym),30);
 }
@@ -398,6 +402,9 @@ function detailChart(el,i){
   if(m.sma200)L.push([m.sma200,"#b08cff","200-SMA"]);
   ((i.fib&&i.fib.levels)||[]).forEach(fl=>{if(fl.r===0.618||fl.r===0.5)L.push([fl.price,"#8b93a3","Fib "+fl.r]);});
   L.forEach(a=>{if(a[0])ser.createPriceLine({price:a[0],color:a[1],lineWidth:1,lineStyle:2,axisLabelVisible:true,title:a[2]});});
+  const vp=i.vprofile||{};
+  if(vp.poc)ser.createPriceLine({price:vp.poc,color:"#ffb000",lineWidth:2,lineStyle:0,axisLabelVisible:true,title:"POC"});
+  [["VAH",vp.vah],["VAL",vp.val]].forEach(z=>{if(z[1])ser.createPriceLine({price:z[1],color:"#8a6d2a",lineWidth:1,lineStyle:3,axisLabelVisible:true,title:z[0]});});
   c.timeScale().fitContent();
   try{new ResizeObserver(()=>c.applyOptions({width:el.clientWidth})).observe(el);}catch(e){}
 }
@@ -516,6 +523,10 @@ function openInstrument(i){
   $("mtrigs").innerHTML=`<div class="trig b"><span class="l">Bull trigger</span>${i.bull_trigger}</div><div class="trig s"><span class="l">Bear trigger</span>${i.bear_trigger}</div>`;
   const lv=(arr)=>arr.slice(0,3).map(z=>`<div class="row"><b class="num">${f(z.price)}</b>${z.score>=2?`<span class="sc">×${z.score}</span>`:""}<span class="ev">${(z.evidence||[]).join(", ")}</span></div>`).join("")||'<div class="row ev">—</div>';
   $("mlv").innerHTML=`<div><div class="h">Resistance / above</div>${lv(i.levels_above||[])}</div><div><div class="h">Support / below</div>${lv(i.levels_below||[])}</div>`;
+  (function(){const vp=i.vprofile;const el=$("mvp");if(!el)return;if(!vp||!vp.bins||!vp.bins.length){el.innerHTML="";return;}
+    let mxi=0;for(let k=1;k<vp.bins.length;k++){if(vp.bins[k].v>vp.bins[mxi].v)mxi=k;}
+    const rows=vp.bins.map((b,k)=>{const inVA=b.p>=vp.val&&b.p<=vp.vah;const c=k===mxi?"var(--amber)":(inVA?"#3a5570":"#243140");return `<div class="vprow"><span class="vpp">${f(b.p)}</span><span class="vpbar" style="width:${Math.max(2,Math.round(b.v*100))}%;background:${c}"></span></div>`;}).reverse().join("");
+    el.innerHTML=`<div class="h" style="color:var(--cyan);margin:15px 0 7px">Volume profile &middot; POC <b style="color:var(--amber)">${f(vp.poc)}</b> &middot; value area ${f(vp.val)}\u2013${f(vp.vah)}</div>${rows}`;})();
   $("modal").classList.add("open");
   setTimeout(()=>detailChart($("mchart"),i),30);
 }
