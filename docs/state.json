@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-06-23T23:42:41+00:00",
-    "session": "post-close",
+    "generated_at": "2026-06-24T03:38:20+00:00",
+    "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-23",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 101.39,
-      "change": 0.37,
+      "value": 101.49,
+      "change": 0.47,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 72.89,
-      "change": -1.93,
+      "value": 72.41,
+      "change": -2.41,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4111.5,
-      "change": -70.4,
+      "value": 4072.2,
+      "change": -109.7,
       "note": ""
     }
   ],
@@ -1749,9 +1749,9 @@
         }
       ],
       "live": {
-        "price": 733.47,
-        "change_pct": -0.01,
-        "phase": "after-hours"
+        "price": 735.02,
+        "change_pct": 0.2,
+        "phase": "closed"
       }
     },
     {
@@ -3426,9 +3426,9 @@
         }
       ],
       "live": {
-        "price": 713.65,
-        "change_pct": -0.0,
-        "phase": "after-hours"
+        "price": 716.04,
+        "change_pct": 0.33,
+        "phase": "closed"
       }
     },
     {
@@ -5114,9 +5114,9 @@
         }
       ],
       "live": {
-        "price": 293.94,
-        "change_pct": -0.12,
-        "phase": "after-hours"
+        "price": 294.69,
+        "change_pct": 0.13,
+        "phase": "closed"
       }
     },
     {
@@ -6778,9 +6778,9 @@
         "pos52": 9
       },
       "live": {
-        "price": 373.16,
-        "change_pct": -0.21,
-        "phase": "after-hours"
+        "price": 374.0,
+        "change_pct": 0.02,
+        "phase": "closed"
       }
     },
     {
@@ -8457,7 +8457,7 @@
         "earnings_date": "2026-04-29",
         "sector": "Communication Services",
         "w52_high": 408.61,
-        "w52_low": 166.13,
+        "w52_low": 167.55,
         "rs_3m": 2.7,
         "pos52": 74
       },
@@ -8472,9 +8472,9 @@
         }
       ],
       "live": {
-        "price": 347.2,
-        "change_pct": 0.31,
-        "phase": "after-hours"
+        "price": 348.17,
+        "change_pct": 0.59,
+        "phase": "closed"
       }
     },
     {
@@ -10139,7 +10139,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 31.8,
+        "pe": 31.6,
         "forward_pe": 23.7,
         "market_cap": 2518346891264,
         "rev_growth": 16.6,
@@ -10152,9 +10152,9 @@
         "pos52": 46
       },
       "live": {
-        "price": 233.1,
-        "change_pct": -0.43,
-        "phase": "after-hours"
+        "price": 233.6,
+        "change_pct": -0.22,
+        "phase": "closed"
       }
     },
     {
@@ -11827,9 +11827,9 @@
         "earnings_date": "2026-08-26",
         "sector": "Technology",
         "w52_high": 236.54,
-        "w52_low": 145.5,
+        "w52_low": 149.26,
         "rs_3m": 2.0,
-        "pos52": 60
+        "pos52": 58
       },
       "flags": [
         {
@@ -11846,9 +11846,9 @@
         }
       ],
       "live": {
-        "price": 200.32,
-        "change_pct": 0.14,
-        "phase": "after-hours"
+        "price": 200.9,
+        "change_pct": 0.43,
+        "phase": "closed"
       }
     },
     {
@@ -13489,7 +13489,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 20.4,
+        "pe": 20.5,
         "forward_pe": 15.5,
         "market_cap": 1427101581312,
         "rev_growth": 33.1,
@@ -13508,9 +13508,9 @@
         }
       ],
       "live": {
-        "price": 560.9,
-        "change_pct": -0.23,
-        "phase": "after-hours"
+        "price": 561.9,
+        "change_pct": -0.05,
+        "phase": "closed"
       }
     },
     {
@@ -15168,7 +15168,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 350.1,
+        "pe": 343.8,
         "forward_pe": 152.6,
         "market_cap": 1433221726208,
         "rev_growth": 15.8,
@@ -15195,9 +15195,9 @@
         }
       ],
       "live": {
-        "price": 381.81,
-        "change_pct": 0.05,
-        "phase": "after-hours"
+        "price": 382.46,
+        "change_pct": 0.22,
+        "phase": "closed"
       }
     },
     {
@@ -16879,9 +16879,9 @@
         }
       ],
       "live": {
-        "price": 1063.33,
-        "change_pct": 1.1,
-        "phase": "after-hours"
+        "price": 1065.0,
+        "change_pct": 1.26,
+        "phase": "closed"
       }
     },
     {
@@ -18540,7 +18540,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 174.4,
+        "pe": 172.1,
         "forward_pe": 39.7,
         "market_cap": 847667658752,
         "rev_growth": 37.8,
@@ -18548,7 +18548,7 @@
         "earnings_date": "2026-05-05",
         "sector": "Technology",
         "w52_high": 562.99,
-        "w52_low": 132.93,
+        "w52_low": 133.5,
         "rs_3m": 144.6,
         "pos52": 90
       },
@@ -18563,9 +18563,9 @@
         }
       ],
       "live": {
-        "price": 519.4,
-        "change_pct": -0.09,
-        "phase": "after-hours"
+        "price": 522.2,
+        "change_pct": 0.45,
+        "phase": "closed"
       }
     },
     {
@@ -20229,7 +20229,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 63.4,
+        "pe": 63.3,
         "forward_pe": 19.6,
         "market_cap": 1808594108416,
         "rev_growth": 47.9,
@@ -20237,7 +20237,7 @@
         "earnings_date": "2026-06-03",
         "sector": "Technology",
         "w52_high": 495.0,
-        "w52_low": 258.77,
+        "w52_low": 262.66,
         "rs_3m": 5.9,
         "pos52": 51
       },
@@ -20248,9 +20248,9 @@
         }
       ],
       "live": {
-        "price": 379.53,
-        "change_pct": -0.16,
-        "phase": "after-hours"
+        "price": 381.5,
+        "change_pct": 0.36,
+        "phase": "closed"
       }
     },
     {
@@ -21909,7 +21909,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 132.6,
+        "pe": 135.7,
         "forward_pe": 56.0,
         "market_cap": 279766302720,
         "rev_growth": 84.7,
@@ -21932,9 +21932,9 @@
         }
       ],
       "live": {
-        "price": 115.8,
-        "change_pct": -0.77,
-        "phase": "after-hours"
+        "price": 116.14,
+        "change_pct": -0.48,
+        "phase": "closed"
       }
     },
     {
@@ -23614,9 +23614,9 @@
         }
       ],
       "live": {
-        "price": 158.5,
-        "change_pct": 0.2,
-        "phase": "after-hours"
+        "price": 158.89,
+        "change_pct": 0.45,
+        "phase": "closed"
       }
     },
     {
@@ -25294,9 +25294,9 @@
         }
       ],
       "live": {
-        "price": 102.77,
-        "change_pct": -0.46,
-        "phase": "after-hours"
+        "price": 103.55,
+        "change_pct": 0.29,
+        "phase": "closed"
       }
     },
     {
@@ -26983,9 +26983,9 @@
         }
       ],
       "live": {
-        "price": 17.31,
-        "change_pct": 0.12,
-        "phase": "after-hours"
+        "price": 17.34,
+        "change_pct": 0.31,
+        "phase": "closed"
       }
     },
     {
@@ -28658,9 +28658,9 @@
         }
       ],
       "live": {
-        "price": 294.77,
-        "change_pct": -0.19,
-        "phase": "after-hours"
+        "price": 295.69,
+        "change_pct": 0.13,
+        "phase": "closed"
       }
     },
     {
@@ -30317,7 +30317,7 @@
         "earnings_date": null,
         "sector": null,
         "w52_high": 671.83,
-        "w52_low": 265.74,
+        "w52_low": 272.16,
         "rs_3m": 47.0,
         "pos52": 88
       },
@@ -30332,9 +30332,9 @@
         }
       ],
       "live": {
-        "price": 622.49,
-        "change_pct": 0.07,
-        "phase": "after-hours"
+        "price": 624.96,
+        "change_pct": 0.47,
+        "phase": "closed"
       }
     },
     {
@@ -32024,7 +32024,7 @@
       "live": {
         "price": 86.12,
         "change_pct": -0.09,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -33700,9 +33700,9 @@
         }
       ],
       "live": {
-        "price": 53.82,
-        "change_pct": -0.11,
-        "phase": "after-hours"
+        "price": 53.87,
+        "change_pct": -0.02,
+        "phase": "closed"
       }
     },
     {
@@ -35383,7 +35383,7 @@
       "live": {
         "price": 54.44,
         "change_pct": -0.04,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -37059,7 +37059,7 @@
         "earnings_date": null,
         "sector": null,
         "w52_high": 198.73,
-        "w52_low": 122.53,
+        "w52_low": 124.15,
         "rs_3m": 22.6,
         "pos52": 81
       },
@@ -37078,9 +37078,9 @@
         }
       ],
       "live": {
-        "price": 184.33,
-        "change_pct": 0.08,
-        "phase": "after-hours"
+        "price": 185.1,
+        "change_pct": 0.49,
+        "phase": "closed"
       }
     }
   ],
