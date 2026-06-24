@@ -58,6 +58,51 @@ def sg(x):
         return str(x)
 
 
+def _live(i):
+    return i.get("live") or {}
+
+
+def lpx(i):
+    lv = _live(i)
+    return lv.get("price") if lv.get("price") is not None else (i.get("ohlc", {}) or {}).get("close")
+
+
+def lchg(i):
+    lv = _live(i)
+    return lv.get("change_pct") if lv.get("price") is not None else i.get("change_pct", 0)
+
+
+def ltag(i):
+    ph = _live(i).get("phase") or ""
+    m = {"pre-market": "PRE-MKT", "after-hours": "AFT-HRS", "live": "LIVE"}.get(ph, "")
+    return (f' <span style="font-size:8px;font-weight:bold;letter-spacing:1px;color:#0a0a0a;'
+            f'background:{CYAN};border-radius:2px;padding:1px 4px">{m}</span>') if m else ""
+
+
+def rr_line(i):
+    px = lpx(i)
+    if not px:
+        return ""
+    above = i.get("levels_above") or []
+    below = i.get("levels_below") or []
+    res = next((z for z in above if z.get("price", 0) > px), above[0] if above else None)
+    sup = next((z for z in below if z.get("price", 0) < px), below[0] if below else None)
+    if not res or not sup:
+        return ""
+    reward = res["price"] - px
+    risk = px - sup["price"]
+    if risk <= 0 or reward <= 0:
+        return ""
+    ratio = reward / risk
+    rc = GREEN if ratio >= 2 else (AMBER if ratio >= 1 else RED)
+    return (f'<div style="font-family:{MONO};font-size:10.5px;color:{MUTED};background:{PANEL2};'
+            f'border:1px solid {LINE};border-left:3px solid {CYAN};border-radius:2px;padding:6px 9px;margin-top:7px">'
+            f'<span style="color:{CYAN};font-size:8.5px;letter-spacing:1px;text-transform:uppercase">Defined risk &middot; long</span> '
+            f'risk <b style="color:{RED}">{fnum(risk)}</b> to {fnum(sup["price"])} &middot; '
+            f'reward <b style="color:{GREEN}">{fnum(reward)}</b> to {fnum(res["price"])} &middot; '
+            f'<b style="color:{rc}">{ratio:.1f}R</b></div>')
+
+
 def fnum(x):
     try:
         return f"{float(x):,.2f}"
@@ -93,8 +138,9 @@ def section(title, sub=""):
 
 def instrument_card(i):
     sym = esc(i.get("symbol", "")); name = esc(i.get("name", ""))
-    close = fnum(i.get("ohlc", {}).get("close"))
-    chg = i.get("change_pct", 0)
+    close = fnum(lpx(i))
+    chg = lchg(i)
+    tag = ltag(i)
     structure = i.get("structure", "range")
     read = esc(i.get("read", ""))
     above = lvl_str(i.get("levels_above"))
@@ -112,7 +158,7 @@ def instrument_card(i):
             </td>
             <td align="right" style="font-family:{MONO};white-space:nowrap">
               <span style="color:{TEXT};font-weight:bold;font-size:15px">{close}</span>
-              <span style="color:{col(chg)};font-weight:bold;font-size:13px"> &nbsp;{sg(chg)}%</span>
+              <span style="color:{col(chg)};font-weight:bold;font-size:13px"> &nbsp;{sg(chg)}%</span>{tag}
               <span style="font-size:9px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;
                            padding:2px 6px;border-radius:2px;{tag_style(structure)}"> &nbsp;{esc(structure)} </span>
             </td>
@@ -136,6 +182,7 @@ def instrument_card(i):
                   <span style="color:{RED};font-size:8.5px;letter-spacing:1px;text-transform:uppercase">Bear trigger</span><br>{bear}</div></td>
             </tr>
           </table>
+          {rr_line(i)}
         </td></tr>
       </table>
     </td></tr>"""
