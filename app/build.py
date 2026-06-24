@@ -323,7 +323,7 @@ def screener(settings):
             _full = compute_instrument(_sym, UNIVERSE_NAMES.get(_sym, _sym), "stock", _b, settings)
             _slim = {k: _full[k] for k in ("symbol", "name", "type", "verified", "as_of", "ohlc",
                      "change_pct", "structure", "atr14", "read", "bull_trigger", "bear_trigger",
-                     "levels_above", "levels_below", "ma", "fib") if k in _full}
+                     "levels_above", "levels_below", "ma", "fib", "vprofile", "pivots") if k in _full}
             _slim["history"] = _full["history"][-60:]
             searchable[_sym] = _slim
         except Exception:
@@ -346,6 +346,43 @@ def screener_sample():
         {"symbol": "META", "setup": "RS leader", "detail": "+7.2% vs SPY, near highs"},
         {"symbol": "AMZN", "setup": "golden pocket", "detail": "0.618 retrace"}],
         "note": ""}
+
+
+def _volume_profile(bars, bins=24, lookback=120):
+    """Volume-by-price: POC (point of control) + value area (~70% of volume)."""
+    recent = [b for b in bars[-lookback:] if b.get("volume")]
+    if len(recent) < 20:
+        return None
+    lo = min(b["low"] for b in recent)
+    hi = max(b["high"] for b in recent)
+    if hi <= lo:
+        return None
+    width = (hi - lo) / bins
+    buckets = [0.0] * bins
+    for b in recent:
+        tp = (b["high"] + b["low"] + b["close"]) / 3.0
+        k = int((tp - lo) / width)
+        k = 0 if k < 0 else (bins - 1 if k >= bins else k)
+        buckets[k] += b.get("volume", 0) or 0
+    total = sum(buckets)
+    if total <= 0:
+        return None
+    poc_i = max(range(bins), key=lambda k: buckets[k])
+    target = total * 0.70
+    li = hi_i = poc_i
+    acc = buckets[poc_i]
+    while acc < target and (li > 0 or hi_i < bins - 1):
+        down = buckets[li - 1] if li > 0 else -1.0
+        up = buckets[hi_i + 1] if hi_i < bins - 1 else -1.0
+        if up >= down:
+            hi_i += 1; acc += buckets[hi_i]
+        else:
+            li -= 1; acc += buckets[li]
+    mx = max(buckets) or 1.0
+    prof = [{"p": round(lo + (k + 0.5) * width, 2), "v": round(buckets[k] / mx, 3)} for k in range(bins)]
+    return {"poc": round(lo + (poc_i + 0.5) * width, 2),
+            "val": round(lo + li * width, 2),
+            "vah": round(lo + (hi_i + 1) * width, 2), "bins": prof}
 
 
 def compute_instrument(symbol, name, typ, bars, settings):
@@ -397,6 +434,7 @@ def compute_instrument(symbol, name, typ, bars, settings):
         "pivots": {k: round(v, 2) for k, v in pivots.items()},
         "atr14": round(atr14, 2) if atr14 else None,
         "levels_above": za, "levels_below": zb,
+        "vprofile": _volume_profile(bars),
         "confluence": [z for z in (za + zb) if z["score"] >= 2][:4],
         "bull_trigger": r["bull_trigger"], "bear_trigger": r["bear_trigger"],
         "line_in_sand": r["line_in_sand"], "changed": changed, "read": r["read"],
