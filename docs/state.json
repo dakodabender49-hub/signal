@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-24T03:50:47+00:00",
+    "generated_at": "2026-06-24T03:56:34+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-23",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 101.47,
-      "change": 0.45,
+      "value": 101.46,
+      "change": 0.44,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 72.39,
-      "change": -2.43,
+      "value": 72.41,
+      "change": -2.41,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4079.7,
-      "change": -102.2,
+      "value": 4085.2,
+      "change": -96.7,
       "note": ""
     }
   ],
@@ -17886,7 +17886,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 49.6,
+        "pe": 49.8,
         "forward_pe": 8.6,
         "market_cap": 1186116796416,
         "rev_growth": 196.3,
