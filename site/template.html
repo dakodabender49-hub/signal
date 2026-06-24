@@ -29,6 +29,10 @@
   .vpbar{height:7px;border-radius:1px;min-width:2px}
   .rr{font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:3px;padding:8px 11px;margin-top:10px;line-height:1.6}
   .rr .rrk{color:var(--cyan);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-right:7px}
+  .strength{margin-top:11px;font-size:11px;color:var(--dim);line-height:1.9}
+  .stlbl{color:var(--cyan);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-right:8px}
+  .stchip{cursor:pointer;margin-right:9px;white-space:nowrap}
+  .stchip:hover b{text-decoration:underline}
   /* command bar */
   .cmdbar{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-top:2px solid var(--amber);
           background:var(--panel);padding:10px 14px;border-radius:3px}
@@ -214,6 +218,7 @@
       <div class="breadth" id="breadth"></div>
       <div class="pulse" id="pulse"></div>
       <div class="alerts" id="alerts"></div>
+      <div class="strength" id="hstrength"></div>
     </div>
     <div class="gauges">
       <div class="leadhd">Market</div>
@@ -284,6 +289,16 @@ function heatColor(p){
   return {bg:`rgba(255,77,106,${0.07+(-c)*0.22})`};
 }
 
+function renderStrength(){
+  const el=$("hstrength"); if(!el) return;
+  const st=(S.instruments||[]).filter(i=>i.verified&&i.fundamentals&&i.fundamentals.rs_3m!=null);
+  if(st.length<3){el.innerHTML="";return;}
+  st.sort((a,b)=>b.fundamentals.rs_3m-a.fundamentals.rs_3m);
+  const chip=(i,c)=>`<span class="stchip" onclick="openSym('${i.symbol}')"><b style="color:${c}">${i.symbol}</b> ${sg(i.fundamentals.rs_3m)}%</span>`;
+  const lead=st.slice(0,3).map(i=>chip(i,"var(--green)")).join("");
+  const lag=st.slice(-3).reverse().map(i=>chip(i,"var(--red)")).join("");
+  el.innerHTML=`<span class="stlbl">Strength vs SPY</span><span style="color:var(--green)">\u25b2 </span>${lead}<span style="color:var(--red)">&nbsp;\u25bc </span>${lag}`;
+}
 function renderRegime(){
   const el=$("hregime"); if(!el) return;
   const vix=(S.backdrop||[]).find(b=>b.name==="VIX");
@@ -457,6 +472,7 @@ function render(){
   $("pulse").innerHTML=pulse();
   renderBreadth();
   renderAlerts();
+  renderStrength();
   renderGauges();
 
   const insts=S.instruments||[];
