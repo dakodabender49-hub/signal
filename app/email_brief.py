@@ -145,6 +145,8 @@ def instrument_card(i):
     read = esc(i.get("read", ""))
     above = lvl_str(i.get("levels_above"))
     below = lvl_str(i.get("levels_below"))
+    _vp = i.get("vprofile") or {}
+    poc_str = (f"{fnum(_vp.get('poc'))} &middot; value area {fnum(_vp.get('val'))}\u2013{fnum(_vp.get('vah'))}" if _vp.get("poc") else "")
     bull = esc(i.get("bull_trigger", "")); bear = esc(i.get("bear_trigger", ""))
     return f"""
     <tr><td style="padding:5px 0">
@@ -170,6 +172,7 @@ def instrument_card(i):
                 <td style="color:{MUTED};vertical-align:top">{above}</td></tr>
             <tr><td style="color:{GREEN};vertical-align:top">▼ support</td>
                 <td style="color:{MUTED};vertical-align:top">{below}</td></tr>
+            {("<tr><td style='color:"+AMBER+";vertical-align:top'>● POC</td><td style='color:"+MUTED+";vertical-align:top'>"+poc_str+"</td></tr>") if poc_str else ""}
           </table>
           <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
                  style="font-family:{MONO};font-size:11px;line-height:1.4;padding-top:8px">
