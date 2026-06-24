@@ -27,6 +27,8 @@
   .vprow{display:flex;align-items:center;gap:8px;height:9px;margin:1.5px 0}
   .vpp{font-size:9px;color:var(--dim);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
   .vpbar{height:7px;border-radius:1px;min-width:2px}
+  .rr{font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:3px;padding:8px 11px;margin-top:10px;line-height:1.6}
+  .rr .rrk{color:var(--cyan);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-right:7px}
   /* command bar */
   .cmdbar{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-top:2px solid var(--amber);
           background:var(--panel);padding:10px 14px;border-radius:3px}
@@ -247,6 +249,7 @@
   <div id="mread" class="read"></div>
   <div id="mfund" class="read"></div>
   <div class="trigs" id="mtrigs"></div>
+  <div id="mrr"></div>
   <div class="lv" id="mlv"></div>
   <div id="mvp"></div>
 </div></div>
@@ -263,6 +266,15 @@ function lpx(i){return liveOn(i)?i.live.price:(i&&i.ohlc?i.ohlc.close:null);}
 function lchg(i){return liveOn(i)?i.live.change_pct:(i?i.change_pct:0);}
 function lph(i){const p=liveOn(i)?(i.live.phase||""):"";return p==="pre-market"?"PRE-MKT":p==="after-hours"?"AFT-HRS":p==="live"?"LIVE":"";}
 function ltag(i){const t=lph(i);return t?`<span class="livetag">${t}</span>`:"";}
+function rr(i){
+  const px=lpx(i); if(!px) return null;
+  const res=(i.levels_above||[]).find(z=>z.price>px)||(i.levels_above||[])[0];
+  const sup=(i.levels_below||[]).find(z=>z.price<px)||(i.levels_below||[])[0];
+  if(!res||!sup) return null;
+  const reward=res.price-px, risk=px-sup.price;
+  if(risk<=0||reward<=0) return null;
+  return {risk:risk, reward:reward, rr:reward/risk, sup:sup.price, res:res.price};
+}
 function fmtCap(v){if(!v)return "";const a=Math.abs(v);if(a>=1e12)return "$"+(v/1e12).toFixed(2)+"T";if(a>=1e9)return "$"+(v/1e9).toFixed(1)+"B";if(a>=1e6)return "$"+(v/1e6).toFixed(0)+"M";return "$"+v;}
 
 function heatColor(p){
@@ -377,7 +389,7 @@ function acClose(){const m=$("acmenu");if(m)m.classList.remove("open");}
 function openTV(sym){
   $("mtitle").textContent=sym;
   $("msub").innerHTML='<span class="dim">Live chart — not in your watchlist or the computed universe yet. Add it to your watchlist for full structure + labeled levels.</span>';
-  $("mread").textContent="";$("mfund").innerHTML="";$("mtrigs").innerHTML="";$("mlv").innerHTML="";$("mvp").innerHTML="";
+  $("mread").textContent="";$("mfund").innerHTML="";$("mtrigs").innerHTML="";$("mlv").innerHTML="";$("mvp").innerHTML="";$("mrr").innerHTML="";
   $("modal").classList.add("open");
   setTimeout(()=>tvChart($("mchart"),sym),30);
 }
@@ -486,10 +498,10 @@ function renderWatchlist(){
   const insts=S.instruments||[];
   const wl=insts.filter(i=>i.type!=="index");
   const ver=wl.filter(i=>i.verified), unv=wl.filter(i=>!i.verified);
-  const V={sym:i=>i.symbol,name:i=>i.name||"",last:i=>i.ohlc.close,chg:i=>i.change_pct,trend:i=>i.structure,atr:i=>i.atr14,pos:i=>(i.fundamentals&&i.fundamentals.pos52!=null)?i.fundamentals.pos52:-1};
+  const V={sym:i=>i.symbol,name:i=>i.name||"",last:i=>i.ohlc.close,chg:i=>i.change_pct,trend:i=>i.structure,atr:i=>i.atr14,pos:i=>(i.fundamentals&&i.fundamentals.pos52!=null)?i.fundamentals.pos52:-1,rs:i=>(i.fundamentals&&i.fundamentals.rs_3m!=null)?i.fundamentals.rs_3m:-999};
   if(sortKey)ver.sort((a,b)=>{const x=V[sortKey](a),y=V[sortKey](b);if(typeof x==="string")return sortDir*String(x).localeCompare(String(y));return sortDir*((x>y)?1:(x<y?-1:0));});
   const arrow=k=>sortKey===k?(sortDir<0?" \u25be":" \u25b4"):"";
-  const cols=[["sym","Ticker",0],["name","Name",0],["spark","30d",-1],["last","Last",1],["chg","Chg%",1],["trend","Trend",0],["atr","ATR",1],["pos","52w",1]];
+  const cols=[["sym","Ticker",0],["name","Name",0],["spark","30d",-1],["last","Last",1],["chg","Chg%",1],["trend","Trend",0],["atr","ATR",1],["rs","RS",1],["pos","52w",1]];
   const head=cols.map(c=>`<th class="${c[2]===1?'r':''}"${c[2]>=0?` data-k="${c[0]}"`:''}>${c[1]}${c[2]>=0?arrow(c[0]):''}</th>`).join("");
   if(!wl.length){$("heat").innerHTML='<div class="dim">\u2014</div>';return;}
   $("heat").innerHTML=`<div class="tscroll"><table class="dtbl"><thead><tr>${head}</tr></thead><tbody>${ver.map(tile).join("")+unv.map(tile).join("")}</tbody></table></div>`;
@@ -497,9 +509,10 @@ function renderWatchlist(){
 }
 function tile(i){
   const idx=insts_index(i);
-  if(!i.verified) return `<tr class="dr na"><td class="sy">${i.symbol}</td><td class="nm">${i.name||""}</td><td class="r" colspan="6">data withheld — unverified</td></tr>`;
+  if(!i.verified) return `<tr class="dr na"><td class="sy">${i.symbol}</td><td class="nm">${i.name||""}</td><td class="r" colspan="7">data withheld — unverified</td></tr>`;
   const hc=heatColor(lchg(i));
   const pos=(i.fundamentals&&i.fundamentals.pos52!=null)?(i.fundamentals.pos52+"%"):"—";
+  const rsv=(i.fundamentals&&i.fundamentals.rs_3m!=null)?sg(i.fundamentals.rs_3m):"—";
   return `<tr class="dr" onclick="openM(${idx})">
     <td class="sy">${i.symbol}</td>
     <td class="nm">${i.name||""}</td>
@@ -508,6 +521,7 @@ function tile(i){
     <td class="r num chg" style="color:${col(lchg(i))};background:${hc.bg}">${sg(lchg(i))}%</td>
     <td><span class="tag ${i.structure}">${i.structure}</span></td>
     <td class="r num dim2">${f(i.atr14)}</td>
+    <td class="r num dim2">${rsv}</td>
     <td class="r num dim2">${pos}</td></tr>`;
 }
 
@@ -521,6 +535,7 @@ function openInstrument(i){
   $("mread").textContent=i.read;
   (function(){const fu=i.fundamentals;if(!fu){$("mfund").innerHTML="";return;}const p=[];if(fu.earnings_date)p.push("Earnings "+fu.earnings_date);if(fu.pe)p.push("P/E "+fu.pe+(fu.forward_pe?(" (fwd "+fu.forward_pe+")"):""));if(fu.market_cap)p.push("Mkt cap "+fmtCap(fu.market_cap));if(fu.rev_growth!=null)p.push("Rev "+sg(fu.rev_growth)+"%");if(fu.eps_growth!=null)p.push("EPS "+sg(fu.eps_growth)+"%");if(fu.rs_3m!=null)p.push("RS "+sg(fu.rs_3m)+"% vs SPY 3m");if(fu.pos52!=null)p.push("52wk "+fu.pos52+"%");$("mfund").innerHTML=p.length?('<div style="margin-top:10px;padding:10px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:2px;font-size:12px;color:#aeb9c4;line-height:1.7;"><b style="color:var(--cyan);font-size:9.5px;text-transform:uppercase;letter-spacing:1.5px;">Fundamentals</b><br>'+p.join(" &middot; ")+'</div>'):"";})();
   $("mtrigs").innerHTML=`<div class="trig b"><span class="l">Bull trigger</span>${i.bull_trigger}</div><div class="trig s"><span class="l">Bear trigger</span>${i.bear_trigger}</div>`;
+  (function(){const el=$("mrr");if(!el)return;const x=rr(i);if(!x){el.innerHTML="";return;}const c=x.rr>=2?"var(--green)":x.rr>=1?"var(--amber)":"var(--red)";el.innerHTML=`<div class="rr"><span class="rrk">Defined risk &middot; long</span>risk <b style="color:var(--red)">${f(x.risk)}</b> to ${f(x.sup)} support &middot; reward <b style="color:var(--green)">${f(x.reward)}</b> to ${f(x.res)} resistance &middot; <b style="color:${c}">${x.rr.toFixed(1)}R</b></div>`;})();
   const lv=(arr)=>arr.slice(0,3).map(z=>`<div class="row"><b class="num">${f(z.price)}</b>${z.score>=2?`<span class="sc">×${z.score}</span>`:""}<span class="ev">${(z.evidence||[]).join(", ")}</span></div>`).join("")||'<div class="row ev">—</div>';
   $("mlv").innerHTML=`<div><div class="h">Resistance / above</div>${lv(i.levels_above||[])}</div><div><div class="h">Support / below</div>${lv(i.levels_below||[])}</div>`;
   (function(){const vp=i.vprofile;const el=$("mvp");if(!el)return;if(!vp||!vp.bins||!vp.bins.length){el.innerHTML="";return;}
