@@ -45,6 +45,8 @@
   .badge.sample{color:#1a1203;background:var(--amber);border-color:var(--amber)}
   .hmeta{text-align:right;color:var(--dim);font-size:11px;line-height:1.4}
   .clk{color:var(--cyan);font-size:12px;letter-spacing:1px;border-left:1px solid var(--line2);padding-left:12px}
+  .navtab{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--amber);border:1px solid var(--line2);border-radius:3px;padding:5px 10px;text-decoration:none}
+  .navtab:hover{border-color:var(--amber);background:rgba(255,176,0,.08)}
   /* pulse tape */
   .pulse{display:flex;gap:9px;align-items:flex-start;margin:12px 0 4px;background:var(--panel);
          border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:3px;padding:11px 13px;
@@ -199,6 +201,7 @@
   <header class="cmdbar">
     <div class="brand"><svg class="mark" viewBox="0 0 28 22" width="23" height="18" aria-hidden="true"><rect x="2" y="8" width="5" height="12" rx="1" fill="#ffb000"/><rect x="11" y="3" width="5" height="17" rx="1" fill="#26e07b"/><rect x="20" y="6" width="5" height="14" rx="1" fill="#3cc9d6"/></svg>SIGNAL</div>
     <span id="mode" class="badge">—</span>
+    <a class="navtab" href="./research.html">RESEARCH</a>
     <div class="spacer"></div>
     <div class="hmeta" id="meta"></div>
     <div class="clk" id="clock">--:--:--</div>
