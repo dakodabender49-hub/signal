@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SIGNAL Research — Equity Screening</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23080c15'/%3E%3Crect x='6' y='13' width='4' height='13' rx='1' fill='%23ffb000'/%3E%3Crect x='14' y='7' width='4' height='19' rx='1' fill='%2326e07b'/%3E%3Crect x='22' y='11' width='4' height='15' rx='1' fill='%235b8def'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#080c15; --panel:#0e1626; --panel2:#121c30; --line:#1d2942; --line2:#28385a;
+    --text:#dde5f0; --muted:#8595ac; --dim:#5a6b86;
+    --navy:#5b8def; --amber:#ffb000; --green:#37c97f; --red:#ff5d73; --cyan:#3cc9d6;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --display:"Space Grotesk","JetBrains Mono",var(--mono);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--navy);text-decoration:none}
+  .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:12px 22px;background:rgba(8,12,21,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line2)}
+  .brand{display:flex;align-items:center;font-family:var(--display);font-weight:700;letter-spacing:4px;font-size:16px}
+  .brand .r{color:var(--navy);margin-left:8px;font-weight:600;letter-spacing:3px;font-size:12px;border-left:1px solid var(--line2);padding-left:10px}
+  .brand svg{margin-right:9px}
+  .navlink{margin-left:auto;font-family:var(--display);font-size:12px;letter-spacing:1px;color:var(--muted);border:1px solid var(--line2);border-radius:3px;padding:6px 12px}
+  .navlink:hover{border-color:var(--navy);color:var(--text)}
+  .wrap{max-width:1000px;margin:0 auto;padding:30px 22px 80px}
+  h1.title{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:.5px;margin:8px 0 6px;color:#fff}
+  .sub{font-family:var(--display);font-size:16px;color:var(--navy);letter-spacing:1px;margin-bottom:8px}
+  .meta{color:var(--dim);font-size:12px;border-bottom:2px solid var(--navy);padding-bottom:14px}
+  .disc{margin:18px 0;background:rgba(255,176,0,.06);border:1px solid #4a3c12;border-left:3px solid var(--amber);border-radius:4px;padding:11px 14px;font-size:12px;color:#cbb986;line-height:1.6}
+  .disc b{color:var(--amber)}
+  h2.sec{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber);margin:38px 0 14px;display:flex;align-items:center;gap:11px}
+  h2.sec::before{content:"";width:3px;height:15px;background:var(--amber)}
+  h2.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+  p{margin:0 0 12px}
+  .lead{font-size:14.5px;color:#c7d2e0}
+  ul.themes{list-style:none;padding:0;margin:6px 0 0}
+  ul.themes li{position:relative;padding:7px 0 7px 22px;border-bottom:1px solid var(--line)}
+  ul.themes li::before{content:"";position:absolute;left:2px;top:14px;width:7px;height:7px;border-radius:1px;background:var(--navy)}
+  ul.themes b{color:#fff}
+  /* tables */
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);border-radius:4px}
+  table{width:100%;min-width:680px;border-collapse:collapse;font-size:12.5px}
+  thead th{background:var(--panel2);color:#cdd8ea;font-family:var(--display);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line2);font-weight:700;white-space:nowrap}
+  thead th.r{text-align:right}
+  thead th.c{text-align:center}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+  tbody tr:hover td{background:rgba(91,141,239,.07)}
+  td.r{text-align:right;font-variant-numeric:tabular-nums}
+  td.c{text-align:center}
+  .tk{color:var(--amber);font-weight:700;letter-spacing:.5px}
+  .tk a{color:var(--amber)}
+  .nm{color:var(--muted)}
+  .rev{color:var(--muted);font-size:11.5px}
+  .cagr{color:var(--navy);font-weight:700}
+  .pill{display:inline-block;font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px}
+  .bull{color:var(--green);font-weight:700}
+  .bear{color:var(--red);font-weight:700}
+  .note{color:var(--dim);font-size:11px;margin-top:8px;font-style:italic}
+  /* company cards */
+  .card{background:var(--panel);border:1px solid var(--line2);border-radius:5px;padding:16px 18px;margin:14px 0;scroll-margin-top:70px}
+  .card h3{font-family:var(--display);margin:0 0 4px;font-size:20px;color:#fff;letter-spacing:.5px}
+  .card h3 .cn{color:var(--muted);font-size:14px;font-weight:500;margin-left:8px}
+  .mrow{display:flex;flex-wrap:wrap;gap:7px 18px;padding:9px 0 12px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .mrow b{color:var(--text)}
+  .blk{margin:11px 0;font-size:13.5px;line-height:1.65}
+  .blk .lbl{font-family:var(--display);font-weight:700;color:var(--navy);font-size:12px;letter-spacing:.5px}
+  .blk.bullc .lbl{color:var(--green)} .blk.bearc .lbl{color:var(--red)} .blk.riskc .lbl{color:var(--amber)}
+  .tier{margin:12px 0;padding:13px 16px;border-radius:5px;border:1px solid var(--line2);background:var(--panel)}
+  .tier h4{font-family:var(--display);margin:0 0 5px;font-size:14px;letter-spacing:.5px}
+  .tier.t1 h4{color:var(--green)} .tier.t2 h4{color:var(--amber)} .tier.t3 h4{color:var(--red)}
+  .src{color:var(--dim);font-size:11.5px}
+  footer{margin-top:46px;border-top:1px solid var(--line2);padding-top:16px;color:var(--dim);font-size:11px;line-height:1.7}
+  @media(max-width:640px){ h1.title{font-size:26px} .wrap{padding:22px 15px 60px} }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><svg width="22" height="18" viewBox="0 0 28 22" aria-hidden="true"><rect x="2" y="8" width="5" height="12" rx="1" fill="#ffb000"/><rect x="11" y="3" width="5" height="17" rx="1" fill="#26e07b"/><rect x="20" y="6" width="5" height="14" rx="1" fill="#5b8def"/></svg>SIGNAL<span class="r">RESEARCH</span></div>
+    <a class="navlink" href="./index.html">Live Terminal &rarr;</a>
+  </div>
+  <div class="wrap">
+    <h1 class="title">Equity Screening Framework</h1>
+    <div class="sub">Mega-Cap Technology &amp; Semiconductors — Mag 7 + Micron + Intel</div>
+    <div class="meta">Prepared June 24, 2026 &nbsp;·&nbsp; Coverage: AAPL, MSFT, GOOGL, AMZN, NVDA, META, TSLA, MU, INTC</div>
+
+    <div class="disc"><b>Important:</b> This is an educational analytical framework, not personalized investment advice or a recommendation to buy or sell any security. It was prepared by an AI assistant, not a licensed financial advisor. Price targets, entry zones, and stop-losses are illustrative scenario analysis. Markets carry risk of loss — verify all figures against a live source and consult a licensed professional before investing.</div>
+
+    <h2 class="sec">Executive Summary</h2>
+    <p class="lead">This framework screens nine mega-cap technology and semiconductor names against five fundamental dimensions — valuation (trailing &amp; forward P/E), five-year revenue growth, balance-sheet health, dividend yield, and competitive moat — and overlays an analytical risk score (1&ndash;10), bull/bear scenario targets, and illustrative entry and stop levels.</p>
+    <ul class="themes">
+      <li><b>Valuation dispersion is enormous.</b> Forward P/Es run from ~10x (MU, on peak-cycle earnings) and ~18x (META) to 177x (TSLA) and a loss (INTC). The cheapest-looking names carry the most cyclical or execution risk.</li>
+      <li><b>Quality clusters in the middle of the table.</b> MSFT, GOOGL, AMZN, META and AAPL pair strong moats with double-digit (or buyback-augmented) growth and healthy balance sheets — the own-the-business cohort.</li>
+      <li><b>Highest-conviction value/growth is META; highest quality is MSFT; highest risk is TSLA, MU and INTC.</b> Risk scores reflect the range of outcomes, not company prestige.</li>
+    </ul>
+
+    <h2 class="sec">Summary Screen — Fundamentals</h2>
+    <div class="tscroll"><table id="fund"></table></div>
+    <div class="note">Figures as of June 22&ndash;24, 2026. Revenue shown 2021&rarr;latest fiscal year; NVDA on a January fiscal year (FY21&rarr;FY26); MU and INTC are cyclical.</div>
+
+    <h2 class="sec">Summary Screen — Moat, Risk &amp; Levels</h2>
+    <div class="tscroll"><table id="assess"></table></div>
+    <div class="note">Moat: Weak / Moderate / Strong. Risk: 1 (lowest) &ndash; 10 (highest). Targets are 12-month illustrative scenarios; entry zones and stops are technical/valuation-based, not advice. Click a ticker to jump to its analysis.</div>
+
+    <h2 class="sec">Company-by-Company Analysis</h2>
+    <div id="cards"></div>
+
+    <h2 class="sec">Portfolio-Construction Framework</h2>
+    <p>You are open to anything, so rather than a single buy list, here is a way to size these nine by risk tier. The key principle: position size should scale <i>inversely</i> with the risk score — do not equal-weight a 3/10 compounder and a 9/10 turnaround.</p>
+    <div class="tier t1"><h4>Tier 1 — Core compounders (own the business): MSFT, GOOGL, AMZN, AAPL</h4>Durable moats, double-digit (or buyback-driven) growth, strong balance sheets, reasonable-to-full valuations. The ballast of the book — appropriate for dollar-cost-averaging and larger weights.</div>
+    <div class="tier t2"><h4>Tier 2 — Growth at higher volatility: NVDA, META</h4>The best growth (NVDA) and the best value-growth trade-off (META) on the screen — but more cyclical and headline-sensitive. Meaningful but volatility-sized weights; prefer pullback entries.</div>
+    <div class="tier t3"><h4>Tier 3 — High-risk / tactical (cycle &amp; turnaround): TSLA, MU, INTC</h4>Outsized outcome ranges — extreme valuation (TSLA), peak-cycle commodity (MU), binary turnaround (INTC). If owned at all: small, clearly-sized positions with hard stops and valuation/cycle-aware entries.</div>
+    <p style="margin-top:12px;color:var(--muted);font-style:italic">Across all three tiers the disciplines are the same: enter in zones (not at any price), define the stop before you buy, and size each position so the stop-loss is a survivable loss for the portfolio.</p>
+
+    <h2 class="sec">Methodology &amp; Sources</h2>
+    <p class="src">Fundamental data (price, trailing &amp; forward P/E, debt/equity, dividend yield) reflects June 22&ndash;24, 2026 figures aggregated from public financial-data providers; revenue history is drawn from company filings (SEC 8-K/10-K) and aggregators. Moat ratings, risk scores, scenario targets and entry/stop levels are the author's analytical judgments. Sources: stockanalysis.com, macrotrends.net, financecharts.com, gurufocus.com, finance.yahoo.com, SEC EDGAR, companiesmarketcap.com, bullfincher.io, wallstreetzen.com.</p>
+
+    <footer>
+      <b style="color:var(--muted)">Disclaimer.</b> For educational and informational purposes only; not investment, financial, legal or tax advice, nor an offer or recommendation to buy or sell any security. Generated by an AI assistant, not a licensed advisor. All targets, entry zones and stops are hypothetical scenario illustrations, not predictions. All investing involves risk of loss including loss of principal. Independently verify every figure against a primary source and consult a qualified professional before investing.
+      <br><br>SIGNAL Research · v1 · built by Dakoda · <a href="./index.html">Live Terminal &rarr;</a>
+    </footer>
+  </div>
+
+<script>
+const R = [
+ {tk:"AAPL",nm:"Apple Inc.",px:"$294",peT:"36.0",peF:"32.6",rev:"$365.8B &rarr; $416.2B",cagr:"~3%/yr",de:"0.80 (net cash ~$62B)",div:"0.35%",moat:"Strong",risk:3,bull:"$340",bear:"$225",entry:"$255&ndash;$270",stop:"&lt;$240",
+  screen:"A premium 36x multiple for low-single-digit revenue growth. You are paying for the Services mix-shift, relentless buybacks (EPS outgrows revenue), and a fortress balance sheet (~$62B net cash). Quality is elite; top-line growth is pedestrian.",
+  moatTxt:"Ecosystem lock-in across ~2.2B active devices, an iconic brand, a high-margin Services flywheel, and real switching costs — among the most durable moats in mega-cap.",
+  bullTxt:"Services keeps compounding double-digits, an AI-driven iPhone upgrade cycle materializes, and buybacks keep lifting EPS — the 36x multiple holds.",
+  bearTxt:"The multiple compresses toward 26&ndash;28x on flat hardware, China share loss, and a perceived AI lag — great company, expensive for the growth.",
+  riskTxt:"Mega-cap quality and a net-cash balance sheet cap the downside. The risk here is valuation and decelerating growth, not solvency.",
+  entryTxt:"Accumulate on a pullback to the $255&ndash;$270 prior-breakout / rising-200-day zone; stop below $240 (loss of the base)."},
+ {tk:"MSFT",nm:"Microsoft Corp.",px:"$372",peT:"22.7",peF:"20.2",rev:"$168.1B &rarr; $281.7B",cagr:"~14%/yr",de:"~0.25",div:"0.97%",moat:"Strong",risk:3,bull:"$450",bear:"$310",entry:"$340&ndash;$355",stop:"&lt;$325",
+  screen:"The best blend in the group: double-digit revenue growth, a reasonable ~22x earnings, low leverage, and a growing dividend. Azure plus Copilot monetization is the engine; AI capex intensity is the watch-item.",
+  moatTxt:"Enterprise switching costs, Azure scale, and Office/Windows/Teams lock-in. Diversified across cloud, productivity and security.",
+  bullTxt:"Azure re-accelerates on AI, Copilot attach rises across the install base, and margins hold despite capex — re-rates to a mid-20s multiple.",
+  bearTxt:"Heavy AI capex compresses free cash flow and margins while Azure growth cools — de-rates to the high-teens.",
+  riskTxt:"The highest-quality, most-diversified name on this list, at an undemanding valuation relative to growth. Lowest fundamental risk here.",
+  entryTxt:"Add in the $340&ndash;$355 area; stop below $325."},
+ {tk:"GOOGL",nm:"Alphabet Inc.",px:"$346",peT:"28.1",peF:"29.4",rev:"$257.6B &rarr; $402.8B",cagr:"~12%/yr",de:"0.20 (net cash ~$31B)",div:"0.25%",moat:"Strong",risk:4,bull:"$410",bear:"$270",entry:"$300&ndash;$320",stop:"&lt;$285",
+  screen:"Double-digit growth at a market-like multiple; first-ever $400B revenue year with Cloud near $59B and accelerating. The central debate is Search durability versus AI-assistant disruption.",
+  moatTxt:"Search/data dominance, YouTube, Android and Cloud scale — powerful, but uniquely exposed to a credible 'AI eats Search' narrative and ongoing antitrust scrutiny.",
+  bullTxt:"Cloud/AI compounds, Gemini monetizes, and Search proves resilient — the multiple re-rates.",
+  bearTxt:"AI assistants erode Search economics, antitrust remedies bite, and ad spend turns cyclical.",
+  riskTxt:"Quality balance sheet and growth, but the only mega-cap facing a genuine disruption-of-the-core story — a notch riskier than MSFT.",
+  entryTxt:"Accumulate $300&ndash;$320; stop below $285."},
+ {tk:"AMZN",nm:"Amazon.com Inc.",px:"$233",peT:"29.2",peF:"29.3",rev:"$469.8B &rarr; $716.9B",cagr:"~11%/yr",de:"0.53",div:"None",moat:"Strong",risk:4,bull:"$290",bear:"$185",entry:"$205&ndash;$218",stop:"&lt;$195",
+  screen:"A reasonable ~29x on a re-accelerating margin story. AWS (&gt;$110B run-rate) plus retail-margin expansion are the levers, and the stock has lagged peers (+11% over 52 weeks) — arguably the 'catch-up' candidate.",
+  moatTxt:"Logistics scale, AWS, the Prime ecosystem and a third-party marketplace — a wide, multi-engine moat.",
+  bullTxt:"AWS re-accelerates on AI workloads and retail operating margins keep climbing — operating leverage shines.",
+  bearTxt:"Consumer demand softens, AWS growth disappoints versus Azure/GCP, and capex weighs on free cash flow.",
+  riskTxt:"A premier franchise, but more consumer-cyclical than MSFT/GOOGL and carrying some leverage.",
+  entryTxt:"Add $205&ndash;$218; stop below $195."},
+ {tk:"NVDA",nm:"NVIDIA Corp.",px:"$209",peT:"32.0",peF:"21.2",rev:"$16.7B &rarr; $215.9B (FY)",cagr:"~67%/yr",de:"0.07",div:"0.47%",moat:"Strong",risk:6,bull:"$285",bear:"$150",entry:"$175&ndash;$195",stop:"&lt;$165",
+  screen:"The growth outlier — a ~67% five-year revenue CAGR, yet only ~21x forward earnings (reasonable IF estimates hold). Everything hinges on the durability of AI-infrastructure spending.",
+  moatTxt:"The CUDA software ecosystem is the real moat — a full-stack platform with ~80%+ AI-accelerator share and deep developer lock-in.",
+  bullTxt:"The AI capex super-cycle persists, Blackwell and successors ramp, and today's forward estimates prove conservative.",
+  bearTxt:"Hyperscaler capex digestion, rising custom-silicon (ASIC) competition, and any estimate cut compress growth and multiple together — the classic great company in a dangerous cycle.",
+  riskTxt:"The best business here, but cyclical end-demand, customer concentration and high embedded expectations make it volatile. A 6 reflects demand cyclicality, not company quality.",
+  entryTxt:"Prefer a pullback into $175&ndash;$195 (rising support) rather than chasing; stop below $165."},
+ {tk:"META",nm:"Meta Platforms Inc.",px:"$564",peT:"20.4",peF:"17.9",rev:"$117.9B &rarr; $201.0B",cagr:"~14%/yr",de:"0.36",div:"0.33%",moat:"Strong",risk:5,bull:"$680",bear:"$440",entry:"$490&ndash;$520",stop:"&lt;$470",
+  screen:"Arguably the best value on the screen — ~18x forward on ~14% revenue growth (and 20%+ recent acceleration). The discount reflects Reality Labs losses and platform/regulatory risk.",
+  moatTxt:"Network effects across 3B+ daily users plus unrivaled ad-targeting data and scale — offset by Reality Labs cash burn and a heavy regulatory overhang.",
+  bullTxt:"Ad strength continues, AI lifts engagement and ad efficiency, and Reality Labs losses moderate — re-rates toward 22&ndash;24x.",
+  bearTxt:"Ad spend turns cyclical, Reality Labs over-spends again, regulation tightens, and AI-generated content saturates the feed.",
+  riskTxt:"Strong and cheap, but a history of optically-aggressive spending cycles and a binary metaverse bet keep the risk moderate.",
+  entryTxt:"Add $490&ndash;$520; stop below $470."},
+ {tk:"TSLA",nm:"Tesla, Inc.",px:"$405",peT:"371",peF:"177",rev:"$53.8B &rarr; $94.8B (declining)",cagr:"~15%/yr*",de:"0.19 (net cash ~$29B)",div:"None",moat:"Moderate",risk:9,bull:"$560",bear:"$230",entry:"$300&ndash;$330",stop:"&lt;$280",
+  screen:"The valuation outlier — 177x forward earnings on revenue that just turned negative (&minus;3% in 2025, after peaking in 2024). The price is an option on robotaxi/FSD/AI/energy, not on current auto economics. By any traditional screen it is fundamentally expensive.",
+  moatTxt:"Brand, the Supercharger network and FSD data are real assets, but autos are commoditizing and competition (BYD, legacy OEMs) is intense. The durable moat is, so far, unproven.",
+  bullTxt:"Robotaxi/FSD inflects, energy storage scales, and AI/Optimus optionality re-rates an already-rich multiple even higher.",
+  bearTxt:"Auto margins compress, the robotaxi timeline slips again, and the multiple resets toward fundamentals — outsized downside from this starting point.",
+  riskTxt:"Extreme valuation, a decelerating core business and heavy narrative-dependence produce a very wide range of outcomes. *Revenue CAGR is positive over five years but turned negative in the latest year.",
+  entryTxt:"Valuation-sensitive: a technical pullback to $300&ndash;$330 offers materially better risk/reward than the current level. Stop below $280. For most mandates, a small, volatility-sized position — if any."},
+ {tk:"MU",nm:"Micron Technology",px:"$1,103",peT:"49.5",peF:"10.1",rev:"$37.4B FY25 ($58B TTM)",cagr:"~8%/yr (cyclical)",de:"0.15",div:"0.06%",moat:"Weak&ndash;Moderate",risk:8,bull:"$1,400",bear:"$650",entry:"$850&ndash;$950",stop:"&lt;$800",
+  screen:"A textbook cyclical: a ~10x forward multiple versus ~50x trailing tells you the market expects an earnings explosion from the HBM / AI-memory super-cycle. The stock is up ~750% in a year. Cheap on forward earnings — but those earnings are a cyclical peak.",
+  moatTxt:"DRAM and NAND are commodities. The only edge is the three-player DRAM oligopoly (Micron / Samsung / SK Hynix) supporting pricing discipline. There is no durable, company-specific moat.",
+  bullTxt:"AI demand for high-bandwidth memory keeps the market tight, pricing power persists, and forward EPS materializes — the 10x forward proves genuinely cheap.",
+  bearTxt:"Memory is the most cyclical corner of semis — when the cycle rolls over, estimates AND the multiple fall together. After +750%, the danger is being long at the top.",
+  riskTxt:"A commodity cyclical with no moat, a parabolic run, and peak-cycle earnings — high risk despite the optically cheap forward multiple.",
+  entryTxt:"Do not chase. Prefer a pullback to $850&ndash;$950 or a cycle-confirmed base; stop below $800. High-volatility — size accordingly."},
+ {tk:"INTC",nm:"Intel Corp.",px:"$134",peT:"n/m (loss)",peF:"~114",rev:"$79.0B &rarr; ~$53B (declining)",cagr:"~&minus;9%/yr",de:"net debt ~$12B",div:"None (suspended)",moat:"Weak",risk:9,bull:"$175",bear:"$85",entry:"$110&ndash;$125",stop:"&lt;$100",
+  screen:"A turnaround / special-situation, not a screen pass: unprofitable (no meaningful trailing P/E), revenue down a third from its 2021 peak, the dividend eliminated, more debt than cash, and negative operating margins. A binary bet on a manufacturing turnaround (foundry / 18A) plus government and AI tailwinds.",
+  moatTxt:"Process leadership has been lost to TSMC and share to AMD/ARM. The x86 franchise and US-fab footprint retain value, but the competitive moat has eroded badly.",
+  bullTxt:"The 18A process ramps on schedule, the foundry wins external customers, and an AI-PC refresh plus government support drive a credible recovery — re-rates on 'the turnaround is working.'",
+  bearTxt:"The foundry keeps burning cash, share losses continue, and capital raises dilute shareholders — a value trap.",
+  riskTxt:"Unprofitable, leveraged and execution-dependent, with a wide outcome range that includes further impairment and dilution.",
+  entryTxt:"Turnarounds reward patience: accumulate $110&ndash;$125 only on evidence of execution; stop below $100. Speculative sizing only."},
+];
+const moatColor=m=>m==="Strong"?"var(--green)":(m==="Weak"?"var(--red)":"var(--amber)");
+const moatBg=m=>m==="Strong"?"rgba(55,201,127,.12)":(m==="Weak"?"rgba(255,93,115,.12)":"rgba(255,176,0,.12)");
+const riskColor=r=>r<=3?"var(--green)":(r<=6?"var(--amber)":"var(--red)");
+
+function fund(){
+  let h="<thead><tr><th>Ticker</th><th>Company</th><th class='r'>Price</th><th class='r'>P/E TTM</th><th class='r'>P/E Fwd</th><th>5-Yr Revenue (CAGR)</th><th>Debt / Equity</th><th class='r'>Div Yield</th></tr></thead><tbody>";
+  h+=R.map(c=>`<tr><td class="tk"><a href="#${c.tk}">${c.tk}</a></td><td class="nm">${c.nm}</td><td class="r">${c.px}</td><td class="r">${c.peT}</td><td class="r">${c.peF}</td><td class="rev">${c.rev} <span class="cagr">(${c.cagr})</span></td><td class="rev">${c.de}</td><td class="r">${c.div}</td></tr>`).join("");
+  document.getElementById("fund").innerHTML=h+"</tbody>";
+}
+function assess(){
+  let h="<thead><tr><th>Ticker</th><th>Moat</th><th class='c'>Risk</th><th class='r'>Bull</th><th class='r'>Bear</th><th>Entry Zone</th><th>Stop</th></tr></thead><tbody>";
+  h+=R.map(c=>`<tr><td class="tk"><a href="#${c.tk}">${c.tk}</a></td><td><span class="pill" style="color:${moatColor(c.moat)};background:${moatBg(c.moat)}">${c.moat}</span></td><td class="c"><b style="color:${riskColor(c.risk)}">${c.risk}/10</b></td><td class="r bull">${c.bull}</td><td class="r bear">${c.bear}</td><td class="rev">${c.entry}</td><td class="rev">${c.stop}</td></tr>`).join("");
+  document.getElementById("assess").innerHTML=h+"</tbody>";
+}
+function cards(){
+  document.getElementById("cards").innerHTML=R.map(c=>`
+  <div class="card" id="${c.tk}">
+    <h3>${c.tk}<span class="cn">${c.nm}</span></h3>
+    <div class="mrow"><span>Price <b>${c.px}</b></span><span>P/E <b>${c.peT} / ${c.peF} fwd</b></span><span>D/E <b>${c.de}</b></span><span>Yield <b>${c.div}</b></span><span>Moat <b style="color:${moatColor(c.moat)}">${c.moat}</b></span><span>Risk <b style="color:${riskColor(c.risk)}">${c.risk}/10</b></span></div>
+    <div class="blk"><span class="lbl">The screen. </span>${c.screen}</div>
+    <div class="blk"><span class="lbl">Moat — ${c.moat}. </span>${c.moatTxt}</div>
+    <div class="blk bullc"><span class="lbl">Bull case &rarr; ${c.bull}. </span>${c.bullTxt}</div>
+    <div class="blk bearc"><span class="lbl">Bear case &rarr; ${c.bear}. </span>${c.bearTxt}</div>
+    <div class="blk riskc"><span class="lbl">Risk ${c.risk}/10. </span>${c.riskTxt}</div>
+    <div class="blk"><span class="lbl">Entry &amp; stop. </span>${c.entryTxt}</div>
+  </div>`).join("");
+}
+fund(); assess(); cards();
+</script>
+</body>
+</html>
