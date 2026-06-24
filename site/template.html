@@ -23,6 +23,7 @@
        background:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px) 0 0/100% 30px, var(--bg);}
   .wrap{max-width:1240px;margin:0 auto;padding:16px 16px 70px}
   .num{font-variant-numeric:tabular-nums}
+  .livetag{display:inline-block;font-size:8px;font-weight:700;letter-spacing:1px;color:#0a0a0a;background:var(--cyan);border-radius:2px;padding:1px 4px;margin-left:5px;vertical-align:1px}
   /* command bar */
   .cmdbar{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-top:2px solid var(--amber);
           background:var(--panel);padding:10px 14px;border-radius:3px}
@@ -253,6 +254,11 @@ const $=id=>document.getElementById(id);
 const f=x=>(x===null||x===undefined)?"—":Number(x).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 const sg=x=>(x>0?"+":"")+x;
 const col=x=>x>0?"var(--green)":(x<0?"var(--red)":"var(--muted)");
+function liveOn(i){return !!(i&&i.live&&i.live.price!=null);}
+function lpx(i){return liveOn(i)?i.live.price:(i&&i.ohlc?i.ohlc.close:null);}
+function lchg(i){return liveOn(i)?i.live.change_pct:(i?i.change_pct:0);}
+function lph(i){const p=liveOn(i)?(i.live.phase||""):"";return p==="pre-market"?"PRE-MKT":p==="after-hours"?"AFT-HRS":p==="live"?"LIVE":"";}
+function ltag(i){const t=lph(i);return t?`<span class="livetag">${t}</span>`:"";}
 function fmtCap(v){if(!v)return "";const a=Math.abs(v);if(a>=1e12)return "$"+(v/1e12).toFixed(2)+"T";if(a>=1e9)return "$"+(v/1e9).toFixed(1)+"B";if(a>=1e6)return "$"+(v/1e6).toFixed(0)+"M";return "$"+v;}
 
 function heatColor(p){
@@ -266,12 +272,14 @@ function renderRegime(){
   const el=$("hregime"); if(!el) return;
   const vix=(S.backdrop||[]).find(b=>b.name==="VIX");
   const reg=vix?(vix.value<15?"CALM":vix.value>20?"ELEVATED":"NORMAL"):"—";
-  el.innerHTML=`<span class="rword">${reg}</span><span class="rsub">TAPE${vix?` · VIX ${vix.value}`:""}</span>`;
+  const ph=((S.instruments||[]).map(x=>x.live&&x.live.phase).find(Boolean))||"";
+  const phl=ph==="pre-market"?" · PRE-MARKET":ph==="after-hours"?" · AFTER-HOURS":ph==="live"?" · LIVE":"";
+  el.innerHTML=`<span class="rword">${reg}</span><span class="rsub">TAPE${vix?` · VIX ${vix.value}`:""}${phl}</span>`;
 }
 function renderGauges(){
   const el=$("gauges"); if(!el) return;
   const ins=S.instruments||[]; const rows=[];
-  ["SPY","QQQ"].forEach(s=>{const i=ins.find(x=>x.symbol===s&&x.verified);if(i)rows.push([s,f(i.ohlc.close),sg(i.change_pct)+"%",col(i.change_pct)]);});
+  ["SPY","QQQ"].forEach(s=>{const i=ins.find(x=>x.symbol===s&&x.verified);if(i)rows.push([s,f(lpx(i)),sg(lchg(i))+"%",col(lchg(i))]);});
   (S.backdrop||[]).forEach(b=>rows.push([b.name,b.value,sg(b.change),col(b.change)]));
   el.innerHTML=rows.map(r=>`<div class="grow"><span class="gk">${r[0]}</span><span class="gv num">${r[1]}</span><span class="gd num" style="color:${r[3]}">${r[2]}</span></div>`).join("");
 }
@@ -449,7 +457,7 @@ function icard(i){
     <div class="read" style="margin-top:10px;color:var(--amber)">Data withheld — feed unverified. </div></div>`;
   return `<div class="icard" onclick="openM(${idx})">
     <div class="top"><span class="sym">${i.symbol}</span><span class="nm">${i.name}</span>
-      <span class="px num">${f(i.ohlc.close)}</span><span class="pc num" style="color:${col(i.change_pct)}">${sg(i.change_pct)}%</span></div>
+      <span class="px num">${f(lpx(i))}</span><span class="pc num" style="color:${col(lchg(i))}">${sg(lchg(i))}%</span>${ltag(i)}</div>
     <div style="margin-top:7px"><span class="tag ${i.structure}">${i.structure}</span></div>
     <div class="ichart" id="ic-${i.symbol}"></div>
     <div class="read">${i.read}</div>
@@ -483,14 +491,14 @@ function renderWatchlist(){
 function tile(i){
   const idx=insts_index(i);
   if(!i.verified) return `<tr class="dr na"><td class="sy">${i.symbol}</td><td class="nm">${i.name||""}</td><td class="r" colspan="6">data withheld — unverified</td></tr>`;
-  const hc=heatColor(i.change_pct);
+  const hc=heatColor(lchg(i));
   const pos=(i.fundamentals&&i.fundamentals.pos52!=null)?(i.fundamentals.pos52+"%"):"—";
   return `<tr class="dr" onclick="openM(${idx})">
     <td class="sy">${i.symbol}</td>
     <td class="nm">${i.name||""}</td>
     <td class="spk">${sparkline(i.history)}</td>
-    <td class="r num">${f(i.ohlc.close)}</td>
-    <td class="r num chg" style="color:${col(i.change_pct)};background:${hc.bg}">${sg(i.change_pct)}%</td>
+    <td class="r num">${f(lpx(i))}${ltag(i)}</td>
+    <td class="r num chg" style="color:${col(lchg(i))};background:${hc.bg}">${sg(lchg(i))}%</td>
     <td><span class="tag ${i.structure}">${i.structure}</span></td>
     <td class="r num dim2">${f(i.atr14)}</td>
     <td class="r num dim2">${pos}</td></tr>`;
@@ -502,7 +510,7 @@ function openM(ix){ openInstrument((S.instruments||[])[ix]); }
 function openInstrument(i){
   if(!i||!i.verified) return;
   $("mtitle").textContent=`${i.symbol} · ${i.name}`;
-  $("msub").innerHTML=`<span class="tag ${i.structure}">${i.structure}</span> &nbsp; ${f(i.ohlc.close)} <span style="color:${col(i.change_pct)}">${sg(i.change_pct)}%</span> · ATR ${f(i.atr14)} · ${i.as_of}`;
+  $("msub").innerHTML=`<span class="tag ${i.structure}">${i.structure}</span> &nbsp; ${f(lpx(i))} <span style="color:${col(lchg(i))}">${sg(lchg(i))}%</span>${ltag(i)} ${liveOn(i)?`<span class="dim">&middot; prior close ${f(i.ohlc.close)}</span>`:""} &middot; ATR ${f(i.atr14)} &middot; ${i.as_of}`;
   $("mread").textContent=i.read;
   (function(){const fu=i.fundamentals;if(!fu){$("mfund").innerHTML="";return;}const p=[];if(fu.earnings_date)p.push("Earnings "+fu.earnings_date);if(fu.pe)p.push("P/E "+fu.pe+(fu.forward_pe?(" (fwd "+fu.forward_pe+")"):""));if(fu.market_cap)p.push("Mkt cap "+fmtCap(fu.market_cap));if(fu.rev_growth!=null)p.push("Rev "+sg(fu.rev_growth)+"%");if(fu.eps_growth!=null)p.push("EPS "+sg(fu.eps_growth)+"%");if(fu.rs_3m!=null)p.push("RS "+sg(fu.rs_3m)+"% vs SPY 3m");if(fu.pos52!=null)p.push("52wk "+fu.pos52+"%");$("mfund").innerHTML=p.length?('<div style="margin-top:10px;padding:10px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:2px;font-size:12px;color:#aeb9c4;line-height:1.7;"><b style="color:var(--cyan);font-size:9.5px;text-transform:uppercase;letter-spacing:1.5px;">Fundamentals</b><br>'+p.join(" &middot; ")+'</div>'):"";})();
   $("mtrigs").innerHTML=`<div class="trig b"><span class="l">Bull trigger</span>${i.bull_trigger}</div><div class="trig s"><span class="l">Bear trigger</span>${i.bear_trigger}</div>`;
