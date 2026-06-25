@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SIGNAL Earnings &mdash; Micron (MU) FQ3'26</title>
+<title>SIGNAL Earnings &mdash; Micron (MU) FQ3'26 Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -35,27 +35,25 @@
   h2.sec{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin:38px 0 14px;display:flex;align-items:center;gap:11px}
   h2.sec::before{content:"";width:3px;height:15px;background:var(--cyan)}
   h2.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+  h2.sec.before-tag::before{background:var(--amber)} h2.sec.before-tag{color:var(--amber)}
   p{margin:0 0 12px}
   .lead{font-size:14.5px;color:#c7d2e0}
   b.up,.up{color:var(--green)} b.down,.down{color:var(--red)}
-  /* event hero */
   .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin:18px 0 6px}
   @media(max-width:760px){.hero{grid-template-columns:1fr}}
   .herocard{background:linear-gradient(160deg,#0f1b2e,#0b1320);border:1px solid var(--line2);border-radius:7px;padding:18px 20px}
-  .evtag{display:inline-block;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:1.5px;color:#08121b;background:var(--cyan);border-radius:10px;padding:3px 10px;text-transform:uppercase}
+  .evtag{display:inline-block;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:1.5px;color:#08121b;background:var(--green);border-radius:10px;padding:3px 10px;text-transform:uppercase}
   .heroname{font-family:var(--display);font-size:30px;font-weight:700;color:#fff;margin:11px 0 2px;letter-spacing:.5px}
   .heroname span{color:var(--muted);font-size:15px;font-weight:500;margin-left:8px}
-  .heropx{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;margin-top:6px}
-  .heropx .d{font-size:12px;color:var(--dim);font-weight:500;margin-left:8px}
-  .herowhen{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.7}
-  .herowhen b{color:var(--text)}
+  .herobeat{font-family:var(--display);font-size:15px;font-weight:600;color:var(--green);margin-top:8px}
+  .heropx{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .heropx b{color:#fff}
   .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .stat{background:var(--panel);border:1px solid var(--line2);border-radius:6px;padding:11px 13px}
   .stat .k{font-family:var(--display);font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
   .stat .v{font-family:var(--display);font-size:19px;font-weight:700;color:#fff;margin-top:3px}
   .stat .s{font-size:10.5px;color:var(--muted);margin-top:1px}
   .stat.amber .v{color:var(--amber)} .stat.cyan .v{color:var(--cyan)} .stat.green .v{color:var(--green)}
-  /* tables */
   .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);border-radius:4px}
   table{width:100%;min-width:640px;border-collapse:collapse;font-size:12.5px}
   thead th{background:var(--panel2);color:#cdd8ea;font-family:var(--display);font-size:10px;letter-spacing:1.1px;text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line2);font-weight:700;white-space:nowrap}
@@ -67,12 +65,11 @@
   td.r{text-align:right;font-variant-numeric:tabular-nums} td.c{text-align:center}
   .q{color:var(--cyan);font-weight:700} .nm{color:var(--muted)}
   .beat{color:var(--green);font-weight:700} .miss{color:var(--red);font-weight:700}
-  .hl{background:rgba(60,201,214,.07)}
+  .hl{background:rgba(55,201,127,.09)} .hlg{background:rgba(255,176,0,.07)}
   .gd{color:var(--amber);font-weight:700}
   .note{color:var(--dim);font-size:11px;margin-top:8px;font-style:italic}
   .pill{display:inline-block;font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px}
   .pill.beat{color:var(--green);background:rgba(55,201,127,.12)} .pill.guide{color:var(--amber);background:rgba(255,176,0,.12)}
-  /* blocks / cards */
   .card{background:var(--panel);border:1px solid var(--line2);border-radius:6px;padding:15px 17px;margin:13px 0}
   .blk{margin:11px 0;font-size:13.5px;line-height:1.65}
   .blk .lbl{font-family:var(--display);font-weight:700;color:var(--cyan);font-size:12px;letter-spacing:.4px}
@@ -89,8 +86,6 @@
   .bull h4{color:var(--green)} .bear h4{color:var(--red)}
   .scen h4 .t{font-size:16px;font-weight:700}
   .scen p{font-size:12.8px;color:#c2cee0;margin:0}
-  .after{border:1px dashed var(--line2);border-radius:7px;padding:18px 20px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px)}
-  .after .lbl2{font-family:var(--display);font-weight:700;color:var(--amber);letter-spacing:1px;font-size:12px}
   .src{color:var(--dim);font-size:11.5px}
   footer{margin-top:46px;border-top:1px solid var(--line2);padding-top:16px;color:var(--dim);font-size:11px;line-height:1.7}
   @media(max-width:640px){h1.title{font-size:25px}.wrap{padding:22px 15px 60px}.heroname{font-size:25px}}
@@ -102,149 +97,132 @@
     <div class="navwrap"><a class="navlink" href="./research.html">Research</a><a class="navlink" href="./index.html">Live Terminal &rarr;</a></div>
   </div>
   <div class="wrap">
-    <h1 class="title">Earnings Analysis &mdash; Micron Technology</h1>
-    <div class="sub">MU &middot; Fiscal Q3 2026 Preview &middot; Reports after the close TODAY</div>
-    <div class="meta">Prepared June 24, 2026 (pre-market) &nbsp;&middot;&nbsp; Memory &amp; Storage / Semiconductors &nbsp;&middot;&nbsp; Report due ~4:05 PM ET, call 4:30 PM ET</div>
+    <h1 class="title">Earnings Review &mdash; Micron Technology</h1>
+    <div class="sub">MU &middot; Fiscal Q3 2026 &middot; Reported June 24, 2026 (after close)</div>
+    <div class="meta">Before &amp; after the print &nbsp;&middot;&nbsp; Memory &amp; Storage / Semiconductors &nbsp;&middot;&nbsp; Updated June 25, 2026</div>
 
-    <div class="disc"><b>Important:</b> Educational earnings analysis, not investment advice or a recommendation to buy or sell any security. Prepared by an AI assistant, not a licensed analyst. Historical figures are from Micron's SEC 8-K filings; consensus, implied move and scenario targets are illustrative and will differ by source. Markets carry risk of loss &mdash; verify independently before acting.</div>
+    <div class="disc"><b>Important:</b> Educational earnings analysis, not investment advice or a recommendation. Prepared by an AI assistant, not a licensed analyst. Reported figures are from Micron's SEC 8-K (filed Jun 24, 2026); pre-print consensus, implied move and the stock reaction are from public market data and vary by source. Markets carry risk of loss &mdash; verify independently before acting.</div>
 
     <div class="hero">
       <div class="herocard">
-        <span class="evtag">&#9679; Reports today &middot; after close</span>
+        <span class="evtag">&#9679; Reported &middot; Jun 24, after close</span>
         <div class="heroname">MU <span>Micron Technology</span></div>
-        <div class="heropx" id="muLive">~$1,052 <span class="d">Jun 23 close (verified feed)</span></div>
-        <div class="herowhen">Results expected <b>~4:05 PM ET</b>, conference call <b>4:30 PM ET</b> (2:30 PM MT).<br>Fiscal Q3 2026 ended late May; this is the AI-memory supercycle's most-watched print.</div>
+        <div class="herobeat">Blowout: beat on every line &mdash; and guided FQ4 to $50B.</div>
+        <div class="heropx">Pre-print: ~$1,047 close (Jun 24). Reaction: <b class="up">+13&ndash;15% after hours</b> toward <b>~$1,186</b>.<br><span id="muLive">Live quote loads from the verified feed&hellip;</span></div>
       </div>
       <div class="statgrid">
-        <div class="stat cyan"><div class="k">Street consensus EPS</div><div class="v">~$19.9</div><div class="s">range $19.7&ndash;$20.2 (non-GAAP)</div></div>
-        <div class="stat cyan"><div class="k">Street revenue</div><div class="v">~$34.5B</div><div class="s">+271% YoY vs $9.30B</div></div>
-        <div class="stat amber"><div class="k">Company guide</div><div class="v">$19.15</div><div class="s">rev $33.5B &middot; GM ~81%</div></div>
-        <div class="stat green"><div class="k">EPS beat streak</div><div class="v">8 Q</div><div class="s">4/4 last year</div></div>
-        <div class="stat"><div class="k">Options implied move</div><div class="v">~&plusmn;12%</div><div class="s">~$926&ndash;$1,178 band</div></div>
-        <div class="stat"><div class="k">Day-after history</div><div class="v down">6 of 8 down</div><div class="s">avg &minus;1.7% despite beats</div></div>
+        <div class="stat green"><div class="k">Revenue</div><div class="v">$41.46B</div><div class="s">vs ~$34.5B est &middot; <b class="up">+20%</b></div></div>
+        <div class="stat green"><div class="k">Non-GAAP EPS</div><div class="v">$25.11</div><div class="s">vs ~$19.9 est &middot; <b class="up">+26%</b></div></div>
+        <div class="stat green"><div class="k">Gross margin</div><div class="v">84.9%</div><div class="s">record &middot; guide was ~81%</div></div>
+        <div class="stat amber"><div class="k">FQ4'26 guide</div><div class="v">$50.0B</div><div class="s">EPS $31.00 &middot; GM ~86%</div></div>
+        <div class="stat cyan"><div class="k">Strategic agreements</div><div class="v">~$100B</div><div class="s">16 multi-year customer deals</div></div>
+        <div class="stat"><div class="k">Adj. free cash flow</div><div class="v">$18.3B</div><div class="s">op cash flow $25.4B</div></div>
       </div>
     </div>
 
-    <h2 class="sec">The Setup</h2>
-    <p class="lead">Micron enters its fiscal Q3 print as the purest large-cap proxy for the AI-memory shortage. High-bandwidth memory (HBM) is reportedly sold out through 2026 on multi-year hyperscaler agreements, DRAM and NAND pricing is climbing, and gross margin has roughly doubled in four quarters (39% &rarr; ~81% guided). The stock has compounded violently &mdash; up roughly 750% in a year to ~$1,052. That sets a high bar: management has guided Q3 to <b class="gd">record $33.5B revenue, ~81% gross margin, and $19.15 EPS</b>, and the Street sits just above. The debate is no longer "is it good" &mdash; it is "how much of the good news is already in the price," and whether the FQ4 guide can extend a parabolic run.</p>
-
-    <h2 class="sec">FQ3'26 &mdash; Consensus vs. Company Guidance</h2>
+    <h2 class="sec">The Print &mdash; What Happened</h2>
+    <p class="lead">Micron didn't just beat &mdash; it cleared its own guide by ~24% on revenue and ~31% on EPS, posted a <b>record 84.9% gross margin</b>, and then raised the bar dramatically with an <b class="gd">FQ4 guide of $50.0B revenue and $31.00 EPS</b>. Management also disclosed <b>16 Strategic Customer Agreements representing ~$100B of minimum contracted revenue</b> &mdash; reframing a notoriously cyclical business as something with multi-year visibility. The stock, which had drifted into the print, jumped 13&ndash;15% after hours.</p>
     <div class="tscroll"><table>
-      <thead><tr><th>Metric</th><th class="r">Company guide</th><th class="r">Street consensus</th><th class="r">Prior year (FQ3'25)</th><th class="r">Implied YoY</th></tr></thead>
+      <thead><tr><th>Metric</th><th class="r">Guide</th><th class="r">Street</th><th class="r">Actual</th><th class="c">Result</th></tr></thead>
       <tbody>
-        <tr><td>Revenue</td><td class="r gd">$33.5B &plusmn;$0.75B</td><td class="r">~$34.5B</td><td class="r">$9.30B</td><td class="r up">~+271%</td></tr>
-        <tr><td>Non-GAAP EPS</td><td class="r gd">$19.15 &plusmn;$0.40</td><td class="r">~$19.7&ndash;$20.2</td><td class="r">$1.91</td><td class="r up">~+10x</td></tr>
-        <tr><td>Non-GAAP gross margin</td><td class="r gd">~81%</td><td class="r">~80&ndash;81%</td><td class="r">39.0%</td><td class="r up">+42 pts</td></tr>
-        <tr><td>Operating expenses (NG)</td><td class="r">~$1.40B</td><td class="r">~$1.40B</td><td class="r">$1.13B</td><td class="r">+24%</td></tr>
+        <tr class="hl"><td>Revenue</td><td class="r">$33.5B</td><td class="r">~$34.5B</td><td class="r"><b>$41.46B</b></td><td class="c"><span class="pill beat">+20% BEAT</span></td></tr>
+        <tr class="hl"><td>Non-GAAP EPS</td><td class="r">$19.15</td><td class="r">~$19.9</td><td class="r"><b>$25.11</b></td><td class="c"><span class="pill beat">+26% BEAT</span></td></tr>
+        <tr class="hl"><td>Non-GAAP gross margin</td><td class="r">~81%</td><td class="r">~81%</td><td class="r"><b>84.9%</b></td><td class="c"><span class="pill beat">RECORD</span></td></tr>
+        <tr><td>Operating cash flow</td><td class="r nm">&mdash;</td><td class="r nm">&mdash;</td><td class="r">$25.39B</td><td class="c nm">+113% QoQ</td></tr>
+        <tr><td>Adjusted free cash flow</td><td class="r nm">&mdash;</td><td class="r nm">&mdash;</td><td class="r">$18.30B</td><td class="c nm">&mdash;</td></tr>
+        <tr class="hlg"><td>FQ4'26 revenue guide</td><td class="r nm">&mdash;</td><td class="r nm">&mdash;</td><td class="r gd">$50.0B &plusmn;$1B</td><td class="c"><span class="pill guide">RAISE</span></td></tr>
+        <tr class="hlg"><td>FQ4'26 EPS guide</td><td class="r nm">&mdash;</td><td class="r nm">&mdash;</td><td class="r gd">$31.00 &plusmn;$1</td><td class="c"><span class="pill guide">RAISE</span></td></tr>
+        <tr><td>Stock reaction (after hours)</td><td class="r nm">implied ~&plusmn;12%</td><td class="r nm">&mdash;</td><td class="r up">+13&ndash;15%</td><td class="c"><span class="pill beat">UP</span></td></tr>
       </tbody>
     </table></div>
-    <div class="note">Guidance is from Micron's FQ2'26 release (Mar 18, 2026). Street consensus aggregated from pre-earnings previews (~31 analysts); the EPS estimate range was unusually wide ($7.53&ndash;$24.08), reflecting genuine uncertainty about peak-cycle pricing.</div>
+    <div class="note">Actuals from Micron's FQ3'26 SEC 8-K (period ended May 28, 2026). The "beat-and-fade" history (down the day after in 6 of 8 prior reports) did <b>not</b> repeat &mdash; the size of the beat plus the $50B guide and the $100B contracted-revenue disclosure overwhelmed the sell-the-news reflex.</div>
+
+    <h2 class="sec before-tag">Going In &mdash; The Setup (before)</h2>
+    <p>Micron entered the print as the purest large-cap proxy for the AI-memory shortage: HBM reportedly sold out through 2026, DRAM/NAND pricing climbing, and gross margin already up from ~39% to a guided ~81% in a year. The stock had compounded ~750% to ~$1,052. The Street sat at ~$19.9 EPS / ~$34.5B revenue versus the company's own guide of $19.15 / $33.5B / ~81% GM. Options priced a large ~&plusmn;12% move, and the open question was whether a known-good quarter could clear an already-euphoric bar &mdash; particularly the <i>forward</i> guide. It did, decisively.</p>
 
     <h2 class="sec">Beat / Miss History &mdash; Last 4 Reports</h2>
     <div class="tscroll"><table>
       <thead><tr><th>Quarter</th><th>Reported</th><th class="r">Revenue</th><th class="r">EPS (NG)</th><th class="r">Est. EPS</th><th class="r">Surprise</th><th class="c">Result</th></tr></thead>
       <tbody>
-        <tr><td class="q">FQ3'25</td><td class="nm">Jun 25, 2025</td><td class="r">$9.30B</td><td class="r">$1.91</td><td class="r nm">&mdash;</td><td class="r nm">&mdash;</td><td class="c"><span class="pill beat">BEAT</span></td></tr>
         <tr><td class="q">FQ4'25</td><td class="nm">Sep 23, 2025</td><td class="r">$11.32B</td><td class="r">$3.03</td><td class="r">$2.77</td><td class="r beat">+9.4%</td><td class="c"><span class="pill beat">BEAT</span></td></tr>
         <tr><td class="q">FQ1'26</td><td class="nm">Dec 17, 2025</td><td class="r">$13.64B</td><td class="r">$4.78</td><td class="r">$3.94</td><td class="r beat">+21.3%</td><td class="c"><span class="pill beat">BEAT</span></td></tr>
         <tr><td class="q">FQ2'26</td><td class="nm">Mar 18, 2026</td><td class="r">$23.86B</td><td class="r">$12.20</td><td class="r">$8.79</td><td class="r beat">+38.8%</td><td class="c"><span class="pill beat">BEAT</span></td></tr>
-        <tr class="hl"><td class="q">FQ3'26</td><td class="nm">Jun 24, 2026 &middot; today</td><td class="r gd">$33.5B (g)</td><td class="r gd">$19.15 (g)</td><td class="r">~$19.9</td><td class="r nm">TBD</td><td class="c"><span class="pill guide">PENDING</span></td></tr>
+        <tr class="hl"><td class="q">FQ3'26</td><td class="nm">Jun 24, 2026</td><td class="r">$41.46B</td><td class="r">$25.11</td><td class="r">~$19.9</td><td class="r beat">+26.2%</td><td class="c"><span class="pill beat">BEAT</span></td></tr>
       </tbody>
     </table></div>
-    <div class="note">Source: Micron SEC 8-K filings (actuals) and pre-print consensus. Micron has beaten EPS estimates 8 consecutive quarters; the magnitude of the beats has been widening, not shrinking. Revenue has also blown past guidance: FQ2'26 came in at $23.86B vs a $18.70B guide (+28%).</div>
+    <div class="note">Source: Micron SEC 8-K filings (actuals) and pre-print consensus. That makes 9 consecutive EPS beats, and revenue has also blown past guidance every quarter (FQ3 came in $41.46B vs a $33.5B guide, +24%).</div>
 
-    <h2 class="sec">The Ramp &mdash; Five-Quarter Trend</h2>
+    <h2 class="sec">The Ramp &mdash; Six-Quarter Trajectory</h2>
     <div class="tscroll"><table>
-      <thead><tr><th>Metric (non-GAAP)</th><th class="r">FQ2'25</th><th class="r">FQ3'25</th><th class="r">FQ4'25</th><th class="r">FQ1'26</th><th class="r">FQ2'26</th><th class="r">FQ3'26 (g)</th></tr></thead>
+      <thead><tr><th>Metric (non-GAAP)</th><th class="r">FQ3'25</th><th class="r">FQ4'25</th><th class="r">FQ1'26</th><th class="r">FQ2'26</th><th class="r">FQ3'26</th><th class="r">FQ4'26 (g)</th></tr></thead>
       <tbody>
-        <tr><td>Revenue</td><td class="r">$8.05B</td><td class="r">$9.30B</td><td class="r">$11.32B</td><td class="r">$13.64B</td><td class="r">$23.86B</td><td class="r gd">$33.5B</td></tr>
-        <tr><td>Gross margin</td><td class="r">37.9%</td><td class="r">39.0%</td><td class="r">45.7%</td><td class="r">56.8%</td><td class="r">74.9%</td><td class="r gd">~81%</td></tr>
-        <tr><td>Diluted EPS</td><td class="r">$1.56</td><td class="r">$1.91</td><td class="r">$3.03</td><td class="r">$4.78</td><td class="r">$12.20</td><td class="r gd">$19.15</td></tr>
-        <tr><td>Operating cash flow</td><td class="r">$3.94B</td><td class="r">$4.61B</td><td class="r">$5.73B</td><td class="r">$8.41B</td><td class="r">$11.90B</td><td class="r nm">&mdash;</td></tr>
+        <tr><td>Revenue</td><td class="r">$9.30B</td><td class="r">$11.32B</td><td class="r">$13.64B</td><td class="r">$23.86B</td><td class="r"><b>$41.46B</b></td><td class="r gd">$50.0B</td></tr>
+        <tr><td>Gross margin</td><td class="r">39.0%</td><td class="r">45.7%</td><td class="r">56.8%</td><td class="r">74.9%</td><td class="r"><b>84.9%</b></td><td class="r gd">~86%</td></tr>
+        <tr><td>Diluted EPS</td><td class="r">$1.91</td><td class="r">$3.03</td><td class="r">$4.78</td><td class="r">$12.20</td><td class="r"><b>$25.11</b></td><td class="r gd">$31.00</td></tr>
+        <tr><td>Operating cash flow</td><td class="r">$4.61B</td><td class="r">$5.73B</td><td class="r">$8.41B</td><td class="r">$11.90B</td><td class="r"><b>$25.39B</b></td><td class="r nm">&mdash;</td></tr>
       </tbody>
     </table></div>
-    <div class="note">Half of fiscal 2026 (1H rev $37.5B) already exceeded all of fiscal 2025 ($37.38B). The slope &mdash; not the level &mdash; is what the market is now paying ~9x forward earnings for.</div>
+    <div class="note">Nine-month FY26 revenue is $78.96B with $47.27B of net income. The FQ4 guide ($50.0B / $31.00) would put the exit run-rate near $200B of annualized revenue &mdash; from a company that did $37.4B in all of fiscal 2025.</div>
 
-    <h2 class="sec">Segment-by-Segment Revenue &amp; Trend</h2>
-    <p>Micron reports four business units (reorganized for FY26 around end markets). Every unit is at a record, but the AI-levered ones &mdash; Cloud Memory (HBM) and Core Data Center &mdash; are growing fastest and now drive the margin mix.</p>
+    <h2 class="sec">Segment Detail &mdash; FQ3'26</h2>
+    <p>Every business unit set a record; the AI-levered units now dominate. Data center (Cloud Memory + Core Data Center) was ~$25.3B, about <b>61% of total revenue</b>, at 83&ndash;87% gross margins.</p>
     <div class="tscroll"><table>
-      <thead><tr><th>Business unit</th><th class="r">FQ3'25</th><th class="r">FQ4'25</th><th class="r">FQ1'26</th><th class="r">FQ2'26</th><th class="r">YoY*</th><th class="r">FQ2 GM%</th></tr></thead>
+      <thead><tr><th>Business unit</th><th class="r">FQ1'26</th><th class="r">FQ2'26</th><th class="r">FQ3'26</th><th class="r">QoQ</th><th class="r">GM%</th></tr></thead>
       <tbody>
-        <tr><td class="q">Cloud Memory <span class="nm">(HBM)</span></td><td class="r">$3.39B</td><td class="r">$4.54B</td><td class="r">$5.28B</td><td class="r">$7.75B</td><td class="r up">+163%</td><td class="r">74%</td></tr>
-        <tr><td class="q">Core Data Center</td><td class="r">$1.53B</td><td class="r">$1.58B</td><td class="r">$2.38B</td><td class="r">$5.69B</td><td class="r up">+211%</td><td class="r">74%</td></tr>
-        <tr><td class="q">Mobile &amp; Client</td><td class="r">$3.26B</td><td class="r">$3.76B</td><td class="r">$4.26B</td><td class="r">$7.71B</td><td class="r up">+245%</td><td class="r">79%</td></tr>
-        <tr><td class="q">Auto &amp; Embedded</td><td class="r">$1.13B</td><td class="r">$1.43B</td><td class="r">$1.72B</td><td class="r">$2.71B</td><td class="r up">+162%</td><td class="r">68%</td></tr>
-        <tr class="hl"><td><b>Total revenue</b></td><td class="r"><b>$9.30B</b></td><td class="r"><b>$11.32B</b></td><td class="r"><b>$13.64B</b></td><td class="r"><b>$23.86B</b></td><td class="r up"><b>+196%</b></td><td class="r"><b>74.9%</b></td></tr>
+        <tr><td class="q">Cloud Memory <span class="nm">(HBM)</span></td><td class="r">$5.28B</td><td class="r">$7.75B</td><td class="r"><b>$13.77B</b></td><td class="r up">+78%</td><td class="r">83%</td></tr>
+        <tr><td class="q">Core Data Center</td><td class="r">$2.38B</td><td class="r">$5.69B</td><td class="r"><b>$11.52B</b></td><td class="r up">+103%</td><td class="r">87%</td></tr>
+        <tr><td class="q">Mobile &amp; Client</td><td class="r">$4.26B</td><td class="r">$7.71B</td><td class="r"><b>$11.52B</b></td><td class="r up">+49%</td><td class="r">87%</td></tr>
+        <tr><td class="q">Auto &amp; Embedded</td><td class="r">$1.72B</td><td class="r">$2.71B</td><td class="r"><b>$4.63B</b></td><td class="r up">+71%</td><td class="r">79%</td></tr>
+        <tr class="hl"><td><b>Total</b></td><td class="r"><b>$13.64B</b></td><td class="r"><b>$23.86B</b></td><td class="r"><b>$41.46B</b></td><td class="r up"><b>+74%</b></td><td class="r"><b>84.9%</b></td></tr>
       </tbody>
     </table></div>
-    <div class="note">*YoY compares FQ2'26 to FQ2'25 (revenue base: Cloud $2.95B, Core DC $1.83B, Mobile &amp; Client $2.24B, Auto &amp; Embedded $1.03B). Source: Micron 8-K business-unit tables. Watch whether Core Data Center keeps doubling and whether Mobile &amp; Client's pricing-driven margin (79%) holds.</div>
+    <div class="note">Source: Micron 8-K business-unit tables. Core Data Center grew ~+653% year-on-year (vs $1.53B in FQ3'25) as HBM and high-capacity DRAM/SSD shipped into AI servers.</div>
 
-    <h2 class="sec">What Wall Street Is Watching</h2>
+    <h2 class="sec">What Drove It</h2>
     <ul class="k">
-      <li><b>HBM revenue &amp; HBM4 ramp.</b> HBM3E is reportedly sold out through 2026 on multi-year deals; the swing question is HBM4 timing, yields and pricing, plus share vs. SK Hynix and Samsung.</li>
-      <li><b>DRAM &amp; NAND pricing (ASPs).</b> The entire thesis is pricing. Any commentary that bit-pricing is decelerating &mdash; even at a high level &mdash; matters more than the headline beat.</li>
-      <li><b>Data-center mix.</b> Cloud Memory + Core Data Center were ~$13.4B (56% of FQ2 revenue). The market wants the AI-levered mix to keep climbing.</li>
-      <li><b>Gross margin ceiling.</b> Guided ~81% from 39% a year ago. How much higher mix and pricing can push margin is the key upside lever &mdash; and the thing most exposed if pricing rolls.</li>
-      <li><b>FQ4'26 guide.</b> The real catalyst. The print is largely known; the forward guide decides the reaction. Buy-side whispers are well above the formal Street number.</li>
-      <li><b>Supply discipline &amp; capex.</b> The three-player oligopoly's restraint is what sustains pricing. Heavy capex that signals a supply flood would be a bearish tell.</li>
-      <li><b>Inventory (DIO).</b> Lean channel inventory keeps pricing power intact; any build is an early-cycle warning.</li>
+      <li><b>The $100B disclosure.</b> 16 multi-year Strategic Customer Agreements representing ~$100B of <i>minimum contracted</i> revenue &mdash; the headline. It reframes Micron from a price-taking commodity cyclical toward contracted, visible demand, which is why the multiple held up into a +750% run.</li>
+      <li><b>HBM4 is shipping.</b> HBM4 (on 1-beta DRAM) is in high-volume shipments for the lead customer's platform, with qualification samples out to multiple end-customers; HBM4E (1-gamma) targets volume production in calendar 2027. The roadmap is executing, not slipping.</li>
+      <li><b>Margin melt-up.</b> Non-GAAP gross margin hit a record 84.9% and is guided to ~86% &mdash; extraordinary for memory, driven by pricing, mix and cost-down. Core Data Center and Mobile &amp; Client posted 87% gross margins.</li>
+      <li><b>Data center is now the company.</b> Cloud Memory + Core Data Center = ~$25.3B (~61% of revenue), up from ~$4.9B a year ago.</li>
+      <li><b>Fortress balance sheet.</b> $30.2B cash &amp; investments vs ~$5.7B debt (net cash ~$24B); $18.3B adjusted free cash flow in the quarter funds a record capex ramp without strain.</li>
     </ul>
 
-    <h2 class="sec">Management Guidance &mdash; From the Last Call (FQ2'26, Mar 18)</h2>
+    <h2 class="sec">FQ4'26 Guidance &amp; Management</h2>
     <div class="card">
-      <div class="blk"><span class="lbl">Tone. </span>CEO Sanjay Mehrotra: Micron "set new records across revenue, gross margin, EPS, and free cash flow" and expects "significant records again in fiscal Q3." Memory framed as a "strategic asset" in the AI era.</div>
-      <div class="blk"><span class="lbl">Capital return. </span>Board approved a <b>30% dividend increase</b> (to $0.15/quarter) &mdash; a confidence signal alongside a $16.7B cash position and $6.9B of quarterly free cash flow.</div>
-      <div class="blk"><span class="lbl">FQ3 formal guide. </span>Revenue <b class="gd">$33.5B &plusmn; $0.75B</b>, gross margin <b class="gd">~81%</b>, non-GAAP EPS <b class="gd">$19.15 &plusmn; $0.40</b>, opex ~$1.40B, on ~1.15B diluted shares.</div>
-      <div class="blk"><span class="lbl">Demand posture. </span>HBM sold out through 2026; investing in global manufacturing footprint to meet "growing demand." No indication of supply loosening &mdash; the message was scarcity, not normalization.</div>
+      <div class="blk"><span class="lbl">The guide that moved the stock. </span>Revenue <b class="gd">$50.0B &plusmn; $1.0B</b>, gross margin <b class="gd">~86%</b>, non-GAAP EPS <b class="gd">$31.00 &plusmn; $1.00</b>, opex ~$1.65B &mdash; a sequential step-up of ~+21% revenue and ~+23% EPS on top of a record quarter.</div>
+      <div class="blk"><span class="lbl">CEO tone. </span>Sanjay Mehrotra: record Q3 and "even stronger outlook for Q4 reflect the strategic value of memory in the AI era"; the multi-year agreements "will significantly enhance the durability and predictability of Micron's strong financial performance."</div>
+      <div class="blk"><span class="lbl">Capital return. </span>Quarterly dividend maintained at $0.15; the priority is investing "at record levels in technology, products and supply" to meet contracted demand.</div>
     </div>
 
-    <h2 class="sec">Options-Implied Move &amp; Reaction History</h2>
+    <h2 class="sec">The Move &mdash; Implied vs. Actual</h2>
     <div class="hero">
       <div class="herocard">
-        <div class="blk"><span class="lbl">What options are pricing. </span>The at-the-money straddle implies roughly <b>&plusmn;11% to &plusmn;14%</b> on the report (front-month IV ~155%). On a ~$1,052 close that is a one-day band of about <b>$926&ndash;$1,178</b> &mdash; an enormous expected move, reflecting both the supercycle and the crowded positioning.</div>
+        <div class="blk"><span class="lbl">Options underpriced it. </span>The straddle implied roughly <b>&plusmn;12%</b> into the print (front-month IV ~155%). The actual after-hours reaction was <b class="up">+13&ndash;15%</b> &mdash; the stock cleared the upper band, so anyone who sold premium expecting a fade was run over.</div>
       </div>
       <div class="herocard">
-        <div class="blk"><span class="lbl">The counterintuitive history. </span>Despite beating on <i>both</i> lines essentially every quarter, MU has <b class="down">closed lower the session after earnings in 6 of its last 8 reports</b>, averaging about <b class="down">&minus;1.7%</b> the next day, and has risen only ~25% of the time. The setup is a classic "beat-and-fade" risk: the bar is the guide and the whisper, not the printed quarter.</div>
+        <div class="blk"><span class="lbl">The history broke. </span>MU had closed <i>lower</i> the session after earnings in 6 of its prior 8 reports despite beating every time &mdash; the classic "beat-and-fade." This time the combination of a 24%-above-guide quarter, a $50B FQ4 guide, and $100B of contracted revenue was too large to fade.</div>
       </div>
     </div>
-    <div class="note">Implied move and reaction statistics are market-data estimates (Saxo, Benzinga, MarketChameleon-type sources) and vary by provider and by the moment they are sampled.</div>
+    <div class="note">After-hours reaction figures are from public market data (CNBC, Benzinga, Saxo and similar) and reflect the initial move; the regular-session reaction can differ as the print is digested.</div>
 
-    <h2 class="sec">Bull Case vs. Bear Case</h2>
+    <h2 class="sec">Where It Goes From Here &mdash; Bull vs. Bear</h2>
     <div class="scen">
       <div class="bull">
-        <h4>Bull &mdash; the ramp extends <span class="t up">+12 to +15%</span></h4>
-        <p>Micron beats the guide again (as it has every quarter for two years), revenue clears ~$34&ndash;35B and gross margin pushes past 81%. The decisive piece: an <b>FQ4 guide raised sharply</b>, confirming HBM4 momentum and sold-out supply through 2026. If it clears the implied move to the upside, ~$1,180&ndash;$1,210 on the session, and the ~9x forward multiple looks far too cheap for the growth. Longer-run scenario target on the research page: $1,400.</p>
+        <h4>Bull &mdash; the next leg <span class="t up">research target $1,400</span></h4>
+        <p>The $100B of contracted revenue plus a shipping HBM4 roadmap give the cycle visibility it has never had. If FQ4 lands near the $50B / $31.00 guide and the FY27 setup holds, EPS is still climbing faster than the multiple &mdash; the ~9x forward keeps looking too cheap, and "durable, not cyclical" becomes the consensus. Continued new highs are on the table.</p>
       </div>
       <div class="bear">
-        <h4>Bear &mdash; "as good as it gets" <span class="t down">&minus;12 to &minus;20%</span></h4>
-        <p>The quarter beats but the stock fades &mdash; the documented pattern (down in 6 of 8). An FQ4 guide that is merely in-line with the formal Street (i.e., below the lofty buy-side whisper), any hint of decelerating bit-pricing, an inventory build, or a capex signal that supply is coming &mdash; any one re-rates a +750% name fast. Through the implied move that is ~$840&ndash;$925; the research-page cycle-bear scenario is $650 if the cycle rolls.</p>
+        <h4>Bear &mdash; peak-cycle risk <span class="t down">research target $650</span></h4>
+        <p>After ~+750% and a +14% pop, the bar is perfection. The SCAs lock in minimum <i>volumes</i>, not prices &mdash; memory ASPs can still roll if AI capex digests or the three suppliers add too much capacity. A richly-priced name re-rates fast on the first sign the cycle is cresting; the risk has shifted from "miss the quarter" to "own the top."</p>
       </div>
     </div>
-    <div class="note">Memory is the most cyclical corner of semiconductors. The asymmetry here is not about this quarter's number &mdash; it is about whether the <i>forward</i> guide can keep beating an already-euphoric bar. Define risk before the print; the implied move is wide for a reason.</div>
-
-    <h2 class="sec">Post-Earnings Review</h2>
-    <div class="after">
-      <div class="lbl2">&#9679; UPDATES AFTER THE CLOSE &mdash; results expected ~4:05 PM ET today</div>
-      <p style="margin:10px 0 4px;color:var(--muted);font-size:13px">This section fills in once Micron actually reports. Until the numbers are official, nothing is posted here &mdash; the analysis withholds rather than prints an unconfirmed figure. The scorecard below populates with:</p>
-      <div class="tscroll" style="margin-top:8px"><table>
-        <thead><tr><th>Scorecard</th><th class="r">Consensus / Guide</th><th class="r">Actual</th><th class="c">Verdict</th></tr></thead>
-        <tbody>
-          <tr><td>Revenue</td><td class="r">$33.5B (g) / ~$34.5B</td><td class="r nm">&mdash;</td><td class="c nm">pending</td></tr>
-          <tr><td>Non-GAAP EPS</td><td class="r">$19.15 (g) / ~$19.9</td><td class="r nm">&mdash;</td><td class="c nm">pending</td></tr>
-          <tr><td>Gross margin</td><td class="r">~81%</td><td class="r nm">&mdash;</td><td class="c nm">pending</td></tr>
-          <tr><td>FQ4'26 guide</td><td class="r">whisper &gt; Street</td><td class="r nm">&mdash;</td><td class="c nm">pending</td></tr>
-          <tr><td>Stock reaction (AH)</td><td class="r">implied ~&plusmn;12%</td><td class="r nm">&mdash;</td><td class="c nm">pending</td></tr>
-        </tbody>
-      </table></div>
-      <p style="margin:10px 0 0;color:var(--dim);font-size:11.5px;font-style:italic">A scheduled post-earnings pass is set to update this page once results are public and the verified feed reflects the after-hours move.</p>
-    </div>
+    <div class="note">Scenario targets are from the SIGNAL research page (12-month illustrative), not predictions. The post-print debate is no longer about this quarter &mdash; it is about whether contracted demand has genuinely tamed memory's cyclicality. Define risk accordingly.</div>
 
     <h2 class="sec">Earnings Calendar &mdash; Coverage Universe</h2>
-    <p>Micron is the only name in the coverage list reporting now. The rest report next on their usual cadence (Q2 calendar / fiscal-quarter prints). Dates are the expected windows and are confirmed by each company ~3 weeks ahead.</p>
     <div class="tscroll"><table>
       <thead><tr><th>Ticker</th><th>Company</th><th>Next report (expected)</th><th>Period</th><th>What to watch</th></tr></thead>
       <tbody>
-        <tr><td class="q">MU</td><td class="nm">Micron</td><td class="gd">Today &middot; Jun 24, 2026</td><td>FQ3'26</td><td>HBM pricing, FQ4 guide</td></tr>
+        <tr class="hl"><td class="q">MU</td><td class="nm">Micron</td><td class="up">Reported Jun 24, 2026</td><td>FQ3'26</td><td>See review above &mdash; FQ4 guide $50B</td></tr>
         <tr><td class="q">TSLA</td><td class="nm">Tesla</td><td>Late Jul 2026 (est.)</td><td>Q2'26</td><td>Deliveries, margins, robotaxi</td></tr>
         <tr><td class="q">GOOGL</td><td class="nm">Alphabet</td><td>Late Jul 2026 (est.)</td><td>Q2'26</td><td>Cloud growth, AI capex</td></tr>
         <tr><td class="q">META</td><td class="nm">Meta</td><td>Late Jul 2026 (est.)</td><td>Q2'26</td><td>Ad growth, Reality Labs loss</td></tr>
@@ -255,14 +233,14 @@
         <tr><td class="q">NVDA</td><td class="nm">NVIDIA</td><td>Late Aug 2026 (est.)</td><td>FQ2'27</td><td>Data-center, Blackwell, guide</td></tr>
       </tbody>
     </table></div>
-    <div class="note">Estimated windows based on each company's historical reporting cadence; not yet officially confirmed. The deep-dive framework on this page can be applied to any of these as their dates approach.</div>
+    <div class="note">Estimated windows based on each company's historical reporting cadence; confirmed by each company ~3 weeks ahead. The before/after framework on this page can be applied to any of these as their dates approach.</div>
 
     <h2 class="sec">Methodology &amp; Sources</h2>
-    <p class="src">All Micron historical figures (revenue, gross margin, non-GAAP EPS, segment revenue, cash flow, guidance) are taken directly from Micron's SEC Form 8-K earnings press releases (FQ4'25 filed Sep 23, 2025; FQ1'26 filed Dec 17, 2025; FQ2'26 filed Mar 18, 2026) via SEC EDGAR. FQ3'26 consensus, options-implied move, and post-earnings reaction statistics are aggregated from public market-data and analyst previews (Alphastreet, Benzinga, Saxo, CNBC, MarketChameleon-type sources) and will vary by provider. The current MU quote is from the SIGNAL terminal's cross-checked feed. Scenario targets, "what to watch," and bull/bear framing are analytical judgments, not predictions. Non-GAAP figures exclude stock-based compensation and certain items per Micron's reconciliations.</p>
+    <p class="src">All Micron figures (revenue, gross margin, non-GAAP EPS, segment revenue, cash flow, balance sheet, FQ4 guidance) are taken directly from Micron's SEC Form 8-K earnings releases via EDGAR &mdash; FQ3'26 (filed Jun 24, 2026, period ended May 28, 2026), with prior quarters from the FQ4'25, FQ1'26 and FQ2'26 8-Ks. Pre-print consensus, options-implied move and the after-hours stock reaction are aggregated from public market-data and analyst sources (Alphastreet, Benzinga, Saxo, CNBC, StockTitan and similar) and vary by provider. The live MU quote is from the SIGNAL terminal's cross-checked feed. Scenario targets and bull/bear framing are analytical judgments, not predictions. Non-GAAP figures exclude stock-based compensation and certain items per Micron's reconciliations.</p>
 
     <footer>
-      <b style="color:var(--muted)">Disclaimer.</b> For educational and informational purposes only; not investment, financial, legal or tax advice, nor an offer or recommendation to buy or sell any security. Generated by an AI assistant, not a licensed analyst. Earnings estimates, implied moves, scenario targets and "what to watch" items are illustrative, not predictions, and actual results may differ materially. All investing involves risk of loss including loss of principal. Verify every figure against primary filings and consult a qualified professional before acting.
-      <br><br>SIGNAL Earnings &middot; v1 &middot; built by Dakoda &middot; <a href="./research.html">Research</a> &middot; <a href="./index.html">Live Terminal &rarr;</a>
+      <b style="color:var(--muted)">Disclaimer.</b> For educational and informational purposes only; not investment, financial, legal or tax advice, nor an offer or recommendation to buy or sell any security. Generated by an AI assistant, not a licensed analyst. Estimates, implied moves, scenario targets and forward commentary are illustrative, not predictions, and actual results may differ materially. All investing involves risk of loss including loss of principal. Verify every figure against primary filings and consult a qualified professional before acting.
+      <br><br>SIGNAL Earnings &middot; v2 &middot; built by Dakoda &middot; <a href="./research.html">Research</a> &middot; <a href="./index.html">Live Terminal &rarr;</a>
     </footer>
   </div>
 
@@ -275,9 +253,9 @@
     var live=mu.live, close=(mu.ohlc||{}).close;
     if(live&&live.price!=null){
       var chg=live.change_pct, k=chg>=0?'up':'down';
-      el.innerHTML='$'+Number(live.price).toFixed(2)+' <span class="'+k+'" style="font-size:13px">'+(chg>=0?'+':'')+Number(chg).toFixed(2)+'%</span> <span class="d">'+(live.phase||'live')+' &middot; verified feed</span>';
+      el.innerHTML='Live: <b>$'+Number(live.price).toFixed(2)+'</b> <span class="'+k+'">'+(chg>=0?'+':'')+Number(chg).toFixed(2)+'%</span> ('+(live.phase||'live')+', verified feed)';
     } else if(close!=null){
-      el.innerHTML='$'+Number(close).toFixed(2)+' <span class="d">Jun 23 close (verified feed)</span>';
+      el.innerHTML='Last verified close: <b>$'+Number(close).toFixed(2)+'</b> ('+(mu.as_of||'')+')';
     }
   }).catch(function(){});
 })();
