@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-25T12:54:01+00:00",
+    "generated_at": "2026-06-25T13:03:32+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-24",
@@ -10,38 +10,38 @@
   "backdrop": [
     {
       "name": "VIX",
-      "value": 17.9,
+      "value": 17.8,
       "change": -0.8,
       "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.38,
-      "change": -0.07,
+      "value": 4.37,
+      "change": -0.08,
       "note": ""
     },
     {
       "name": "30Y",
-      "value": 4.84,
-      "change": -0.06,
+      "value": 4.83,
+      "change": -0.07,
       "note": ""
     },
     {
       "name": "DXY",
-      "value": 101.51,
-      "change": -0.1,
+      "value": 101.56,
+      "change": -0.06,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 69.4,
-      "change": -0.94,
+      "value": 69.59,
+      "change": -0.75,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4019.7,
-      "change": 29.4,
+      "value": 4031.6,
+      "change": 41.3,
       "note": ""
     }
   ],
@@ -1852,8 +1852,8 @@
         }
       ],
       "live": {
-        "price": 739.22,
-        "change_pct": 0.82,
+        "price": 738.93,
+        "change_pct": 0.78,
         "phase": "pre-market"
       }
     },
@@ -3607,8 +3607,8 @@
         }
       ],
       "live": {
-        "price": 727.17,
-        "change_pct": 2.33,
+        "price": 726.83,
+        "change_pct": 2.28,
         "phase": "pre-market"
       }
     },
@@ -5405,8 +5405,8 @@
         }
       ],
       "live": {
-        "price": 291.2,
-        "change_pct": -0.64,
+        "price": 290.5,
+        "change_pct": -0.88,
         "phase": "pre-market"
       }
     },
@@ -8977,8 +8977,8 @@
         }
       ],
       "live": {
-        "price": 340.08,
-        "change_pct": -1.51,
+        "price": 340.21,
+        "change_pct": -1.47,
         "phase": "pre-market"
       }
     },
@@ -10759,8 +10759,8 @@
         }
       ],
       "live": {
-        "price": 232.79,
-        "change_pct": -0.63,
+        "price": 232.7,
+        "change_pct": -0.67,
         "phase": "pre-market"
       }
     },
@@ -12554,8 +12554,8 @@
         }
       ],
       "live": {
-        "price": 201.69,
-        "change_pct": 1.35,
+        "price": 201.67,
+        "change_pct": 1.34,
         "phase": "pre-market"
       }
     },
@@ -14333,8 +14333,8 @@
         }
       ],
       "live": {
-        "price": 554.33,
-        "change_pct": -0.6,
+        "price": 554.55,
+        "change_pct": -0.56,
         "phase": "pre-market"
       }
     },
@@ -16104,8 +16104,8 @@
         }
       ],
       "live": {
-        "price": 376.25,
-        "change_pct": 0.19,
+        "price": 376.18,
+        "change_pct": 0.17,
         "phase": "pre-market"
       }
     },
@@ -17884,8 +17884,8 @@
         }
       ],
       "live": {
-        "price": 1244.99,
-        "change_pct": 18.74,
+        "price": 1239.75,
+        "change_pct": 18.24,
         "phase": "pre-market"
       }
     },
@@ -19661,8 +19661,8 @@
         }
       ],
       "live": {
-        "price": 545.45,
-        "change_pct": 4.95,
+        "price": 543.9,
+        "change_pct": 4.65,
         "phase": "pre-market"
       }
     },
@@ -21443,8 +21443,8 @@
         "pos52": 51
       },
       "live": {
-        "price": 389.34,
-        "change_pct": 1.9,
+        "price": 388.52,
+        "change_pct": 1.69,
         "phase": "pre-market"
       }
     },
@@ -23221,8 +23221,8 @@
         }
       ],
       "live": {
-        "price": 110.94,
-        "change_pct": -2.26,
+        "price": 111.1,
+        "change_pct": -2.11,
         "phase": "pre-market"
       }
     },
@@ -25011,8 +25011,8 @@
         }
       ],
       "live": {
-        "price": 152.66,
-        "change_pct": 1.7,
+        "price": 152.19,
+        "change_pct": 1.39,
         "phase": "pre-market"
       }
     },
@@ -26795,8 +26795,8 @@
         }
       ],
       "live": {
-        "price": 98.8,
-        "change_pct": 1.66,
+        "price": 98.48,
+        "change_pct": 1.32,
         "phase": "pre-market"
       }
     },
@@ -28587,8 +28587,8 @@
         }
       ],
       "live": {
-        "price": 17.48,
-        "change_pct": 0.98,
+        "price": 17.47,
+        "change_pct": 0.94,
         "phase": "pre-market"
       }
     },
@@ -30361,8 +30361,8 @@
         }
       ],
       "live": {
-        "price": 298.82,
-        "change_pct": 0.72,
+        "price": 298.76,
+        "change_pct": 0.7,
         "phase": "pre-market"
       }
     },
@@ -32138,8 +32138,8 @@
         }
       ],
       "live": {
-        "price": 650.53,
-        "change_pct": 5.11,
+        "price": 649.86,
+        "change_pct": 5.0,
         "phase": "pre-market"
       }
     },
@@ -33914,8 +33914,8 @@
         }
       ],
       "live": {
-        "price": 87.72,
-        "change_pct": 0.39,
+        "price": 87.75,
+        "change_pct": 0.42,
         "phase": "pre-market"
       }
     },
@@ -35706,8 +35706,8 @@
         }
       ],
       "live": {
-        "price": 53.74,
-        "change_pct": 0.04,
+        "price": 53.79,
+        "change_pct": 0.13,
         "phase": "pre-market"
       }
     },
@@ -37489,8 +37489,8 @@
         }
       ],
       "live": {
-        "price": 53.24,
-        "change_pct": -0.62,
+        "price": 53.27,
+        "change_pct": -0.56,
         "phase": "pre-market"
       }
     },
@@ -39280,8 +39280,8 @@
         }
       ],
       "live": {
-        "price": 188.7,
-        "change_pct": 3.09,
+        "price": 188.76,
+        "change_pct": 3.12,
         "phase": "pre-market"
       }
     }
