@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-26T04:59:42+00:00",
+    "generated_at": "2026-06-26T08:39:31+00:00",
     "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-06-25",
@@ -10,38 +10,38 @@
   "backdrop": [
     {
       "name": "VIX",
-      "value": "-",
-      "change": 0,
-      "note": "n/a"
+      "value": 19.8,
+      "change": 0.9,
+      "note": ""
     },
     {
       "name": "10Y",
-      "value": 4.39,
-      "change": -0.06,
+      "value": 4.45,
+      "change": -0.01,
       "note": ""
     },
     {
       "name": "30Y",
-      "value": 4.86,
-      "change": -0.04,
+      "value": 4.9,
+      "change": -0.03,
       "note": ""
     },
     {
       "name": "DXY",
-      "value": 101.41,
-      "change": -0.02,
+      "value": 101.25,
+      "change": -0.18,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 70.44,
-      "change": -1.48,
+      "value": 69.1,
+      "change": -2.82,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4023.6,
-      "change": -6.9,
+      "value": 4050.1,
+      "change": 19.6,
       "note": ""
     }
   ],
@@ -1848,9 +1848,9 @@
         }
       ],
       "live": {
-        "price": 732.89,
-        "change_pct": -0.19,
-        "phase": "closed"
+        "price": 730.93,
+        "change_pct": -0.46,
+        "phase": "pre-market"
       }
     },
     {
@@ -3614,9 +3614,9 @@
         }
       ],
       "live": {
-        "price": 715.1,
-        "change_pct": -0.18,
-        "phase": "closed"
+        "price": 709.96,
+        "change_pct": -0.9,
+        "phase": "pre-market"
       }
     },
     {
@@ -5399,9 +5399,9 @@
         }
       ],
       "live": {
-        "price": 276.29,
-        "change_pct": 0.41,
-        "phase": "closed"
+        "price": 275.48,
+        "change_pct": 0.12,
+        "phase": "pre-market"
       }
     },
     {
@@ -7165,9 +7165,9 @@
         }
       ],
       "live": {
-        "price": 355.4,
-        "change_pct": 0.73,
-        "phase": "closed"
+        "price": 357.2,
+        "change_pct": 1.24,
+        "phase": "pre-market"
       }
     },
     {
@@ -8954,9 +8954,9 @@
         }
       ],
       "live": {
-        "price": 343.88,
-        "change_pct": 0.05,
-        "phase": "closed"
+        "price": 342.38,
+        "change_pct": -0.39,
+        "phase": "pre-market"
       }
     },
     {
@@ -10711,7 +10711,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 30.7,
+        "pe": 31.7,
         "forward_pe": 23.0,
         "market_cap": 2441971499008,
         "rev_growth": 16.6,
@@ -10734,9 +10734,9 @@
         }
       ],
       "live": {
-        "price": 227.01,
-        "change_pct": 0.0,
-        "phase": "closed"
+        "price": 227.93,
+        "change_pct": 0.41,
+        "phase": "pre-market"
       }
     },
     {
@@ -12500,7 +12500,7 @@
         ]
       ],
       "fundamentals": {
-        "pe": 30.0,
+        "pe": 29.9,
         "forward_pe": 15.4,
         "market_cap": 4741018419200,
         "rev_growth": 85.2,
@@ -12523,9 +12523,9 @@
         }
       ],
       "live": {
-        "price": 194.8,
-        "change_pct": -0.48,
-        "phase": "closed"
+        "price": 193.09,
+        "change_pct": -1.35,
+        "phase": "pre-market"
       }
     },
     {
@@ -14285,9 +14285,9 @@
         }
       ],
       "live": {
-        "price": 544.98,
-        "change_pct": 0.39,
-        "phase": "closed"
+        "price": 544.56,
+        "change_pct": 0.31,
+        "phase": "pre-market"
       }
     },
     {
@@ -16055,9 +16055,9 @@
         "pos52": 41
       },
       "live": {
-        "price": 374.4,
-        "change_pct": -0.19,
-        "phase": "closed"
+        "price": 371.66,
+        "change_pct": -0.92,
+        "phase": "pre-market"
       }
     },
     {
@@ -17801,9 +17801,9 @@
         }
       ],
       "live": {
-        "price": 1188.08,
-        "change_pct": -2.1,
-        "phase": "closed"
+        "price": 1164.97,
+        "change_pct": -4.0,
+        "phase": "pre-market"
       }
     },
     {
@@ -19578,9 +19578,9 @@
         }
       ],
       "live": {
-        "price": 529.33,
-        "change_pct": -0.61,
-        "phase": "closed"
+        "price": 517.45,
+        "change_pct": -2.84,
+        "phase": "pre-market"
       }
     },
     {
@@ -21372,9 +21372,9 @@
         }
       ],
       "live": {
-        "price": 379.8,
-        "change_pct": 0.23,
-        "phase": "closed"
+        "price": 373.3,
+        "change_pct": -1.48,
+        "phase": "pre-market"
       }
     },
     {
@@ -23149,9 +23149,9 @@
         }
       ],
       "live": {
-        "price": 107.9,
-        "change_pct": 0.59,
-        "phase": "closed"
+        "price": 109.08,
+        "change_pct": 1.69,
+        "phase": "pre-market"
       }
     },
     {
@@ -24930,9 +24930,9 @@
         }
       ],
       "live": {
-        "price": 143.4,
-        "change_pct": 0.62,
-        "phase": "closed"
+        "price": 143.35,
+        "change_pct": 0.58,
+        "phase": "pre-market"
       }
     },
     {
@@ -26729,9 +26729,9 @@
         }
       ],
       "live": {
-        "price": 93.16,
-        "change_pct": -0.33,
-        "phase": "closed"
+        "price": 92.51,
+        "change_pct": -1.03,
+        "phase": "pre-market"
       }
     },
     {
@@ -28529,9 +28529,9 @@
         }
       ],
       "live": {
-        "price": 17.22,
-        "change_pct": -0.46,
-        "phase": "closed"
+        "price": 17.18,
+        "change_pct": -0.69,
+        "phase": "pre-market"
       }
     },
     {
@@ -30299,9 +30299,9 @@
         }
       ],
       "live": {
-        "price": 298.43,
-        "change_pct": -0.16,
-        "phase": "closed"
+        "price": 298.2,
+        "change_pct": -0.24,
+        "phase": "pre-market"
       }
     },
     {
@@ -32078,9 +32078,9 @@
         }
       ],
       "live": {
-        "price": 632.4,
-        "change_pct": -0.7,
-        "phase": "closed"
+        "price": 624.0,
+        "change_pct": -2.02,
+        "phase": "pre-market"
       }
     },
     {
@@ -33854,9 +33854,9 @@
         }
       ],
       "live": {
-        "price": 87.27,
-        "change_pct": -0.09,
-        "phase": "closed"
+        "price": 87.45,
+        "change_pct": 0.12,
+        "phase": "pre-market"
       }
     },
     {
@@ -35646,9 +35646,9 @@
         }
       ],
       "live": {
-        "price": 53.64,
-        "change_pct": 0.36,
-        "phase": "closed"
+        "price": 53.48,
+        "change_pct": 0.06,
+        "phase": "pre-market"
       }
     },
     {
@@ -37430,9 +37430,9 @@
         }
       ],
       "live": {
-        "price": 54.16,
-        "change_pct": 0.13,
-        "phase": "closed"
+        "price": 53.73,
+        "change_pct": -0.67,
+        "phase": "pre-market"
       }
     },
     {
@@ -39227,9 +39227,9 @@
         }
       ],
       "live": {
-        "price": 184.17,
-        "change_pct": -0.22,
-        "phase": "closed"
+        "price": 182.01,
+        "change_pct": -1.39,
+        "phase": "pre-market"
       }
     }
   ],
