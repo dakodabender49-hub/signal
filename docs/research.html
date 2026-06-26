@@ -93,14 +93,14 @@
   <div class="wrap">
     <h1 class="title">Equity Screening Framework</h1>
     <div class="sub">Mega-Cap Technology &amp; Semiconductors &mdash; Mag 7 + Micron + Intel</div>
-    <div class="meta">Prepared June 24, 2026 &nbsp;&middot;&nbsp; Coverage: AAPL, MSFT, GOOGL, AMZN, NVDA, META, TSLA, MU, INTC</div>
+    <div class="meta">Prepared June 24, 2026 (MU refreshed post-earnings Jun 25) &nbsp;&middot;&nbsp; Coverage: AAPL, MSFT, GOOGL, AMZN, NVDA, META, TSLA, MU, INTC</div>
 
     <div class="disc"><b>Important:</b> This is an educational analytical framework, not personalized investment advice or a recommendation to buy or sell any security. It was prepared by an AI assistant, not a licensed financial advisor. Price targets, entry zones, and stop-losses are illustrative scenario analysis. Markets carry risk of loss &mdash; verify all figures against a live source and consult a licensed professional before investing.</div>
 
     <h2 class="sec">Executive Summary</h2>
     <p class="lead">This framework screens nine mega-cap technology and semiconductor names against five fundamental dimensions &mdash; valuation (trailing &amp; forward P/E), five-year revenue growth, balance-sheet health, dividend yield, and competitive moat &mdash; and overlays an analytical risk score (1&ndash;10), bull/bear scenario targets, and illustrative entry and stop levels.</p>
     <ul class="themes">
-      <li><b>Valuation dispersion is enormous.</b> Forward P/Es run from ~9x (MU, on peak-cycle earnings) and ~18x (META) to 177x (TSLA) and a loss (INTC). The cheapest-looking names carry the most cyclical or execution risk.</li>
+      <li><b>Valuation dispersion is enormous.</b> Forward P/Es run from ~9x (MU, post-earnings, on still-rising EPS) and ~18x (META) to 177x (TSLA) and a loss (INTC). The cheapest-looking names carry the most cyclical or execution risk.</li>
       <li><b>Quality clusters in the middle of the table.</b> MSFT, GOOGL, AMZN, META and AAPL pair strong moats with double-digit (or buyback-augmented) growth and healthy balance sheets &mdash; the own-the-business cohort.</li>
       <li><b>Highest-conviction value/growth is META; highest quality is MSFT; highest risk is TSLA, MU and INTC.</b> Risk scores reflect the range of outcomes, not company prestige.</li>
     </ul>
@@ -188,13 +188,13 @@ const R = [
   bearTxt:"Auto margins compress, the robotaxi timeline slips again, and the multiple resets toward fundamentals &mdash; outsized downside from this starting point.",
   riskTxt:"Extreme valuation, a decelerating core business and heavy narrative-dependence produce a very wide range of outcomes. *Revenue CAGR is positive over five years but turned negative in the latest year.",
   entryTxt:"Valuation-sensitive: a technical pullback to $300&ndash;$330 offers materially better risk/reward than the current level. Stop below $280. For most mandates, a small, volatility-sized position &mdash; if any."},
- {tk:"MU",nm:"Micron Technology",px:"$1,052",peT:"49.8",peF:"9.0",rev:"$37.4B FY25 ($58B TTM)",cagr:"~8%/yr (cyclical)",de:"0.15",div:"0.06%",moat:"Weak&ndash;Moderate",risk:8,bull:"$1,400",bear:"$650",entry:"$850&ndash;$950",stop:"&lt;$800",
-  screen:"A textbook cyclical: a ~9x forward multiple versus ~50x trailing tells you the market expects an earnings explosion from the HBM / AI-memory super-cycle. The stock is up ~750% in a year. Cheap on forward earnings &mdash; but those earnings are a cyclical peak. (Reports FQ3 results after the close today.)",
-  moatTxt:"DRAM and NAND are commodities. The only edge is the three-player DRAM oligopoly (Micron / Samsung / SK Hynix) supporting pricing discipline. There is no durable, company-specific moat.",
-  bullTxt:"AI demand for high-bandwidth memory keeps the market tight, pricing power persists, and forward EPS materializes &mdash; the ~9x forward proves genuinely cheap.",
-  bearTxt:"Memory is the most cyclical corner of semis &mdash; when the cycle rolls over, estimates AND the multiple fall together. After +750%, the danger is being long at the top.",
-  riskTxt:"A commodity cyclical with no moat, a parabolic run, and peak-cycle earnings &mdash; high risk despite the optically cheap forward multiple.",
-  entryTxt:"Do not chase. Prefer a pullback to $850&ndash;$950 or a cycle-confirmed base; stop below $800. High-volatility &mdash; size accordingly."},
+ {tk:"MU",nm:"Micron Technology",px:"$1,240",peT:"27.5",peF:"9.5",rev:"$37.4B FY25; ~$90B TTM",cagr:"hyper-cyclical",de:"0.06 (net cash ~$24B)",div:"0.05%",moat:"Weak&ndash;Moderate",risk:8,bull:"$1,400",bear:"$650",entry:"no pullback yet",stop:"&lt;$1,050",
+  screen:"<b style='color:var(--green)'>Reported a blowout FQ3'26 (Jun 24):</b> $41.46B revenue, $25.11 EPS and a record 84.9% gross margin, then guided FQ4 to $50B / $31.00 EPS and disclosed ~$100B of multi-year customer agreements. The stock gapped ~+18%. The forward multiple stays low (~9x) only because EPS is still exploding higher &mdash; but you would be buying after a ~+18% gap on top of a ~750% run. <a href='./earnings.html'>See the full Earnings review &rarr;</a>",
+  moatTxt:"DRAM and NAND are commodities; the edge is the three-player oligopoly (Micron / Samsung / SK Hynix) plus, newly, ~$100B of multi-year Strategic Customer Agreements that add visibility. Still no classic product moat, but durability has improved.",
+  bullTxt:"AI memory stays tight, the ~$100B of contracted demand underwrites the ramp, and FQ4's $50B / $31 guide proves conservative &mdash; the ~9x forward looks far too cheap and the stock keeps compounding.",
+  bearTxt:"Memory is the most cyclical corner of semis, and the agreements lock in volumes, not prices. After +750% and a +18% earnings gap, any sign the pricing cycle is cresting resets a richly-owned name fast.",
+  riskTxt:"A commodity cyclical &mdash; now with more contracted visibility, but still peak-cycle earnings after a parabolic run. The risk has shifted from 'miss the quarter' to 'own the top.' High risk.",
+  entryTxt:"Reported and gapped &mdash; do not chase the post-earnings spike. Let it digest; the prior breakout shelf near $1,050 is the disciplined re-entry reference, with risk defined below it. High-volatility &mdash; size accordingly."},
  {tk:"INTC",nm:"Intel Corp.",px:"$132",peT:"n/m (loss)",peF:"~114",rev:"$79.0B &rarr; ~$53B (declining)",cagr:"~&minus;9%/yr",de:"net debt ~$12B",div:"None (suspended)",moat:"Weak",risk:9,bull:"$175",bear:"$85",entry:"$110&ndash;$125",stop:"&lt;$100",
   screen:"A turnaround / special-situation, not a screen pass: unprofitable (no meaningful trailing P/E), revenue down a third from its 2021 peak, the dividend eliminated, more debt than cash, and negative operating margins. A binary bet on a manufacturing turnaround (foundry / 18A) plus government and AI tailwinds.",
   moatTxt:"Process leadership has been lost to TSMC and share to AMD/ARM. The x86 franchise and US-fab footprint retain value, but the competitive moat has eroded badly.",
