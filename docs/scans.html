@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SIGNAL Scans &mdash; Objective Setups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23080c15'/%3E%3Crect x='6' y='13' width='4' height='13' rx='1' fill='%2326e07b'/%3E%3Crect x='14' y='7' width='4' height='19' rx='1' fill='%233cc9d6'/%3E%3Crect x='22' y='11' width='4' height='15' rx='1' fill='%23ffb000'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#080c15; --panel:#0e1626; --panel2:#121c30; --line:#1d2942; --line2:#28385a;
+    --text:#dde5f0; --muted:#8595ac; --dim:#5a6b86;
+    --navy:#5b8def; --amber:#ffb000; --green:#37c97f; --red:#ff5d73; --cyan:#3cc9d6;
+    --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --display:"Space Grotesk","JetBrains Mono",var(--mono);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--navy);text-decoration:none}
+  .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:12px 22px;background:rgba(8,12,21,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line2)}
+  .brand{display:flex;align-items:center;font-family:var(--display);font-weight:700;letter-spacing:4px;font-size:16px}
+  .brand .r{color:var(--green);margin-left:8px;font-weight:600;letter-spacing:3px;font-size:12px;border-left:1px solid var(--line2);padding-left:10px}
+  .brand svg{margin-right:9px}
+  .navwrap{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
+  .navlink{font-family:var(--display);font-size:12px;letter-spacing:1px;color:var(--muted);border:1px solid var(--line2);border-radius:3px;padding:6px 12px}
+  .navlink:hover{border-color:var(--green);color:var(--text)}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 22px 80px}
+  h1.title{font-family:var(--display);font-weight:700;font-size:33px;letter-spacing:.5px;margin:8px 0 6px;color:#fff}
+  .sub{font-family:var(--display);font-size:16px;color:var(--green);letter-spacing:1px;margin-bottom:8px}
+  .meta{color:var(--dim);font-size:12px;border-bottom:2px solid var(--green);padding-bottom:14px}
+  .livepill{font-family:var(--display);font-weight:700;font-size:9px;letter-spacing:1.5px;color:var(--green);border:1px solid #244e36;background:rgba(55,201,127,.1);border-radius:10px;padding:2px 8px;margin-left:6px;white-space:nowrap}
+  .disc{margin:18px 0;background:rgba(255,176,0,.06);border:1px solid #4a3c12;border-left:3px solid var(--amber);border-radius:4px;padding:11px 14px;font-size:12px;color:#cbb986;line-height:1.6}
+  .disc b{color:var(--amber)}
+  h2.sec{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin:34px 0 6px;display:flex;align-items:center;gap:11px}
+  h2.sec::before{content:"";width:3px;height:15px;background:var(--green)}
+  h2.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+  .subnote{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);border-radius:4px}
+  table{width:100%;min-width:720px;border-collapse:collapse;font-size:12.5px}
+  thead th{background:var(--panel2);color:#cdd8ea;font-family:var(--display);font-size:10px;letter-spacing:1.1px;text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line2);font-weight:700;white-space:nowrap}
+  thead th.r{text-align:right} thead th.c{text-align:center}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+  tbody tr:hover td{background:rgba(55,201,127,.06)}
+  td.r{text-align:right;font-variant-numeric:tabular-nums} td.c{text-align:center}
+  .tk{color:#fff;font-weight:700;letter-spacing:.5px}
+  .nm{color:var(--muted);font-size:11.5px}
+  .up{color:var(--green)} .down{color:var(--red)} .flat{color:var(--muted)}
+  .rvol{color:var(--amber);font-weight:700}
+  .lvl{font-size:11.5px;color:var(--muted)} .lvl b{color:var(--text)}
+  .trig{font-size:11.5px;color:#bfe9cf} .inval{font-size:11.5px;color:#f0b6bf}
+  .pill{display:inline-block;font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+  .p-break{color:var(--green);background:rgba(55,201,127,.13)}
+  .p-rs{color:var(--cyan);background:rgba(60,201,214,.13)}
+  .p-gp{color:var(--amber);background:rgba(255,176,0,.13)}
+  .p-reclaim{color:var(--navy);background:rgba(91,141,239,.14)}
+  .p-up{color:var(--green);background:rgba(55,201,127,.1)} .p-down{color:var(--red);background:rgba(255,93,115,.1)} .p-range{color:var(--muted);background:rgba(133,149,172,.12)}
+  .note{color:var(--dim);font-size:11px;margin-top:8px;font-style:italic}
+  .empty{color:var(--dim);text-align:center;padding:20px;font-style:italic}
+  ul.k{list-style:none;padding:0;margin:6px 0 0}
+  ul.k li{position:relative;padding:8px 0 8px 24px;border-bottom:1px solid var(--line);font-size:13px}
+  ul.k li:last-child{border-bottom:none}
+  ul.k li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-radius:1px;background:var(--green)}
+  ul.k b{color:#fff}
+  .src{color:var(--dim);font-size:11.5px}
+  footer{margin-top:46px;border-top:1px solid var(--line2);padding-top:16px;color:var(--dim);font-size:11px;line-height:1.7}
+  @media(max-width:640px){h1.title{font-size:25px}.wrap{padding:22px 15px 60px}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><svg width="22" height="18" viewBox="0 0 28 22" aria-hidden="true"><rect x="2" y="8" width="5" height="12" rx="1" fill="#26e07b"/><rect x="11" y="3" width="5" height="17" rx="1" fill="#3cc9d6"/><rect x="20" y="6" width="5" height="14" rx="1" fill="#ffb000"/></svg>SIGNAL<span class="r">SCANS</span></div>
+    <div class="navwrap"><a class="navlink" href="./research.html">Research</a><a class="navlink" href="./earnings.html">Earnings</a><a class="navlink" href="./index.html">Live Terminal &rarr;</a></div>
+  </div>
+  <div class="wrap">
+    <h1 class="title">Scans &mdash; Objective Setups <span class="livepill" id="livedot">&#9679; LIVE</span></h1>
+    <div class="sub">Mechanical, rules-based &middot; computed from the cross-checked feed</div>
+    <div class="meta" id="meta">Loading the latest scan&hellip;</div>
+
+    <div class="disc"><b>Important:</b> These are mechanical, rules-based scans of price, volume and structure &mdash; not trade recommendations or advice. A "setup" is a condition the engine detected, not a prediction. Triggers and invalidation levels are objective reference points; markets carry risk of loss. Verify independently and manage your own risk.</div>
+
+    <h2 class="sec">Unusual Volume</h2>
+    <p class="subnote">Names trading on the highest <b style="color:var(--text)">relative volume</b> (today vs its 20-day average) &mdash; where participation is unusual. Direction is shown, not judged.</p>
+    <div class="tscroll"><table id="movers"></table></div>
+    <div class="note" id="movnote"></div>
+
+    <h2 class="sec">Mechanical Setups</h2>
+    <p class="subnote">Rules-based conditions the engine flagged: <span class="pill p-break">breakout</span> <span class="pill p-rs">RS leader</span> <span class="pill p-gp">golden pocket</span> <span class="pill p-reclaim">trend reclaim</span> &mdash; each with its objective trigger and invalidation level.</p>
+    <div class="tscroll"><table id="setups"></table></div>
+    <div class="note" id="setnote"></div>
+
+    <h2 class="sec">How to Read These Scans</h2>
+    <ul class="k">
+      <li><b>Relative volume (RVOL).</b> Today's volume divided by the 20-day average. Above ~1.5x means unusual participation &mdash; moves on high RVOL tend to be more meaningful than moves on quiet volume.</li>
+      <li><b>Breakout.</b> Price closed at a 20-day high on elevated volume. The trigger is acceptance above the breakout level; the invalidation is a close back below it.</li>
+      <li><b>RS leader.</b> Outperforming the S&amp;P 500 over ~3 months and trading near its own highs &mdash; relative strength, the tendency of strong names to stay strong.</li>
+      <li><b>Golden pocket.</b> Price is sitting in the 0.618&ndash;0.65 Fibonacci retracement of the active swing &mdash; a common area for trend continuation to resume or fail.</li>
+      <li><b>Trend reclaim.</b> Price has crossed back above a key moving average (e.g., the 200-day), a structural shift worth watching.</li>
+      <li><b>Trigger / Invalidation.</b> The engine's objective "line in the sand" each way &mdash; the level that confirms the setup and the level that voids it. Define risk against the invalidation before acting.</li>
+    </ul>
+
+    <p class="src" id="srcline">All scans are computed by the SIGNAL engine from cross-checked daily price and volume; only verified names are shown, and the scan withholds rather than display unverifiable data. Not advice.</p>
+
+    <footer>
+      <b style="color:var(--muted)">Disclaimer.</b> For educational and informational purposes only; not investment, financial, legal or tax advice, nor a recommendation to buy or sell any security. Generated by an automated engine, not a licensed advisor. Setups are detected conditions, not predictions; all investing involves risk of loss including loss of principal. Manage your own risk and consult a qualified professional.
+      <br><br>SIGNAL Scans &middot; v1 &middot; built by Dakoda &middot; <a href="./research.html">Research</a> &middot; <a href="./earnings.html">Earnings</a> &middot; <a href="./index.html">Live Terminal &rarr;</a>
+    </footer>
+  </div>
+
+<script>
+(function(){
+  var SETUP_PILL={breakout:'p-break','RS leader':'p-rs','golden pocket':'p-gp','trend reclaim':'p-reclaim'};
+  function el(id){return document.getElementById(id);}
+  function num(n,d){return (n==null||isNaN(n))?'':Number(n).toFixed(d==null?2:d);}
+  function px(p){return (p==null||isNaN(p))?'&mdash;':'$'+Number(p).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function chgCell(c){if(c==null||isNaN(c))return '<td class="r">&mdash;</td>';var k=c>=0?'up':'down';return '<td class="r '+k+'">'+(c>=0?'+':'')+Number(c).toFixed(2)+'%</td>';}
+  function structPill(st){if(!st)return '&mdash;';var c=st==='uptrend'?'p-up':(st==='downtrend'?'p-down':'p-range');return '<span class="pill '+c+'">'+st+'</span>';}
+  function lvl(i){
+    var a=(i.levels_above||[])[0], b=(i.levels_below||[])[0], s='';
+    if(a) s+='<span class="lvl">R <b>'+num(a.price)+'</b></span>';
+    if(b) s+=(s?' &middot; ':'')+'<span class="lvl">S <b>'+num(b.price)+'</b></span>';
+    return s||'&mdash;';
+  }
+  function fail(msg){
+    if(el('movers')) el('movers').innerHTML='<tbody><tr><td class="empty">'+msg+'</td></tr></tbody>';
+    if(el('setups')) el('setups').innerHTML='<tbody><tr><td class="empty">'+msg+'</td></tr></tbody>';
+    if(el('meta')) el('meta').textContent='Live feed unavailable right now.';
+    var d=el('livedot'); if(d) d.style.color='var(--dim)';
+  }
+  fetch('./state.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(s){
+    var scr=s.screener||{}, sea=s.searchable||{};
+    var movers=scr.movers||[], setups=scr.setups||[];
+    var asof=(s.meta&&s.meta.as_of_date)||'';
+    el('meta').innerHTML='Latest scan &middot; session '+(asof||'&mdash;')+' &middot; '+movers.length+' volume movers, '+setups.length+' setups detected.';
+    var mh='<thead><tr><th class="c">#</th><th>Ticker</th><th class="r">Last</th><th class="r">Day</th><th class="r">RVOL</th><th>Structure</th><th>Key levels</th></tr></thead><tbody>';
+    if(!movers.length){ mh+='<tr><td colspan="7" class="empty">No unusual-volume names this scan (fail-closed).</td></tr>'; }
+    else movers.forEach(function(m,idx){
+      var i=sea[m.symbol]||{};
+      mh+='<tr><td class="c" style="color:var(--dim);font-weight:700">'+(idx+1)+'</td>'+
+        '<td><span class="tk">'+m.symbol+'</span> <span class="nm">'+(i.name||'')+'</span></td>'+
+        '<td class="r">'+px(m.price)+'</td>'+chgCell(m.change_pct)+
+        '<td class="r"><span class="'+((m.rvol>=1.5)?'rvol':'')+'">'+(m.rvol!=null?num(m.rvol)+'&times;':'&mdash;')+'</span></td>'+
+        '<td>'+structPill(i.structure)+'</td>'+
+        '<td>'+lvl(i)+'</td></tr>';
+    });
+    el('movers').innerHTML=mh+'</tbody>';
+    el('movnote').innerHTML='Ranked by relative volume. Last/Day are the latest verified session; R = nearest resistance, S = nearest support (engine-computed).';
+    var order={breakout:0,'trend reclaim':1,'golden pocket':2,'RS leader':3};
+    setups=setups.slice().sort(function(a,b){return (order[a.setup]==null?9:order[a.setup])-(order[b.setup]==null?9:order[b.setup]);});
+    var sh='<thead><tr><th>Ticker</th><th>Setup</th><th>What the engine sees</th><th class="r">Last</th><th>Structure</th><th>Trigger &amp; invalidation</th></tr></thead><tbody>';
+    if(!setups.length){ sh+='<tr><td colspan="6" class="empty">No mechanical setups this scan (fail-closed).</td></tr>'; }
+    else setups.forEach(function(st){
+      var i=sea[st.symbol]||{};
+      var pc=SETUP_PILL[st.setup]||'p-range';
+      var trig=i.bull_trigger?('<span class="trig">&#9650; '+i.bull_trigger+'</span>'):'';
+      var inval=i.bear_trigger?('<span class="inval">&#9660; '+i.bear_trigger+'</span>'):'';
+      var lvls=(trig||inval)?(trig+(trig&&inval?'<br>':'')+inval):'&mdash;';
+      sh+='<tr><td><span class="tk">'+st.symbol+'</span> <span class="nm">'+(i.name||'')+'</span></td>'+
+        '<td><span class="pill '+pc+'">'+st.setup+'</span></td>'+
+        '<td class="nm" style="color:var(--muted)">'+(st.detail||'')+'</td>'+
+        '<td class="r">'+px((i.ohlc||{}).close)+'</td>'+
+        '<td>'+structPill(i.structure)+'</td>'+
+        '<td>'+lvls+'</td></tr>';
+    });
+    el('setups').innerHTML=sh+'</tbody>';
+    el('setnote').innerHTML='Sorted by setup type. Trigger (&#9650;) confirms, invalidation (&#9660;) voids &mdash; define risk against the invalidation.';
+    var d=el('livedot'); if(d) d.style.color=(movers.length||setups.length)?'var(--green)':'var(--dim)';
+  }).catch(function(e){ fail('Live feed unavailable &mdash; scans withheld (fail-closed).'); });
+})();
+</script>
+</body>
+</html>
