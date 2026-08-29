@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-08-28T21:55:49+00:00",
-    "session": "post-close",
+    "generated_at": "2026-08-29T02:51:19+00:00",
+    "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-08-28",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
@@ -1825,7 +1825,7 @@
           772.36,
           767.16,
           771.1,
-          34502700
+          34557100
         ],
         [
           "2026-08-28",
@@ -1847,9 +1847,9 @@
         }
       ],
       "live": {
-        "price": 769.41,
-        "change_pct": 0.01,
-        "phase": "after-hours"
+        "price": 769.35,
+        "change_pct": 0.0,
+        "phase": "closed"
       }
     },
     {
@@ -3604,7 +3604,7 @@
           721.35,
           714.53,
           721.11,
-          28627600
+          28723500
         ],
         [
           "2026-08-28",
@@ -3626,9 +3626,9 @@
         }
       ],
       "live": {
-        "price": 716.37,
-        "change_pct": -0.01,
-        "phase": "after-hours"
+        "price": 716.25,
+        "change_pct": -0.03,
+        "phase": "closed"
       }
     },
     {
@@ -5387,7 +5387,7 @@
           315.4,
           309.4,
           314.58,
-          32364000
+          32419200
         ],
         [
           "2026-08-28",
@@ -5422,9 +5422,9 @@
         }
       ],
       "live": {
-        "price": 320.0,
-        "change_pct": 0.09,
-        "phase": "after-hours"
+        "price": 319.9,
+        "change_pct": 0.06,
+        "phase": "closed"
       }
     },
     {
@@ -7151,7 +7151,7 @@
           506.48,
           490.08,
           505.06,
-          28649300
+          28688800
         ],
         [
           "2026-08-28",
@@ -7186,9 +7186,9 @@
         }
       ],
       "live": {
-        "price": 512.75,
-        "change_pct": -0.15,
-        "phase": "after-hours"
+        "price": 513.06,
+        "change_pct": -0.09,
+        "phase": "closed"
       }
     },
     {
@@ -7402,7 +7402,7 @@
           },
           {
             "p": 337.52,
-            "v": 0.759
+            "v": 0.76
           },
           {
             "p": 343.2,
@@ -8938,7 +8938,7 @@
           341.69,
           338.52,
           340.65,
-          23352300
+          23391400
         ],
         [
           "2026-08-28",
@@ -8969,9 +8969,9 @@
         }
       ],
       "live": {
-        "price": 346.49,
-        "change_pct": -0.03,
-        "phase": "after-hours"
+        "price": 346.2,
+        "change_pct": -0.11,
+        "phase": "closed"
       }
     },
     {
@@ -10724,7 +10724,7 @@
           259.66,
           255.02,
           256.26,
-          35852900
+          35927800
         ],
         [
           "2026-08-28",
@@ -10763,9 +10763,9 @@
         }
       ],
       "live": {
-        "price": 266.27,
-        "change_pct": -0.06,
-        "phase": "after-hours"
+        "price": 266.1,
+        "change_pct": -0.12,
+        "phase": "closed"
       }
     },
     {
@@ -10777,7 +10777,7 @@
       "ohlc": {
         "open": 227.3300018310547,
         "high": 229.25999450683594,
-        "low": 216.82000732421875,
+        "low": 216.80999755859375,
         "close": 217.5500030517578
       },
       "prev_close": 227.97999572753906,
@@ -12524,20 +12524,20 @@
           230.47,
           220.9,
           227.98,
-          298231200
+          298909800
         ],
         [
           "2026-08-28",
           227.33,
           229.26,
-          216.82,
+          216.81,
           217.55,
           194036188
         ]
       ],
       "fundamentals": {
         "pe": 27.5,
-        "forward_pe": 14.2,
+        "forward_pe": 14.3,
         "market_cap": 5253179637760,
         "rev_growth": 105.9,
         "eps_growth": 127.8,
@@ -12559,9 +12559,9 @@
         }
       ],
       "live": {
-        "price": 217.8,
-        "change_pct": 0.11,
-        "phase": "after-hours"
+        "price": 217.89,
+        "change_pct": 0.16,
+        "phase": "closed"
       }
     },
     {
@@ -14339,7 +14339,7 @@
       ],
       "fundamentals": {
         "pe": 21.8,
-        "forward_pe": 16.6,
+        "forward_pe": 16.5,
         "market_cap": 1472509509632,
         "rev_growth": 28.0,
         "eps_growth": -13.4,
@@ -14365,9 +14365,9 @@
         }
       ],
       "live": {
-        "price": 577.45,
-        "change_pct": -0.1,
-        "phase": "after-hours"
+        "price": 578.35,
+        "change_pct": 0.06,
+        "phase": "closed"
       }
     },
     {
@@ -16151,9 +16151,9 @@
         }
       ],
       "live": {
-        "price": 347.85,
-        "change_pct": -0.26,
-        "phase": "after-hours"
+        "price": 348.19,
+        "change_pct": -0.16,
+        "phase": "closed"
       }
     },
     {
@@ -17947,9 +17947,9 @@
         }
       ],
       "live": {
-        "price": 931.3,
-        "change_pct": -0.17,
-        "phase": "after-hours"
+        "price": 930.92,
+        "change_pct": -0.21,
+        "phase": "closed"
       }
     },
     {
@@ -19735,9 +19735,9 @@
         }
       ],
       "live": {
-        "price": 466.2,
-        "change_pct": 0.13,
-        "phase": "after-hours"
+        "price": 466.05,
+        "change_pct": 0.1,
+        "phase": "closed"
       }
     },
     {
@@ -21516,9 +21516,9 @@
         }
       ],
       "live": {
-        "price": 368.93,
-        "change_pct": 0.04,
-        "phase": "after-hours"
+        "price": 369.12,
+        "change_pct": 0.09,
+        "phase": "closed"
       }
     },
     {
@@ -23265,9 +23265,9 @@
         "pos52": 79
       },
       "live": {
-        "price": 185.4,
-        "change_pct": -0.48,
-        "phase": "after-hours"
+        "price": 185.46,
+        "change_pct": -0.45,
+        "phase": "closed"
       }
     },
     {
@@ -25060,9 +25060,9 @@
         }
       ],
       "live": {
-        "price": 178.1,
-        "change_pct": -0.3,
-        "phase": "after-hours"
+        "price": 178.5,
+        "change_pct": -0.08,
+        "phase": "closed"
       }
     },
     {
@@ -26865,9 +26865,9 @@
         }
       ],
       "live": {
-        "price": 104.04,
-        "change_pct": -0.21,
-        "phase": "after-hours"
+        "price": 104.06,
+        "change_pct": -0.19,
+        "phase": "closed"
       }
     },
     {
@@ -28666,9 +28666,9 @@
         }
       ],
       "live": {
-        "price": 18.09,
-        "change_pct": 0.17,
-        "phase": "after-hours"
+        "price": 18.08,
+        "change_pct": 0.11,
+        "phase": "closed"
       }
     },
     {
@@ -30470,9 +30470,9 @@
         }
       ],
       "live": {
-        "price": 295.77,
+        "price": 295.79,
         "change_pct": 0.01,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -32256,9 +32256,9 @@
         }
       ],
       "live": {
-        "price": 554.4,
-        "change_pct": 0.23,
-        "phase": "after-hours"
+        "price": 553.6,
+        "change_pct": 0.09,
+        "phase": "closed"
       }
     },
     {
@@ -34047,7 +34047,7 @@
       "live": {
         "price": 82.94,
         "change_pct": 0.07,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -35826,9 +35826,9 @@
         }
       ],
       "live": {
-        "price": 58.06,
-        "change_pct": -0.07,
-        "phase": "after-hours"
+        "price": 58.05,
+        "change_pct": -0.09,
+        "phase": "closed"
       }
     },
     {
@@ -37600,9 +37600,9 @@
         }
       ],
       "live": {
-        "price": 62.63,
-        "change_pct": -0.08,
-        "phase": "after-hours"
+        "price": 62.82,
+        "change_pct": 0.22,
+        "phase": "closed"
       }
     },
     {
@@ -39387,9 +39387,9 @@
         }
       ],
       "live": {
-        "price": 185.53,
-        "change_pct": -0.08,
-        "phase": "after-hours"
+        "price": 185.7,
+        "change_pct": 0.01,
+        "phase": "closed"
       }
     }
   ],
@@ -42701,7 +42701,7 @@
       "ohlc": {
         "open": 227.3300018310547,
         "high": 229.25999450683594,
-        "low": 216.82000732421875,
+        "low": 216.80999755859375,
         "close": 217.5500030517578
       },
       "change_pct": -4.57,
@@ -43420,7 +43420,7 @@
           "2026-08-28",
           227.33,
           229.26,
-          216.82,
+          216.81,
           217.55,
           194036188
         ]
@@ -71816,14 +71816,14 @@
       "as_of": "2026-08-28",
       "ohlc": {
         "open": 178.69000244140625,
-        "high": 181.38999938964844,
+        "high": 181.49000549316406,
         "low": 176.49000549316406,
         "close": 181.3699951171875
       },
       "change_pct": 2.04,
       "structure": "range",
-      "atr14": 4.81,
-      "read": "TMUS (2026-08-28): range. At 181.37, above the 21-EMA at 180.69; below the 200-SMA; testing the 0.5 retracement at 182.26. Structure is neutral above 179.22. Above: acceptance above 182.26 opens 186.60. Below: loss of 179.22 exposes 175.86. ATR(14) 4.81.",
+      "atr14": 4.82,
+      "read": "TMUS (2026-08-28): range. At 181.37, above the 21-EMA at 180.69; below the 200-SMA; testing the 0.5 retracement at 182.26. Structure is neutral above 179.22. Above: acceptance above 182.26 opens 186.60. Below: loss of 179.22 exposes 175.86. ATR(14) 4.82.",
       "bull_trigger": "acceptance above 182.26 opens 186.60",
       "bear_trigger": "loss of 179.22 exposes 175.86",
       "levels_above": [
@@ -72541,7 +72541,7 @@
         [
           "2026-08-28",
           178.69,
-          181.39,
+          181.49,
           176.49,
           181.37,
           3105620
@@ -95132,13 +95132,13 @@
       "ohlc": {
         "open": 1170.56005859375,
         "high": 1183.3900146484375,
-        "low": 1159.9649658203125,
+        "low": 1158.3199462890625,
         "close": 1164.47998046875
       },
       "change_pct": -0.26,
       "structure": "range",
-      "atr14": 22.43,
-      "read": "BLK (2026-08-28): range. At 1,164.48, above the 21-EMA at 1,144.14; above the 200-SMA; holding the 0.236 retracement at 1,130.54. Structure is neutral above 1,158.47. Above: acceptance above 1,169.89 opens 1,184.53. Below: loss of 1,158.47 exposes 1,143.46. ATR(14) 22.43.",
+      "atr14": 22.55,
+      "read": "BLK (2026-08-28): range. At 1,164.48, above the 21-EMA at 1,144.14; above the 200-SMA; holding the 0.236 retracement at 1,130.54. Structure is neutral above 1,158.47. Above: acceptance above 1,169.89 opens 1,184.53. Below: loss of 1,158.47 exposes 1,143.46. ATR(14) 22.55.",
       "bull_trigger": "acceptance above 1,169.89 opens 1,184.53",
       "bear_trigger": "loss of 1,158.47 exposes 1,143.46",
       "levels_above": [
@@ -95843,7 +95843,7 @@
           "2026-08-28",
           1170.56,
           1183.39,
-          1159.96,
+          1158.32,
           1164.48,
           699850
         ]
