@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-07T17:33:41+00:00",
+    "generated_at": "2026-09-07T22:53:05+00:00",
     "session": "post-close",
     "data_mode": "LIVE",
     "as_of_date": "2026-09-04",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 98.9,
-      "change": -0.26,
+      "value": 99.18,
+      "change": 0.02,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 91.48,
-      "change": 0.0,
+      "value": 92.62,
+      "change": 1.14,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 4476.6,
-      "change": 46.8,
+      "value": 4453.8,
+      "change": 24.0,
       "note": ""
     }
   ],
@@ -1842,7 +1842,7 @@
       "live": {
         "price": 769.55,
         "change_pct": -0.08,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -3614,7 +3614,7 @@
       "live": {
         "price": 717.54,
         "change_pct": -0.2,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -5411,7 +5411,7 @@
       "live": {
         "price": 320.01,
         "change_pct": 0.01,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -7191,7 +7191,7 @@
       "live": {
         "price": 499.62,
         "change_pct": -0.02,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -8992,7 +8992,7 @@
       "live": {
         "price": 338.79,
         "change_pct": 0.1,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -10795,7 +10795,7 @@
       "live": {
         "price": 258.26,
         "change_pct": -0.1,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -12579,7 +12579,7 @@
       "live": {
         "price": 229.5,
         "change_pct": -0.37,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -14371,7 +14371,7 @@
       "live": {
         "price": 615.2,
         "change_pct": -0.25,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -16175,7 +16175,7 @@
       "live": {
         "price": 352.89,
         "change_pct": -0.34,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -17969,7 +17969,7 @@
       "live": {
         "price": 1014.95,
         "change_pct": -0.16,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -19773,7 +19773,7 @@
       "live": {
         "price": 476.25,
         "change_pct": -0.28,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -21552,7 +21552,7 @@
       "live": {
         "price": 357.07,
         "change_pct": -0.23,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -23342,7 +23342,7 @@
       "live": {
         "price": 174.43,
         "change_pct": 0.06,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -25130,7 +25130,7 @@
       "live": {
         "price": 184.85,
         "change_pct": 0.11,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -26903,7 +26903,7 @@
       "live": {
         "price": 122.1,
         "change_pct": -0.01,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -28682,7 +28682,7 @@
       "live": {
         "price": 18.18,
         "change_pct": -0.22,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -30483,7 +30483,7 @@
       "live": {
         "price": 295.01,
         "change_pct": -0.34,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -32279,7 +32279,7 @@
       "live": {
         "price": 566.21,
         "change_pct": -0.14,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -34061,7 +34061,7 @@
       "live": {
         "price": 82.2,
         "change_pct": -0.01,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -35845,7 +35845,7 @@
       "live": {
         "price": 58.48,
         "change_pct": 0.65,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -37617,7 +37617,7 @@
       "live": {
         "price": 64.15,
         "change_pct": 0.13,
-        "phase": "live"
+        "phase": "after-hours"
       }
     },
     {
@@ -39398,7 +39398,7 @@
       "live": {
         "price": 186.88,
         "change_pct": -0.21,
-        "phase": "live"
+        "phase": "after-hours"
       }
     }
   ],
