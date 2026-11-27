@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-11-26T21:09:08+00:00",
-    "session": "post-close",
+    "generated_at": "2026-11-27T02:55:50+00:00",
+    "session": "pre-open",
     "data_mode": "LIVE",
     "as_of_date": "2026-11-25",
     "disclaimer": "Structural reads and screens only - not financial advice. In SAMPLE mode the numbers are simulated for layout and are NOT live market data.",
@@ -28,20 +28,20 @@
     },
     {
       "name": "DXY",
-      "value": 103.78,
-      "change": 0.11,
+      "value": 103.65,
+      "change": -0.01,
       "note": ""
     },
     {
       "name": "Oil",
-      "value": 84.91,
-      "change": 1.23,
+      "value": 85.73,
+      "change": 2.05,
       "note": ""
     },
     {
       "name": "Gold",
-      "value": 3593.4,
-      "change": 57.6,
+      "value": 3651.1,
+      "change": 115.3,
       "note": ""
     }
   ],
@@ -1854,7 +1854,7 @@
       "live": {
         "price": 720.43,
         "change_pct": 0.52,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -3621,7 +3621,7 @@
       "live": {
         "price": 636.62,
         "change_pct": 0.42,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -5399,7 +5399,7 @@
       "live": {
         "price": 355.1,
         "change_pct": -0.13,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -7188,7 +7188,7 @@
       "live": {
         "price": 492.15,
         "change_pct": 0.45,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -8946,7 +8946,7 @@
       "live": {
         "price": 274.89,
         "change_pct": 0.66,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -10735,7 +10735,7 @@
       "live": {
         "price": 246.77,
         "change_pct": 0.96,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -12518,7 +12518,7 @@
       "live": {
         "price": 151.22,
         "change_pct": 1.29,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -14307,7 +14307,7 @@
       "live": {
         "price": 612.39,
         "change_pct": 0.41,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -16092,7 +16092,7 @@
       "live": {
         "price": 383.23,
         "change_pct": 0.81,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -17865,7 +17865,7 @@
       "live": {
         "price": 615.26,
         "change_pct": 2.33,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -19622,7 +19622,7 @@
       "live": {
         "price": 413.81,
         "change_pct": 1.92,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -21391,7 +21391,7 @@
       "live": {
         "price": 304.0,
         "change_pct": 1.04,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -23177,7 +23177,7 @@
       "live": {
         "price": 165.7,
         "change_pct": 1.29,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -24930,7 +24930,7 @@
       "live": {
         "price": 106.61,
         "change_pct": 2.79,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -26694,7 +26694,7 @@
       "live": {
         "price": 67.57,
         "change_pct": 2.72,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -28466,7 +28466,7 @@
       "live": {
         "price": 13.29,
         "change_pct": 1.68,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -30266,7 +30266,7 @@
       "live": {
         "price": 270.31,
         "change_pct": 0.54,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -32039,7 +32039,7 @@
       "live": {
         "price": 428.0,
         "change_pct": 1.31,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -33818,7 +33818,7 @@
       "live": {
         "price": 82.03,
         "change_pct": -0.26,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -35616,7 +35616,7 @@
       "live": {
         "price": 56.75,
         "change_pct": 0.42,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -37398,7 +37398,7 @@
       "live": {
         "price": 60.86,
         "change_pct": -0.07,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     },
     {
@@ -39187,7 +39187,7 @@
       "live": {
         "price": 156.92,
         "change_pct": 0.73,
-        "phase": "after-hours"
+        "phase": "closed"
       }
     }
   ],
